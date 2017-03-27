@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by Thomas on 11/03/2017.
+ * ActivityModule class for the Dependency Injection with Dagger.
  */
 @Module
 public class ActivityModule {

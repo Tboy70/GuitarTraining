@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.model.User;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.MainActivity;
 import com.example.thomas.guitartraining.presentation.adapter.ListUsersAdapter;
@@ -16,15 +18,16 @@ import com.example.thomas.guitartraining.presentation.presenter.ListUsersPresent
 import com.example.thomas.guitartraining.presentation.view.ListUsersView;
 import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * List of users of the application.
  */
-
 public class ListUsersFragment extends Fragment implements ListUsersView {
 
     @Inject
@@ -62,6 +65,7 @@ public class ListUsersFragment extends Fragment implements ListUsersView {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, rootView);
         initRecyclerView();
+        listUsersPresenter.retrieveListUsers();
     }
 
     private void initRecyclerView() {
@@ -69,5 +73,16 @@ public class ListUsersFragment extends Fragment implements ListUsersView {
         listUsersRV.setLayoutManager(new LinearLayoutManager(getActivity()));
         listUsersRV.setAdapter(listUsersAdapter);
 
+    }
+
+    @Override
+    public void displayError(String s) {
+        // TODO
+        Log.e("TEST", "TODO");
+    }
+
+    @Override
+    public void updateUI(List<User> users) {
+        listUsersAdapter.addUsers(users);
     }
 }

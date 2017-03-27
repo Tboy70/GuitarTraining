@@ -1,16 +1,24 @@
 package com.example.thomas.guitartraining.di.module;
 
 import android.content.Context;
+import android.support.annotation.UiThread;
 
+import com.example.data.executor.JobExecutor;
+import com.example.data.repository.UserDataRepository;
+import com.example.executor.PostExecutionThread;
+import com.example.executor.ThreadExecutor;
+import com.example.repository.UserRepository;
 import com.example.thomas.guitartraining.GuitarTrainingApplication;
+import com.example.thomas.guitartraining.presentation.executor.UIThread;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by Thomas on 11/03/2017.
+ * ApplicationModule class for dependency injection with Dagger.
  */
-
 @Module
 public class ApplicationModule {
     private final GuitarTrainingApplication application;
@@ -19,8 +27,24 @@ public class ApplicationModule {
         this.application = application;
     }
 
-    @Provides
+    @Provides @Singleton
     Context provideApplicationContext() {
         return this.application;
     }
+
+    @Provides @Singleton
+    UserRepository provideUserRepository(UserDataRepository userDataRepository) {
+        return userDataRepository;
+    }
+
+    @Provides @Singleton
+    ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
+        return jobExecutor;
+    }
+
+    @Provides @Singleton
+    PostExecutionThread providePostExecutionThread(UIThread uiThread) {
+        return uiThread;
+    }
+
 }

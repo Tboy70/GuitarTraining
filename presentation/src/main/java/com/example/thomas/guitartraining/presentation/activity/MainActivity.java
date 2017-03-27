@@ -14,6 +14,9 @@ import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener
 
 import butterknife.ButterKnife;
 
+/**
+ * Main activity of the application.
+ */
 public class MainActivity extends AppCompatActivity implements MainNavigatorListener {
 
     private ActivityComponent activityComponent;
@@ -56,10 +59,14 @@ public class MainActivity extends AppCompatActivity implements MainNavigatorList
     protected void onStart() {
         super.onStart();
 
-        loadListUsers();
+        loadAuthentificationChoice();
     }
 
     public void loadListUsers() {
         mainNavigator.loadListUsers(this);
+    }
+
+    public void loadAuthentificationChoice() {
+        mainNavigator.loadAuthentificationChoice(this);
     }
 }

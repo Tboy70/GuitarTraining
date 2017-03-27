@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentActivity;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.fragment.ListUsersFragment;
+import com.example.thomas.guitartraining.presentation.fragment.AuthentificationChoiceFragment;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * Navigator of the MainActivity.
  */
-
 public class MainNavigator extends FragmentActivity {
 
     public MainNavigator() {}
@@ -19,5 +19,11 @@ public class MainNavigator extends FragmentActivity {
         Fragment listUsersFragment = ListUsersFragment.newInstance();
 
         activity.getFragmentManager().beginTransaction().add(R.id.fragmentLayout, listUsersFragment).commit();
+    }
+
+    public void loadAuthentificationChoice(Activity activity) {
+        Fragment authentificationChoiceFragment = AuthentificationChoiceFragment.newInstance();
+
+        activity.getFragmentManager().beginTransaction().add(R.id.fragmentLayout, authentificationChoiceFragment).commit();
     }
 }

@@ -1,14 +1,21 @@
 package com.example.model;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * A model of user.
  */
-
 public class User {
 
     private int idUser;
-    private String firstNameUser;
-    private String lastNameUser;
+    private String pseudoUser;
+    private String passwordUser;
+
+    public User(int idUser, String pseudoUser, String passwordUser) {
+        this.idUser = idUser;
+        this.pseudoUser = pseudoUser;
+        this.passwordUser = passwordUser;
+    }
+
+    public User() {}
 
     public int getIdUser() {
         return idUser;
@@ -18,19 +25,19 @@ public class User {
         this.idUser = idUser;
     }
 
-    public String getFirstNameUser() {
-        return firstNameUser;
+    public String getPseudoUser() {
+        return pseudoUser;
     }
 
-    public void setFirstNameUser(String firstNameUser) {
-        this.firstNameUser = firstNameUser;
+    public void setPseudoUser(String pseudoUser) {
+        this.pseudoUser = pseudoUser;
     }
 
-    public String getLastNameUser() {
-        return lastNameUser;
+    public String getPasswordUser() {
+        return passwordUser;
     }
 
-    public void setLastNameUser(String lastNameUser) {
-        this.lastNameUser = lastNameUser;
+    public void setPasswordUser(String passwordUser) {
+        this.passwordUser = passwordUser;
     }
 }

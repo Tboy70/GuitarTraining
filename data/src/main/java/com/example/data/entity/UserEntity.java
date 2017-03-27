@@ -3,41 +3,41 @@ package com.example.data.entity;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * "User" entity mapped on the database table "User".
  */
-
 public class UserEntity {
 
-    @SerializedName("id_user")
+    @SerializedName("idUser")
     private int idUser;
 
-    @SerializedName("first_name_user")
-    private String firstNameUser;
+    @SerializedName("pseudoUser")
+    private String pseudoUser;
 
-    @SerializedName("last_name_user")
-    private String lastNameUser;
+    @SerializedName("passwordUser")
+    private String passwordUser;
 
-    public int getIdUser() {
-        return idUser;
-    }
+    public int getIdUser() { return idUser; }
 
+    @SuppressWarnings("unused")
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
-    public String getFirstNameUser() {
-        return firstNameUser;
+    public String getPseudoUser() {
+        return pseudoUser;
     }
 
-    public void setFirstNameUser(String firstNameUser) {
-        this.firstNameUser = firstNameUser;
+    @SuppressWarnings("unused")
+    public void setPseudoUser(String pseudoUser) {
+        this.pseudoUser = pseudoUser;
     }
 
-    public String getLastNameUser() {
-        return lastNameUser;
+    public String getPasswordUser() {
+        return passwordUser;
     }
 
-    public void setLastNameUser(String lastNameUser) {
-        this.lastNameUser = lastNameUser;
+    @SuppressWarnings("unused")
+    public void setPasswordUser(String passwordUser) {
+        this.passwordUser = passwordUser;
     }
 }

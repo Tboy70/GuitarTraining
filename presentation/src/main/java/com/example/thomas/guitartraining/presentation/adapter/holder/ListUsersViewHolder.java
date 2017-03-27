@@ -12,9 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * View holder for the adapter of the ListUsers fragment.
  */
-
 public class ListUsersViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.id_user)
@@ -34,8 +33,8 @@ public class ListUsersViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void fillHolder(User user, Context context) {
-        idUser.setText(user.getIdUser());
-        firstNameUser.setText(user.getFirstNameUser());
-        lastNameUser.setText(user.getLastNameUser());
+        idUser.setText(String.valueOf(user.getIdUser()));
+        firstNameUser.setText(user.getPseudoUser());
+        lastNameUser.setText(user.getPasswordUser());
     }
 }

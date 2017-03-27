@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GuitarTraining</string>
+
+    <!-- Main authentification choice. -->
+    <string name="authentification_choice_text_button_connection">Se connecter</string>
+    <string name="authentification_choice_text_button_no_connection">Mode hors connexion</string>
 </resources>

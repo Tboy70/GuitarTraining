@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="@dimen/button_width_1"
+        android:layout_height="@dimen/button_height_1"
+        android:text="@string/authentification_choice_text_button_connection"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/space_height_1" />
+    <Button
+        android:layout_width="@dimen/button_width_1"
+        android:layout_height="@dimen/button_height_1"
+        android:text="@string/authentification_choice_text_button_no_connection" />
+
+</LinearLayout>

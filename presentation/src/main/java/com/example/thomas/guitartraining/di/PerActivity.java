@@ -7,7 +7,7 @@ import javax.inject.Scope;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Created by Thomas on 11/03/2017.
+ * Created scope named "PerActivity".
  */
 @Scope
 @Retention(RUNTIME)

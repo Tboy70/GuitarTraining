@@ -1,8 +1,13 @@
 package com.example.thomas.guitartraining.presentation.view;
 
-/**
- * Created by Thomas on 13/03/2017.
- */
+import com.example.model.User;
 
+import java.util.List;
+
+/**
+ * Interface implemented by the ListUsers fragment.
+ */
 public interface ListUsersView {
+    void displayError(String s);
+    void updateUI(List<User> users);
 }

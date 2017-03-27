@@ -16,9 +16,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * Adapter for the recycler view of the ListUsers fragment.
  */
-
 public class ListUsersAdapter extends RecyclerView.Adapter<ListUsersViewHolder> {
 
     private List<User> userList;
@@ -32,13 +31,16 @@ public class ListUsersAdapter extends RecyclerView.Adapter<ListUsersViewHolder> 
 
     @Override
     public ListUsersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_users_fragment, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_users_row, parent, false);
         return new ListUsersViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ListUsersViewHolder holder, int position) {
-        User user = new User();
+        User user = new User(
+                userList.get(position).getIdUser(),
+                userList.get(position).getPseudoUser(),
+                userList.get(position).getPasswordUser());
         holder.fillHolder(user, context);
     }
 
@@ -47,11 +49,12 @@ public class ListUsersAdapter extends RecyclerView.Adapter<ListUsersViewHolder> 
         return userList.size();
     }
 
-    public void addUser(List<User> users) {
+    public void addUsers(List<User> users) {
         userList = users;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 
+    @SuppressWarnings("unused")
     public void clearUsers() {
         userList.clear();
     }

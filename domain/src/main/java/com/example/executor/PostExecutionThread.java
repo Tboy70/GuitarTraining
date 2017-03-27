@@ -3,9 +3,8 @@ package com.example.executor;
 import rx.Scheduler;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * Interface implemented by UIThread class.
  */
-
 public interface PostExecutionThread {
     Scheduler getScheduler();
 }

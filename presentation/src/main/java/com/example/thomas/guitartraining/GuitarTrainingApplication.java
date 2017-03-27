@@ -8,9 +8,8 @@ import com.example.thomas.guitartraining.di.module.ApplicationModule;
 import com.example.thomas.guitartraining.presentation.navigator.MainNavigator;
 
 /**
- * Created by Thomas on 11/03/2017.
+ * Application class of the application.
  */
-
 public class GuitarTrainingApplication extends Application {
 
     public static GuitarTrainingApplication application;

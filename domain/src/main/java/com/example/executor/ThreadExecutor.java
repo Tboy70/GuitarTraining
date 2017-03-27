@@ -3,8 +3,7 @@ package com.example.executor;
 import java.util.concurrent.Executor;
 
 /**
- * Created by Thomas on 13/03/2017.
+ * Interface implemented by JobExecutor class.
  */
-
 public interface ThreadExecutor extends Executor {
 }

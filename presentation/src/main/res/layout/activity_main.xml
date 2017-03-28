@@ -5,9 +5,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.thomas.guitartraining.presentation.activity.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragmentLayout"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_activity_toolbar"
+        android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/main_activity_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_activity_toolbar"/>
 
 </RelativeLayout>

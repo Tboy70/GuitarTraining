@@ -18,12 +18,13 @@ public class MainNavigator extends FragmentActivity {
     public void loadListUsers(Activity activity) {
         Fragment listUsersFragment = ListUsersFragment.newInstance();
 
-        activity.getFragmentManager().beginTransaction().add(R.id.fragmentLayout, listUsersFragment).commit();
+        activity.getFragmentManager().beginTransaction().add(R.id.main_activity_frame_layout, listUsersFragment).commit();
     }
 
     public void loadAuthentificationChoice(Activity activity) {
         Fragment authentificationChoiceFragment = AuthentificationChoiceFragment.newInstance();
 
-        activity.getFragmentManager().beginTransaction().add(R.id.fragmentLayout, authentificationChoiceFragment).commit();
+        activity.setContentView(R.layout.activity_main);
+        activity.getFragmentManager().beginTransaction().add(R.id.main_activity_frame_layout, authentificationChoiceFragment).commit();
     }
 }

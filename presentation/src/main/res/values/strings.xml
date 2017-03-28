@@ -4,4 +4,7 @@
     <!-- Main authentification choice. -->
     <string name="authentification_choice_text_button_connection">Se connecter</string>
     <string name="authentification_choice_text_button_no_connection">Mode hors connexion</string>
+
+    <!-- Toolbar -->
+    <string name="main_activity_toolbar_about_title">A propos</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.example.thomas.guitartraining.di.module;
 
 import android.content.Context;
-import android.support.annotation.UiThread;
 
 import com.example.data.executor.JobExecutor;
 import com.example.data.repository.UserDataRepository;

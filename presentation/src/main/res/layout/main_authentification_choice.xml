@@ -9,7 +9,8 @@
     <Button
         android:layout_width="@dimen/button_width_1"
         android:layout_height="@dimen/button_height_1"
-        android:text="@string/authentification_choice_text_button_connection"/>
+        android:text="@string/authentification_choice_text_button_connection"
+        android:background="@android:drawable/dialog_holo_light_frame"/>
 
     <android.support.v4.widget.Space
         android:layout_width="wrap_content"
@@ -17,6 +18,7 @@
     <Button
         android:layout_width="@dimen/button_width_1"
         android:layout_height="@dimen/button_height_1"
-        android:text="@string/authentification_choice_text_button_no_connection" />
+        android:text="@string/authentification_choice_text_button_no_connection"
+        android:background="@android:drawable/dialog_holo_light_frame"/>
 
 </LinearLayout>

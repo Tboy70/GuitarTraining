@@ -1,7 +1,10 @@
 package com.example.thomas.guitartraining.presentation.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.thomas.guitartraining.GuitarTrainingApplication;
 import com.example.thomas.guitartraining.R;
@@ -28,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigatorList
         ButterKnife.bind(this);
         injectParameters();
         this.initializeInjector();
-        setContentView(R.layout.activity_main);
     }
 
     private void injectParameters() {
@@ -60,6 +62,26 @@ public class MainActivity extends AppCompatActivity implements MainNavigatorList
         super.onStart();
 
         loadAuthentificationChoice();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_activity_toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_activity_menu_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.main_activity_toolbar_about_icon:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void loadListUsers() {

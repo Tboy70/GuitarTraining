@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/main_activity_toolbar_about_icon"
-        android:title="@string/main_activity_toolbar_about_title"
+        android:title="@string/main_activity_toolbar_about_item_title"
         android:icon="@drawable/info_icon_white"
         app:showAsAction="ifRoom" />
 </menu>

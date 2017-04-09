@@ -3,9 +3,11 @@ package com.example.thomas.guitartraining.di.module;
 import android.content.Context;
 
 import com.example.data.executor.JobExecutor;
+import com.example.data.repository.TextDataRepository;
 import com.example.data.repository.UserDataRepository;
 import com.example.executor.PostExecutionThread;
 import com.example.executor.ThreadExecutor;
+import com.example.repository.TextRepository;
 import com.example.repository.UserRepository;
 import com.example.thomas.guitartraining.GuitarTrainingApplication;
 import com.example.thomas.guitartraining.presentation.executor.UIThread;
@@ -34,6 +36,11 @@ public class ApplicationModule {
     @Provides @Singleton
     UserRepository provideUserRepository(UserDataRepository userDataRepository) {
         return userDataRepository;
+    }
+
+    @Provides @Singleton
+    TextRepository provideTextRepository(TextDataRepository textDataRepository) {
+        return textDataRepository;
     }
 
     @Provides @Singleton

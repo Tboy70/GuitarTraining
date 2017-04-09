@@ -6,5 +6,7 @@
     <string name="authentification_choice_text_button_no_connection">Mode hors connexion</string>
 
     <!-- Toolbar -->
-    <string name="main_activity_toolbar_about_title">A propos</string>
+    <string name="main_activity_toolbar_about_item_title">A propos</string>
+    <string name="dialog_fragment_title_about">A propos</string>
+    <string name="dialog_fragment_dismiss_button_text_about">C\'est parti !</string>
 </resources>

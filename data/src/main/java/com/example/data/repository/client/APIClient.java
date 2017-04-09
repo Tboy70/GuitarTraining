@@ -1,5 +1,6 @@
 package com.example.data.repository.client;
 
+import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
 import com.example.data.module.APIModule;
 import com.example.data.module.APIModuleRetrofitImpl;
@@ -29,5 +30,13 @@ public class APIClient {
      */
     public Observable<List<UserEntity>> getAllUsersFromAPI() {
         return apiModule.getAllUsers();
+    }
+
+    /**
+     * To get the information about the application.
+     * @return An observable of TextEntity.
+     */
+    public Observable<TextEntity> getApplicationAboutInformationFromAPI() {
+        return apiModule.getApplicationAboutInformation();
     }
 }

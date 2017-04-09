@@ -1,5 +1,6 @@
 package com.example.data.module;
 
+import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,6 +45,9 @@ public class APIModuleRetrofitImpl implements APIModule {
          */
         @GET("users")
         Observable<List<UserEntity>> allUsers();
+
+        @GET("info_text")
+        Observable<DefaultRequestResponseEnvelope> appInfo();
     }
 
     @Inject
@@ -72,5 +76,36 @@ public class APIModuleRetrofitImpl implements APIModule {
     @Override
     public Observable<List<UserEntity>> getAllUsers() {
         return apiService.allUsers();
+    }
+
+    /**
+     * Get the application information.
+     * @return Observable -> A TextEntity.
+     */
+    @Override
+    public Observable<TextEntity> getApplicationAboutInformation() {
+        Observable<DefaultRequestResponseEnvelope> defaultRequestResponseEnvelope = apiService.appInfo();
+        return defaultRequestResponseEnvelope.map(new Func1<DefaultRequestResponseEnvelope, TextEntity>() {
+            @Override
+            public TextEntity call(DefaultRequestResponseEnvelope defaultRequestResponseEnvelope) {
+                if (defaultRequestResponseEnvelope.results.size() == 1) {
+                    return defaultRequestResponseEnvelope.results.get(0);
+                } else {
+                    return null;
+                }
+            }
+        });
+    }
+
+    /**
+     * An envelope to map the JSON from the API.
+     */
+    private class DefaultRequestResponseEnvelope {
+        @SuppressWarnings("unused")
+        @SerializedName("success")
+        boolean success;
+
+        @SerializedName("results")
+        List<TextEntity> results;
     }
 }

@@ -2,6 +2,8 @@ package com.example.thomas.guitartraining.di.module;
 
 import android.app.Activity;
 
+import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,5 +22,10 @@ public class ActivityModule {
     @Provides
     Activity activity() {
         return this.activity;
+    }
+
+    @Provides
+    MainNavigatorListener provideMainNavigatorListener() {
+        return (MainNavigatorListener) activity;
     }
 }

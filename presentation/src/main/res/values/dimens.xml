@@ -7,4 +7,7 @@
 
     <!-- Space dimens values. -->
     <dimen name="space_height_1">100dp</dimen>
+
+    <!-- Text size. -->
+    <dimen name="dialog_fragment_content_text_size">15sp</dimen>
 </resources>

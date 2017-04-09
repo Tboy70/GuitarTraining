@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="android:dialogTheme">@style/Theme.App.AppCompatDialogStyle</item>
+    </style>
+
+    <style name="Theme.App.AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">false</item> <!-- that's the important bit -->
     </style>
 
 </resources>

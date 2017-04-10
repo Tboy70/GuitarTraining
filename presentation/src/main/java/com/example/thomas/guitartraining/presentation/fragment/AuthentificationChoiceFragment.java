@@ -15,6 +15,7 @@ import com.example.thomas.guitartraining.presentation.view.AuthentificationChoic
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Fragment containing the choice of authentification (connected mode or not).
@@ -49,5 +50,10 @@ public class AuthentificationChoiceFragment extends Fragment implements Authenti
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, rootView);
 
+    }
+
+    @OnClick(R.id.authentification_choice_offline_button)
+    public void handleAuthentificationChoiceOfflineButton() {
+        authentificationChoicePresenter.launchOfflineActivity();
     }
 }

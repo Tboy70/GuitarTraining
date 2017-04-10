@@ -9,4 +9,5 @@ public interface MainNavigatorListener {
 
     void loadListUsers();
     void callDialogFragment(Text text);
+    void launchOfflineActivity();
 }

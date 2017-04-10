@@ -3,8 +3,10 @@ package com.example.thomas.guitartraining.di.component;
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.di.module.ActivityModule;
 import com.example.thomas.guitartraining.presentation.activity.MainActivity;
+import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
 import com.example.thomas.guitartraining.presentation.fragment.AuthentificationChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ListUsersFragment;
+import com.example.thomas.guitartraining.presentation.fragment.OfflineSessionChoiceFragment;
 
 import dagger.Component;
 
@@ -16,7 +18,9 @@ import dagger.Component;
 public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
+    void inject(OfflineActivity offlineActivity);
 
     void inject(ListUsersFragment listUsersFragment);
     void inject(AuthentificationChoiceFragment authentificationChoiceFragment);
+    void inject(OfflineSessionChoiceFragment offlineSessionChoiceFragment);
 }

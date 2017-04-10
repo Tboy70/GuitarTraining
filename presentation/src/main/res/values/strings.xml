@@ -9,4 +9,10 @@
     <string name="main_activity_toolbar_about_item_title">A propos</string>
     <string name="dialog_fragment_title_about">A propos</string>
     <string name="dialog_fragment_dismiss_button_text_about">C\'est parti !</string>
+    <string name="offline_toolbar_title">Mode hors connexion</string>
+
+    <!-- Offline session choice fragment -->
+    <string name="offline_session_choice_theoretical_session">Programme théorique</string>
+    <string name="offline_session_choice_technical_session">Programme technique</string>
+
 </resources>

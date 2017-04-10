@@ -35,7 +35,8 @@ public class MainActivity extends BaseActivity implements MainNavigatorListener 
     }
 
     private void injectParameters() {
-        mainNavigator = new MainNavigator();
+        // TODO : See to inject the navigator.
+        mainNavigator = new MainNavigator(this);
     }
 
     @Override
@@ -86,5 +87,13 @@ public class MainActivity extends BaseActivity implements MainNavigatorListener 
      */
     public void launchAuthentificationModeChoice() {
         mainNavigator.launchAuthentificationModeChoiceFragment(this);
+    }
+
+    /**
+     * Launch the offline activity -> Without connection.
+     */
+    @Override
+    public void launchOfflineActivity() {
+        mainNavigator.launchOfflineActivity();
     }
 }

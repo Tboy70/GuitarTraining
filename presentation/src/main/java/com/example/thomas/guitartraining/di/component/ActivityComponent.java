@@ -6,7 +6,8 @@ import com.example.thomas.guitartraining.presentation.activity.MainActivity;
 import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
 import com.example.thomas.guitartraining.presentation.fragment.AuthentificationChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ListUsersFragment;
-import com.example.thomas.guitartraining.presentation.fragment.OfflineSessionChoiceFragment;
+import com.example.thomas.guitartraining.presentation.fragment.OfflineProgramChoiceFragment;
+import com.example.thomas.guitartraining.presentation.fragment.OfflineTheoreticalProgramFragment;
 
 import dagger.Component;
 
@@ -22,5 +23,6 @@ public interface ActivityComponent {
 
     void inject(ListUsersFragment listUsersFragment);
     void inject(AuthentificationChoiceFragment authentificationChoiceFragment);
-    void inject(OfflineSessionChoiceFragment offlineSessionChoiceFragment);
+    void inject(OfflineProgramChoiceFragment offlineProgramChoiceFragment);
+    void inject(OfflineTheoreticalProgramFragment offlineTheoreticalProgramFragment);
 }

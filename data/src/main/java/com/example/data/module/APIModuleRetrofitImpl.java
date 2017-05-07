@@ -1,5 +1,7 @@
 package com.example.data.module;
 
+import com.example.data.entity.ExerciseEntity;
+import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
 import com.google.gson.Gson;
@@ -46,8 +48,13 @@ public class APIModuleRetrofitImpl implements APIModule {
         @GET("users")
         Observable<List<UserEntity>> allUsers();
 
+        // TODO : COMMENT
         @GET("info_text")
         Observable<DefaultRequestResponseEnvelope> appInfo();
+
+        // TODO : CHECK PASSAGE OF PARAM ^^
+        @GET("program/{idProgram}")
+        Observable<ProgramEntity> getProgram(int idProgram);
     }
 
     @Inject
@@ -97,9 +104,15 @@ public class APIModuleRetrofitImpl implements APIModule {
         });
     }
 
+    @Override
+    public Observable<ProgramEntity> getProgramById(int idProgram) {
+        return apiService.getProgram(idProgram);
+    }
+
     /**
      * An envelope to map the JSON from the API.
      */
+    //TODO : Rename.
     private class DefaultRequestResponseEnvelope {
         @SuppressWarnings("unused")
         @SerializedName("success")

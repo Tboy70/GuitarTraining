@@ -1,5 +1,6 @@
 package com.example.data.module;
 
+import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
 
@@ -15,4 +16,5 @@ public interface APIModule {
 
     Observable<List<UserEntity>> getAllUsers();
     Observable<TextEntity> getApplicationAboutInformation();
+    Observable<ProgramEntity> getProgramById(int idProgram);
 }

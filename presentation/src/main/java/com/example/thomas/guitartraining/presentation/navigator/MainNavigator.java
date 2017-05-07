@@ -65,7 +65,7 @@ public class MainNavigator extends FragmentActivity {
         }
         // TODO : Handle error (activity = null).
 
-        // To handle animation
+        // To handle animations.
         // TODO : See how is it done on Amiltone project.
         if (activity != null) {
             activity.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);

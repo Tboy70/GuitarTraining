@@ -54,4 +54,9 @@ public class OfflineActivity extends BaseActivity implements OfflineNavigatorLis
     private void launchOfflineSessionChoice() {
         offlineNavigator.launchOfflineProgramChoice(this);
     }
+
+    @Override
+    public void launchOfflineTheoreticalProgram() {
+        offlineNavigator.launchOfflineTheoreticalProgram(this);
+    }
 }

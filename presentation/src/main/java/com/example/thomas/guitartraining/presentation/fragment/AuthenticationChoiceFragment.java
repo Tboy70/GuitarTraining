@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.MainActivity;
-import com.example.thomas.guitartraining.presentation.presenter.AuthentificationChoicePresenter;
-import com.example.thomas.guitartraining.presentation.view.AuthentificationChoiceView;
+import com.example.thomas.guitartraining.presentation.presenter.AuthenticationChoicePresenter;
+import com.example.thomas.guitartraining.presentation.view.AuthenticationChoiceView;
 
 import javax.inject.Inject;
 
@@ -20,15 +20,15 @@ import butterknife.OnClick;
 /**
  * Fragment containing the choice of authentification (connected mode or not).
  */
-public class AuthentificationChoiceFragment extends Fragment implements AuthentificationChoiceView {
+public class AuthenticationChoiceFragment extends Fragment implements AuthenticationChoiceView {
 
     @Inject
-    AuthentificationChoicePresenter authentificationChoicePresenter;
+    AuthenticationChoicePresenter authenticationChoicePresenter;
 
     View rootView;
 
-    public static AuthentificationChoiceFragment newInstance() {
-        return new AuthentificationChoiceFragment();
+    public static AuthenticationChoiceFragment newInstance() {
+        return new AuthenticationChoiceFragment();
     }
 
     @Nullable
@@ -53,7 +53,7 @@ public class AuthentificationChoiceFragment extends Fragment implements Authenti
     }
 
     @OnClick(R.id.authentification_choice_offline_button)
-    public void handleAuthentificationChoiceOfflineButton() {
-        authentificationChoicePresenter.launchOfflineActivity();
+    public void handleAuthenticationChoiceOfflineButton() {
+        authenticationChoicePresenter.launchOfflineActivity();
     }
 }

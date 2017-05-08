@@ -1,7 +1,12 @@
 package com.example.data.mapper;
 
+import com.example.data.entity.ExerciseEntity;
 import com.example.data.entity.ProgramEntity;
+import com.example.model.Exercise;
 import com.example.model.Program;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -22,9 +27,21 @@ public class ProgramMapper {
         programModel.setIdProgram(programEntity.getIdProgram());
         programModel.setNameProgram(programEntity.getNameProgram());
         programModel.setDefaultProgram(programEntity.isDefaultProgram());
-        programModel.setUserIdProgram(programEntity.getUserIdProgram());
+        programModel.setUserId(programEntity.getUserIdProgram());
 
-        // TODO : See for map a list !
+        List<ExerciseEntity> exerciseEntityList = programEntity.getExerciceEntities();
+        List<Exercise> exercisesList = new ArrayList<>();
+        for (int i = 0; i < exerciseEntityList.size(); i++) {
+            Exercise exercise = new Exercise();
+            exercise.setIdExercise(exerciseEntityList.get(i).getIdExercice());
+            exercise.setDurationExercise(exerciseEntityList.get(i).getDurationExercice());
+            exercise.setIdProgram(exerciseEntityList.get(i).getIdProgram());
+            exercise.setTypeExercise(exerciseEntityList.get(i).getTypeExercice());
+
+            exercisesList.add(exercise);
+        }
+
+        programModel.setExercises(exercisesList);
 
         return programModel;
     }
@@ -35,9 +52,21 @@ public class ProgramMapper {
         programEntity.setIdProgram(programModel.getIdProgram());
         programEntity.setNameProgram(programModel.getNameProgram());
         programEntity.setDefaultProgram(programModel.isDefaultProgram());
-        programEntity.setUserIdProgram(programModel.getUserIdProgram());
+        programEntity.setUserIdProgram(programModel.getUserId());
 
-        // TODO : See for map a list !
+        List<Exercise> exercisesList = programModel.getExercises();
+        List<ExerciseEntity> exerciseEntityList= new ArrayList<>();
+        for (int i = 0; i < exercisesList.size(); i++) {
+            ExerciseEntity exerciseEntity = new ExerciseEntity();
+            exerciseEntity.setIdExercice(exercisesList.get(i).getIdExercise());
+            exerciseEntity.setDurationExercice(exercisesList.get(i).getDurationExercise());
+            exerciseEntity.setIdProgram(exercisesList.get(i).getIdProgram());
+            exerciseEntity.setTypeExercice(exercisesList.get(i).getTypeExercise());
+
+            exerciseEntityList.add(exerciseEntity);
+        }
+
+        programEntity.setExerciceEntities(exerciseEntityList);
 
         return programEntity;
     }

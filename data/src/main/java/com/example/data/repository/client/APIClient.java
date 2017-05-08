@@ -37,6 +37,6 @@ public class APIClient {
      * @return An observable of TextEntity.
      */
     public Observable<TextEntity> getApplicationAboutInformationFromAPI() {
-        return apiModule.getApplicationAboutInformation();
+        return apiModule.getInformationsTextAboutApplication();
     }
 }

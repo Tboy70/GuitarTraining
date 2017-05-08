@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements MainNavigatorListener 
     protected void onStart() {
         super.onStart();
 
-        launchAuthentificationModeChoice();
+        launchAuthenticationModeChoice();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_activity_toolbar);
         toolbar.setTitle(getString(R.string.app_name));
@@ -85,8 +85,8 @@ public class MainActivity extends BaseActivity implements MainNavigatorListener 
     /**
      * Launch the first screen of the application --> Connection or not connected mode.
      */
-    public void launchAuthentificationModeChoice() {
-        mainNavigator.launchAuthentificationModeChoiceFragment(this);
+    public void launchAuthenticationModeChoice() {
+        mainNavigator.launchAuthenticationModeChoiceFragment(this);
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.example.data.module;
 
-import com.example.data.entity.ExerciseEntity;
 import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
@@ -19,6 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -48,13 +48,22 @@ public class APIModuleRetrofitImpl implements APIModule {
         @GET("users")
         Observable<List<UserEntity>> allUsers();
 
-        // TODO : COMMENT
+        /**
+         * Method GET to retrieve the informations text about the application.
+         * @return Observable in JSON format.
+         */
         @GET("info_text")
-        Observable<DefaultRequestResponseEnvelope> appInfo();
+        Observable<ApplicationInformationsTextEnveloppe> appInfo();
 
-        // TODO : CHECK PASSAGE OF PARAM ^^
+        /**
+         * Method GET to retrieve a program given its id.
+         * @param idProgram Program ID to be retrieved.
+         * @return Observable in JSON format.
+         */
         @GET("program/{idProgram}")
-        Observable<ProgramEntity> getProgram(int idProgram);
+        Observable<ProgramEntity> getProgram(
+                @Path("idProgram") int idProgram
+        );
     }
 
     @Inject
@@ -90,13 +99,13 @@ public class APIModuleRetrofitImpl implements APIModule {
      * @return Observable -> A TextEntity.
      */
     @Override
-    public Observable<TextEntity> getApplicationAboutInformation() {
-        Observable<DefaultRequestResponseEnvelope> defaultRequestResponseEnvelope = apiService.appInfo();
-        return defaultRequestResponseEnvelope.map(new Func1<DefaultRequestResponseEnvelope, TextEntity>() {
+    public Observable<TextEntity> getInformationsTextAboutApplication() {
+        Observable<ApplicationInformationsTextEnveloppe> defaultRequestResponseEnvelope = apiService.appInfo();
+        return defaultRequestResponseEnvelope.map(new Func1<ApplicationInformationsTextEnveloppe, TextEntity>() {
             @Override
-            public TextEntity call(DefaultRequestResponseEnvelope defaultRequestResponseEnvelope) {
-                if (defaultRequestResponseEnvelope.results.size() == 1) {
-                    return defaultRequestResponseEnvelope.results.get(0);
+            public TextEntity call(ApplicationInformationsTextEnveloppe applicationInformationsTextEnveloppe) {
+                if (applicationInformationsTextEnveloppe.results.size() == 1) {
+                    return applicationInformationsTextEnveloppe.results.get(0);
                 } else {
                     return null;
                 }
@@ -104,6 +113,11 @@ public class APIModuleRetrofitImpl implements APIModule {
         });
     }
 
+    /**
+     * Get a program given an ID.
+     * @param idProgram Program ID to be retrieved.
+     * @return Observable -> A ProgramEntity.
+     */
     @Override
     public Observable<ProgramEntity> getProgramById(int idProgram) {
         return apiService.getProgram(idProgram);
@@ -112,8 +126,7 @@ public class APIModuleRetrofitImpl implements APIModule {
     /**
      * An envelope to map the JSON from the API.
      */
-    //TODO : Rename.
-    private class DefaultRequestResponseEnvelope {
+    private class ApplicationInformationsTextEnveloppe {
         @SuppressWarnings("unused")
         @SerializedName("success")
         boolean success;

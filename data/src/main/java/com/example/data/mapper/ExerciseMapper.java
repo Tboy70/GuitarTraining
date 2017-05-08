@@ -20,7 +20,7 @@ public class ExerciseMapper {
         exerciseModel.setIdExercise(exerciseEntity.getIdExercice());
         exerciseModel.setDurationExercise(exerciseEntity.getDurationExercice());
         exerciseModel.setIdProgram(exerciseEntity.getIdProgram());
-        exerciseModel.setTypeExercice(exerciseEntity.getTypeExercice());
+        exerciseModel.setTypeExercise(exerciseEntity.getTypeExercice());
 
         return exerciseModel;
     }
@@ -31,7 +31,7 @@ public class ExerciseMapper {
         exerciseEntity.setIdExercice(exerciseModel.getIdExercise());
         exerciseEntity.setDurationExercice(exerciseModel.getDurationExercise());
         exerciseEntity.setIdProgram(exerciseModel.getIdProgram());
-        exerciseEntity.setTypeExercice(exerciseModel.getTypeExercice());
+        exerciseEntity.setTypeExercice(exerciseModel.getTypeExercise());
 
         return exerciseEntity;
     }

@@ -8,13 +8,13 @@ public class Exercise {
     private int idExercise;
     private int durationExercise;
     private int idProgram;
-    private int typeExercice;
+    private int typeExercise;
 
-    public Exercise(int idExercise, int durationExercise, int idProgram, int typeExercice) {
+    public Exercise(int idExercise, int durationExercise, int idProgram, int typeExercise) {
         this.idExercise = idExercise;
         this.durationExercise = durationExercise;
         this.idProgram = idProgram;
-        this.typeExercice = typeExercice;
+        this.typeExercise = typeExercise;
     }
 
     public Exercise() {
@@ -45,11 +45,11 @@ public class Exercise {
         this.idProgram = idProgram;
     }
 
-    public int getTypeExercice() {
-        return typeExercice;
+    public int getTypeExercise() {
+        return typeExercise;
     }
 
-    public void setTypeExercice(int typeExercice) {
-        this.typeExercice = typeExercice;
+    public void setTypeExercise(int typeExercise) {
+        this.typeExercise = typeExercise;
     }
 }

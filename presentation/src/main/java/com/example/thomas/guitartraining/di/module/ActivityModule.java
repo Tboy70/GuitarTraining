@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.OfflineNavigatorListener;
+import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,7 +32,12 @@ public class ActivityModule {
     }
 
     @Provides
-    OfflineNavigatorListener offlineNavigatorListener() {
+    OfflineNavigatorListener provideOfflineNavigatorListener() {
         return (OfflineNavigatorListener) activity;
+    }
+
+    @Provides
+    ProgramNavigatorListener provideProgramNavigatorListener() {
+        return (ProgramNavigatorListener) activity;
     }
 }

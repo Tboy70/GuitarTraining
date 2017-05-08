@@ -9,12 +9,12 @@ import javax.inject.Inject;
  * Presenter for the fragment AuthentificationChoice.
  */
 @PerActivity
-public class AuthentificationChoicePresenter {
+public class AuthenticationChoicePresenter {
 
     private MainNavigatorListener mainNavigatorListener;
 
     @Inject
-    AuthentificationChoicePresenter(MainNavigatorListener mainNavigatorListener) {
+    AuthenticationChoicePresenter(MainNavigatorListener mainNavigatorListener) {
         this.mainNavigatorListener = mainNavigatorListener;
     }
 

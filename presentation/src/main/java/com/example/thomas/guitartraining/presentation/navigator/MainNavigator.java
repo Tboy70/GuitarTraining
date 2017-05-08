@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
-import com.example.thomas.guitartraining.presentation.fragment.AuthentificationChoiceFragment;
+import com.example.thomas.guitartraining.presentation.fragment.AuthenticationChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.GenericDialogFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ListUsersFragment;
 
@@ -37,11 +37,11 @@ public class MainNavigator extends FragmentActivity {
      * Launch the authentification mode fragment.
      * @param activity The concerning activity.
      */
-    public void launchAuthentificationModeChoiceFragment(Activity activity) {
-        Fragment authentificationChoiceFragment = AuthentificationChoiceFragment.newInstance();
+    public void launchAuthenticationModeChoiceFragment(Activity activity) {
+        Fragment authenticationChoiceFragment = AuthenticationChoiceFragment.newInstance();
 
         activity.setContentView(R.layout.activity_main);
-        activity.getFragmentManager().beginTransaction().add(R.id.main_activity_frame_layout, authentificationChoiceFragment).commit();
+        activity.getFragmentManager().beginTransaction().add(R.id.main_activity_frame_layout, authenticationChoiceFragment).commit();
     }
 
     /**

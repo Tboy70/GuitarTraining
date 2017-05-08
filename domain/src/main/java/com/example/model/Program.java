@@ -10,14 +10,14 @@ public class Program {
     private int idProgram;
     private String nameProgram;
     private boolean defaultProgram;
-    private int userIdProgram;  // TODO : Rename userId EVERYWHERE ! --> Make convention of naming.
+    private int userId;  // TODO : Rename userId EVERYWHERE ! --> Make convention of naming.
     private List<Exercise> exercises;
 
-    public Program (int idProgram, String nameProgram, boolean defaultProgram, int userIdProgram, List<Exercise> exercises) {
+    public Program (int idProgram, String nameProgram, boolean defaultProgram, int userId, List<Exercise> exercises) {
         this.idProgram = idProgram;
         this.nameProgram = nameProgram;
         this.defaultProgram = defaultProgram;
-        this.userIdProgram = userIdProgram;
+        this.userId = userId;
         this.exercises = exercises;
     }
 
@@ -47,12 +47,12 @@ public class Program {
         this.defaultProgram = defaultProgram;
     }
 
-    public int getUserIdProgram() {
-        return userIdProgram;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserIdProgram(int userIdProgram) {
-        this.userIdProgram = userIdProgram;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public List<Exercise> getExercises() {

@@ -4,7 +4,8 @@ import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.di.module.ActivityModule;
 import com.example.thomas.guitartraining.presentation.activity.MainActivity;
 import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
-import com.example.thomas.guitartraining.presentation.fragment.AuthentificationChoiceFragment;
+import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
+import com.example.thomas.guitartraining.presentation.fragment.AuthenticationChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ListUsersFragment;
 import com.example.thomas.guitartraining.presentation.fragment.OfflineProgramChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.OfflineTheoreticalProgramFragment;
@@ -20,9 +21,10 @@ public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
     void inject(OfflineActivity offlineActivity);
+    void inject(ProgramActivity programActivity);
 
     void inject(ListUsersFragment listUsersFragment);
-    void inject(AuthentificationChoiceFragment authentificationChoiceFragment);
+    void inject(AuthenticationChoiceFragment authenticationChoiceFragment);
     void inject(OfflineProgramChoiceFragment offlineProgramChoiceFragment);
     void inject(OfflineTheoreticalProgramFragment offlineTheoreticalProgramFragment);
 }

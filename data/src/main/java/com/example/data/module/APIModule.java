@@ -15,6 +15,6 @@ import rx.Observable;
 public interface APIModule {
 
     Observable<List<UserEntity>> getAllUsers();
-    Observable<TextEntity> getApplicationAboutInformation();
+    Observable<TextEntity> getInformationsTextAboutApplication();
     Observable<ProgramEntity> getProgramById(int idProgram);
 }

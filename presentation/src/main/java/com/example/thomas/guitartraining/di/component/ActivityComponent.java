@@ -7,9 +7,17 @@ import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.fragment.AuthenticationChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBendSlideFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseGoBackFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePalmMuteFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseScaleFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.IntroProgramFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSkipStringFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSpeedFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSweepPickingFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseTappingFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.ListUsersFragment;
 import com.example.thomas.guitartraining.presentation.fragment.OfflineProgramChoiceFragment;
 
@@ -39,6 +47,22 @@ public interface ActivityComponent {
     void inject(ExerciseScaleFragment exerciseScaleFragment);
 
     void inject(ExerciseModeFragment exerciseModeFragment);
+
+    void inject(ExercisePullOffHammerOnFragment exercisePullOffHammerOnFragment);
+
+    void inject(ExerciseBendSlideFragment exerciseBendSlideFragment);
+
+    void inject(ExerciseGoBackFragment exerciseGoBackFragment);
+
+    void inject(ExercisePalmMuteFragment exercisePalmMuteFragment);
+
+    void inject(ExerciseSkipStringFragment exerciseSkipStringFragment);
+
+    void inject(ExerciseTappingFragment exerciseTappingFragment);
+
+    void inject(ExerciseSweepPickingFragment exerciseSweepPickingFragment);
+
+    void inject(ExerciseSpeedFragment exerciseSpeedFragment);
 
     void inject(EndProgramFragment endProgramFragment);
 }

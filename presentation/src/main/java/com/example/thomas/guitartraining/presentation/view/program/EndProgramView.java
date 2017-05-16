@@ -1,4 +1,4 @@
-package com.example.thomas.guitartraining.presentation.view;
+package com.example.thomas.guitartraining.presentation.view.program;
 
 /**
  * Created by Thomas on 09/05/2017.

@@ -1,4 +1,4 @@
-package com.example.thomas.guitartraining.presentation.view;
+package com.example.thomas.guitartraining.presentation.view.program;
 
 import com.example.model.Program;
 

@@ -13,8 +13,8 @@ import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.presenter.program.IntroProgramPresenter;
-import com.example.thomas.guitartraining.presentation.view.IntroProgramView;
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.view.program.IntroProgramView;
 
 import java.util.ArrayList;
 import java.util.List;

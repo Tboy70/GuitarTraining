@@ -1,4 +1,4 @@
-package com.example.thomas.guitartraining.presentation.fragment.program;
+package com.example.thomas.guitartraining.presentation.fragment.program.exercise;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,42 +9,42 @@ import android.view.ViewGroup;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
-import com.example.thomas.guitartraining.presentation.presenter.program.EndProgramPresenter;
+import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseBendSlidePresenter;
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
-import com.example.thomas.guitartraining.presentation.view.program.EndProgramView;
+import com.example.thomas.guitartraining.presentation.view.program.exercise.ExerciseBendSlideView;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
- * Last step of a program to congratulate the user.
+ * Created by Thomas on 16/05/2017.
  */
-public class EndProgramFragment extends Fragment implements EndProgramView {
+
+public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendSlideView {
 
     @Inject
-    EndProgramPresenter endProgramPresenter;
+    ExerciseBendSlidePresenter exerciseBendSlidePresenter;
 
-    public static EndProgramFragment newInstance() {
+    public static ExerciseBendSlideFragment newInstance() {
+
         Bundle args = new Bundle();
 
-        EndProgramFragment fragment = new EndProgramFragment();
+        ExerciseBendSlideFragment fragment = new ExerciseBendSlideFragment();
         fragment.setArguments(args);
-
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.end_program_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.exercise_bend_slide_fragment, container, false);
 
         ButterKnife.bind(this, rootView);
+        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);  // TODO : Possibility to externalize this ? BaseActivity ?
 
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
-        endProgramPresenter.setEndProgramView(this);
-        endProgramPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
+        exerciseBendSlidePresenter.setExerciseBendSlideView(this);
+        exerciseBendSlidePresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
 
         return rootView;
     }
@@ -57,11 +57,5 @@ public class EndProgramFragment extends Fragment implements EndProgramView {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-    @OnClick(R.id.end_program_finish_button)
-    public void handleClickEndProgramFinishButton() {
-        //TODO : Call this on the presenter ?
-        getActivity().onBackPressed();
     }
 }

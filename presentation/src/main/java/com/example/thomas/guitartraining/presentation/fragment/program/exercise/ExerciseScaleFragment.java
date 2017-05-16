@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseScalePresenter;
-import com.example.thomas.guitartraining.presentation.view.ExerciseScaleView;
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.view.program.exercise.ExerciseScaleView;
 
 import javax.inject.Inject;
 

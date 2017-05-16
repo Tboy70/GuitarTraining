@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseModePresenter;
-import com.example.thomas.guitartraining.presentation.view.ExerciseModeView;
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.view.program.exercise.ExerciseModeView;
 
 import javax.inject.Inject;
 
@@ -43,7 +43,6 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
 
         ExerciseModeFragment fragment = new ExerciseModeFragment();
         fragment.setArguments(args);
-
         return fragment;
     }
 

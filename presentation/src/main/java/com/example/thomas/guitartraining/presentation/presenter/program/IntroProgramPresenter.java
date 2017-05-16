@@ -6,8 +6,8 @@ import com.example.model.Program;
 import com.example.repository.ProgramRepository;
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.fragment.program.IntroProgramFragment;
-import com.example.thomas.guitartraining.presentation.view.IntroProgramView;
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.view.program.IntroProgramView;
 
 import java.util.List;
 

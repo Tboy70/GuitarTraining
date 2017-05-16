@@ -2,8 +2,8 @@ package com.example.thomas.guitartraining.presentation.presenter.program;
 
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
-import com.example.thomas.guitartraining.presentation.view.EndProgramView;
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.view.program.EndProgramView;
 
 import javax.inject.Inject;
 

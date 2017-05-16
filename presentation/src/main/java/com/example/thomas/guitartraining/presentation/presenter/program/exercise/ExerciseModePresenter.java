@@ -2,8 +2,8 @@ package com.example.thomas.guitartraining.presentation.presenter.program.exercis
 
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment;
-import com.example.thomas.guitartraining.presentation.view.ExerciseModeView;
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.view.program.exercise.ExerciseModeView;
 
 import javax.inject.Inject;
 

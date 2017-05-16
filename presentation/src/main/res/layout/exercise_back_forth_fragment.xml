@@ -6,17 +6,17 @@
     android:padding="@dimen/exercise_padding">
 
     <TextView
-        android:id="@+id/exercise_go_back_title"
+        android:id="@+id/exercise_back_forth_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="33"
         android:gravity="center_horizontal"
-        android:text="@string/exercise_go_back_title"
+        android:text="@string/exercise_back_forth_title"
         android:textColor="@android:color/black"
         android:textSize="@dimen/exercise_title_size" />
 
     <TextView
-        android:id="@+id/exercise_go_back_duration"
+        android:id="@+id/exercise_back_forth_duration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="33"
@@ -29,7 +29,7 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:id="@+id/exercise_go_back_next_button"
+            android:id="@+id/exercise_back_forth_next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/exercise_next_exercise" />

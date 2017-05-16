@@ -7,8 +7,8 @@ import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.fragment.AuthenticationChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBackForthForthFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBendSlideFragment;
-import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseGoBackFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePalmMuteFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment;
@@ -52,7 +52,7 @@ public interface ActivityComponent {
 
     void inject(ExerciseBendSlideFragment exerciseBendSlideFragment);
 
-    void inject(ExerciseGoBackFragment exerciseGoBackFragment);
+    void inject(ExerciseBackForthForthFragment exerciseBackForthFragment);
 
     void inject(ExercisePalmMuteFragment exercisePalmMuteFragment);
 

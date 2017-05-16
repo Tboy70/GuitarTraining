@@ -7,8 +7,8 @@ import com.example.data.values.ExercisesTypeValues;
 import com.example.model.Exercise;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
+import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBackForthForthFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBendSlideFragment;
-import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseGoBackFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePalmMuteFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment;
@@ -53,7 +53,7 @@ public class ProgramNavigator {
                 fragmentToDisplay = ExerciseBendSlideFragment.newInstance(i, exercise.getDurationExercise());
                 break;
             case ExercisesTypeValues.EXERCISE_BACK_FORTH:
-                fragmentToDisplay = ExerciseGoBackFragment.newInstance(i, exercise.getDurationExercise());
+                fragmentToDisplay = ExerciseBackForthForthFragment.newInstance(i, exercise.getDurationExercise());
                 break;
             case ExercisesTypeValues.EXERCISE_PALM_MUTE:
                 fragmentToDisplay = ExercisePalmMuteFragment.newInstance(i, exercise.getDurationExercise());

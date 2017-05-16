@@ -55,4 +55,9 @@ public class OfflineProgramChoiceFragment extends Fragment implements OfflineSes
     public void handleClickOfflineProgramChoiceTheoretical() {
         offlineProgramChoicePresenter.launchProgramActivity(1);
     }
+
+    @OnClick(R.id.offline_program_choice_technical)
+    public void handleClickOfflineProgramChoiceTechnical() {
+        offlineProgramChoicePresenter.launchProgramActivity(2);
+    }
 }

@@ -28,4 +28,8 @@ public class ExerciseBendSlidePresenter {
     public void setProgramNavigatorListener(ProgramNavigatorListener programNavigatorListener) {
         this.programNavigatorListener = programNavigatorListener;
     }
+
+    public void showNextExercise(int nextExercisePosition) {
+        programNavigatorListener.showNextExercise(nextExercisePosition);
+    }
 }

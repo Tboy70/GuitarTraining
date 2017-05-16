@@ -25,6 +25,7 @@ import butterknife.OnClick;
  */
 public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView {
 
+    //TODO : Use component (classe de composition) to handle transition between exercises ?
     public static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseScaleFragment.RANK_EXERCISE";
     public static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseScaleFragment.DURATION_EXERCISE";
 

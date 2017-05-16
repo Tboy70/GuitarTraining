@@ -28,8 +28,7 @@ public class ExerciseScalePresenter {
         this.programNavigatorListener = programNavigatorListener;
     }
 
-    //TODO : Rename "i"
-    public void showNextExercise(int i) {
-        programNavigatorListener.showNextExercise(i);
+    public void showNextExercise(int nextExercisePosition) {
+        programNavigatorListener.showNextExercise(nextExercisePosition);
     }
 }

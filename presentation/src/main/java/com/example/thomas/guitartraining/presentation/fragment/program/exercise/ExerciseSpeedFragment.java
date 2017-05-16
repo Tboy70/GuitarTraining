@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
@@ -15,7 +16,9 @@ import com.example.thomas.guitartraining.presentation.view.program.exercise.Exer
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Thomas on 16/05/2017.
@@ -23,12 +26,20 @@ import butterknife.ButterKnife;
 
 public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView {
 
+    public static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSpeedFragment.RANK_EXERCISE";
+    public static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSpeedFragment.DURATION_EXERCISE";
     @Inject
     ExerciseSpeedPresenter exerciseSpeedPresenter;
 
-    public static ExerciseSpeedFragment newInstance() {
+    @BindView(R.id.exercise_speed_duration)
+    TextView exerciseSpeedDuration;
 
+    private int rankExercise;
+
+    public static ExerciseSpeedFragment newInstance(int exercisePosition, int durationExercise) {
         Bundle args = new Bundle();
+        args.putInt(RANK_EXERCISE, exercisePosition);
+        args.putInt(DURATION_EXERCISE, durationExercise);
 
         ExerciseSpeedFragment fragment = new ExerciseSpeedFragment();
         fragment.setArguments(args);
@@ -46,6 +57,12 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
         exerciseSpeedPresenter.setExerciseSpeedView(this);
         exerciseSpeedPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
 
+        rankExercise = getArguments().getInt(RANK_EXERCISE);
+        int durationExercise = getArguments().getInt(DURATION_EXERCISE);
+
+        exerciseSpeedDuration.setText(String.format(getActivity().getString(R.string.exercise_duration_text),
+                String.valueOf(durationExercise)));
+
         return rootView;
     }
 
@@ -57,5 +74,10 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @OnClick(R.id.exercise_speed_next_button)
+    public void handleClickExerciseScaleNextButton() {
+        exerciseSpeedPresenter.showNextExercise(rankExercise + 1);
     }
 }

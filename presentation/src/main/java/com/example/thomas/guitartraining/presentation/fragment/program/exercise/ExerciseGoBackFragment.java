@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
@@ -15,19 +16,31 @@ import com.example.thomas.guitartraining.presentation.view.program.exercise.Exer
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Thomas on 16/05/2017.
  */
 
 public class ExerciseGoBackFragment extends Fragment implements ExerciseGoBackView {
+
+    public static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseGoBackFragment.RANK_EXERCISE";
+    public static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseGoBackFragment.DURATION_EXERCISE";
+
     @Inject
     ExerciseGoBackPresenter exerciseGoBackPresenter;
 
-    public static ExerciseGoBackFragment newInstance() {
+    @BindView(R.id.exercise_go_back_duration)
+    TextView exerciseGoBackDuration;
 
+    private int rankExercise;
+
+    public static ExerciseGoBackFragment newInstance(int exercisePosition, int durationExercise) {
         Bundle args = new Bundle();
+        args.putInt(RANK_EXERCISE, exercisePosition);
+        args.putInt(DURATION_EXERCISE, durationExercise);
 
         ExerciseGoBackFragment fragment = new ExerciseGoBackFragment();
         fragment.setArguments(args);
@@ -45,6 +58,12 @@ public class ExerciseGoBackFragment extends Fragment implements ExerciseGoBackVi
         exerciseGoBackPresenter.setExerciseGoBackView(this);
         exerciseGoBackPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
 
+        rankExercise = getArguments().getInt(RANK_EXERCISE);
+        int durationExercise = getArguments().getInt(DURATION_EXERCISE);
+
+        exerciseGoBackDuration.setText(String.format(getActivity().getString(R.string.exercise_duration_text),
+                String.valueOf(durationExercise)));
+
         return rootView;
     }
 
@@ -56,5 +75,10 @@ public class ExerciseGoBackFragment extends Fragment implements ExerciseGoBackVi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @OnClick(R.id.exercise_go_back_next_button)
+    public void handleClickExerciseScaleNextButton() {
+        exerciseGoBackPresenter.showNextExercise(rankExercise + 1);
     }
 }

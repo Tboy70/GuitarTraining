@@ -1,11 +1,11 @@
-package com.example.thomas.guitartraining.presentation.presenter;
+package com.example.thomas.guitartraining.presentation.presenter.user;
 
 import com.example.executor.PostExecutionThread;
 import com.example.executor.ThreadExecutor;
 import com.example.interactor.GetAllUsers;
 import com.example.model.User;
 import com.example.repository.UserRepository;
-import com.example.thomas.guitartraining.presentation.fragment.ListUsersFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.ListUsersFragment;
 import com.example.thomas.guitartraining.presentation.view.ListUsersView;
 import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener;
 

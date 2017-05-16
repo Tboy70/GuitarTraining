@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- UI elements dimens values. -->
+    <!-- Button dimens -->
     <dimen name="button_width_1">250dp</dimen>
     <dimen name="button_height_1">100dp</dimen>
 
-    <!-- Space dimens values. -->
+    <!-- Space dimens -->
     <dimen name="space_height_1">100dp</dimen>
 
-    <!-- Text size. -->
-    <dimen name="dialog_fragment_content_text_size">15sp</dimen>
+    <!-- Dialog dimens -->
+    <dimen name="dialog_content_text_size">15sp</dimen>
+    <dimen name="dialog_padding">10dp</dimen>
+
+    <!-- Exercise dimens -->
+    <dimen name="exercise_padding">16dp</dimen>
+    <dimen name="exercise_title_size">24sp</dimen>
+
 </resources>

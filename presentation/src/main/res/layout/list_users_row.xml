@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/id_user"
+        android:id="@+id/list_users_row_id_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/first_name_user"
+        android:id="@+id/list_users_row_first_name_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id_user"/>
+        android:layout_below="@id/list_users_row_id_user" />
 
     <TextView
-        android:id="@+id/last_name_user"
+        android:id="@+id/list_users_row_last_name_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/first_name_user"/>
+        android:layout_below="@id/list_users_row_first_name_user" />
 
 </RelativeLayout>

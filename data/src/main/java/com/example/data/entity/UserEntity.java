@@ -16,7 +16,9 @@ public class UserEntity {
     @SerializedName("passwordUser")
     private String passwordUser;
 
-    public int getIdUser() { return idUser; }
+    public int getIdUser() {
+        return idUser;
+    }
 
     @SuppressWarnings("unused")
     public void setIdUser(int idUser) {

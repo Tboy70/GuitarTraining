@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.navigator.OfflineNavigator;
-import com.example.thomas.guitartraining.presentation.presenter.OfflinePresenter;
+import com.example.thomas.guitartraining.presentation.presenter.activity.OfflinePresenter;
 import com.example.thomas.guitartraining.presentation.view.OfflineNavigatorListener;
 
 import javax.inject.Inject;
@@ -56,7 +56,7 @@ public class OfflineActivity extends BaseActivity implements OfflineNavigatorLis
     }
 
     @Override
-    public void launchOfflineTheoreticalProgram() {
-        offlineNavigator.launchOfflineTheoreticalProgram(this);
+    public void launchProgramActivity(int idProgram) {
+        offlineNavigator.launchProgramActivity(this, idProgram);
     }
 }

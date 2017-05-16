@@ -56,11 +56,11 @@ public class ProgramEntity {
         this.userIdProgram = userIdProgram;
     }
 
-    public List<ExerciseEntity> getExerciceEntities() {
+    public List<ExerciseEntity> getExerciseEntities() {
         return exerciseEntities;
     }
 
-    public void setExerciceEntities(List<ExerciseEntity> exerciseEntities) {
+    public void setExerciseEntities(List<ExerciseEntity> exerciseEntities) {
         this.exerciseEntities = exerciseEntities;
     }
 }

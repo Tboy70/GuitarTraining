@@ -29,14 +29,14 @@ public class ProgramMapper {
         programModel.setDefaultProgram(programEntity.isDefaultProgram());
         programModel.setUserId(programEntity.getUserIdProgram());
 
-        List<ExerciseEntity> exerciseEntityList = programEntity.getExerciceEntities();
+        List<ExerciseEntity> exerciseEntityList = programEntity.getExerciseEntities();
         List<Exercise> exercisesList = new ArrayList<>();
         for (int i = 0; i < exerciseEntityList.size(); i++) {
             Exercise exercise = new Exercise();
-            exercise.setIdExercise(exerciseEntityList.get(i).getIdExercice());
-            exercise.setDurationExercise(exerciseEntityList.get(i).getDurationExercice());
+            exercise.setIdExercise(exerciseEntityList.get(i).getIdExercise());
+            exercise.setDurationExercise(exerciseEntityList.get(i).getDurationExercise());
             exercise.setIdProgram(exerciseEntityList.get(i).getIdProgram());
-            exercise.setTypeExercise(exerciseEntityList.get(i).getTypeExercice());
+            exercise.setTypeExercise(exerciseEntityList.get(i).getTypeExercise());
 
             exercisesList.add(exercise);
         }
@@ -55,18 +55,18 @@ public class ProgramMapper {
         programEntity.setUserIdProgram(programModel.getUserId());
 
         List<Exercise> exercisesList = programModel.getExercises();
-        List<ExerciseEntity> exerciseEntityList= new ArrayList<>();
+        List<ExerciseEntity> exerciseEntityList = new ArrayList<>();
         for (int i = 0; i < exercisesList.size(); i++) {
             ExerciseEntity exerciseEntity = new ExerciseEntity();
-            exerciseEntity.setIdExercice(exercisesList.get(i).getIdExercise());
-            exerciseEntity.setDurationExercice(exercisesList.get(i).getDurationExercise());
+            exerciseEntity.setIdExercise(exercisesList.get(i).getIdExercise());
+            exerciseEntity.setDurationExercise(exercisesList.get(i).getDurationExercise());
             exerciseEntity.setIdProgram(exercisesList.get(i).getIdProgram());
-            exerciseEntity.setTypeExercice(exercisesList.get(i).getTypeExercise());
+            exerciseEntity.setTypeExercise(exercisesList.get(i).getTypeExercise());
 
             exerciseEntityList.add(exerciseEntity);
         }
 
-        programEntity.setExerciceEntities(exerciseEntityList);
+        programEntity.setExerciseEntities(exerciseEntityList);
 
         return programEntity;
     }

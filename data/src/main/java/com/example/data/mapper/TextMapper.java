@@ -14,10 +14,12 @@ public class TextMapper {
 
     @Inject
     @SuppressWarnings("WeakerAccess")
-    public TextMapper() {}
+    public TextMapper() {
+    }
 
     /**
      * Transform a text entity to a text model.
+     *
      * @param textEntity The text entity to be transformed;
      * @return A text model.
      */
@@ -33,6 +35,7 @@ public class TextMapper {
 
     /**
      * Transform a text model to a text entity.
+     *
      * @param textModel The text model to be transformed.
      * @return A text entity.
      */

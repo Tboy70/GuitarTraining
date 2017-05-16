@@ -20,6 +20,7 @@ public class GetAppInfoText extends UseCase {
 
     /**
      * Method from the Use Case general class.
+     *
      * @return a observable.
      */
     @Override

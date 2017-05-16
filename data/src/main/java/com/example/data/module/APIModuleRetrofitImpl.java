@@ -43,6 +43,7 @@ public class APIModuleRetrofitImpl implements APIModule {
 
         /**
          * Method GET to retrieve all the users of the application.
+         *
          * @return Observable in JSON format.
          */
         @GET("users")
@@ -50,6 +51,7 @@ public class APIModuleRetrofitImpl implements APIModule {
 
         /**
          * Method GET to retrieve the informations text about the application.
+         *
          * @return Observable in JSON format.
          */
         @GET("info_text")
@@ -57,6 +59,7 @@ public class APIModuleRetrofitImpl implements APIModule {
 
         /**
          * Method GET to retrieve a program given its id.
+         *
          * @param idProgram Program ID to be retrieved.
          * @return Observable in JSON format.
          */
@@ -87,6 +90,7 @@ public class APIModuleRetrofitImpl implements APIModule {
 
     /**
      * Get all the users of the application.
+     *
      * @return Observable -> List of UserEntity.
      */
     @Override
@@ -96,6 +100,7 @@ public class APIModuleRetrofitImpl implements APIModule {
 
     /**
      * Get the application information.
+     *
      * @return Observable -> A TextEntity.
      */
     @Override
@@ -115,6 +120,7 @@ public class APIModuleRetrofitImpl implements APIModule {
 
     /**
      * Get a program given an ID.
+     *
      * @param idProgram Program ID to be retrieved.
      * @return Observable -> A ProgramEntity.
      */

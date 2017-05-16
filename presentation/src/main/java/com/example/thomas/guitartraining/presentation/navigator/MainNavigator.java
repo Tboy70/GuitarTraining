@@ -8,24 +8,23 @@ import android.support.v4.app.FragmentActivity;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
 import com.example.thomas.guitartraining.presentation.fragment.AuthenticationChoiceFragment;
-import com.example.thomas.guitartraining.presentation.fragment.GenericDialogFragment;
-import com.example.thomas.guitartraining.presentation.fragment.ListUsersFragment;
+import com.example.thomas.guitartraining.presentation.fragment.ui.GenericDialogFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.ListUsersFragment;
 
 /**
  * Navigator of the MainActivity.
  */
 public class MainNavigator extends FragmentActivity {
 
-    private final Activity activity;
-
-    // TODO : To be reviewed --> Problem in application class.
+    //    private final Activity activity;
+//
+//    // TODO : To be reviewed --> Problem in application class.
     public MainNavigator() {
-        activity = null;
     }
 
-    public MainNavigator(Activity activity) {
-        this.activity = activity;
-    }
+//    public MainNavigator(Activity activity) {
+//        this.activity = activity;
+//    }
 
     public void loadListUsersFragment(Activity activity) {
         Fragment listUsersFragment = ListUsersFragment.newInstance();
@@ -34,7 +33,8 @@ public class MainNavigator extends FragmentActivity {
     }
 
     /**
-     * Launch the authentification mode fragment.
+     * Launch the authentication mode fragment.
+     *
      * @param activity The concerning activity.
      */
     public void launchAuthenticationModeChoiceFragment(Activity activity) {
@@ -46,8 +46,9 @@ public class MainNavigator extends FragmentActivity {
 
     /**
      * Launch a dialog fragment.
-     * @param activity The concerning activity.
-     * @param dialogTitle The title of the dialog fragment.
+     *
+     * @param activity      The concerning activity.
+     * @param dialogTitle   The title of the dialog fragment.
      * @param dialogContent The content of the dialog fragment.
      */
     public void launchGenericDialogFragment(Activity activity, String dialogTitle, String dialogContent) {
@@ -57,8 +58,10 @@ public class MainNavigator extends FragmentActivity {
 
     /**
      * Launch the offline activity.
+     *
+     * @param activity Activity
      */
-    public void launchOfflineActivity() {
+    public void launchOfflineActivity(Activity activity) {
         Intent toOfflineActivity = new Intent(activity, OfflineActivity.class);
         if (activity != null) {
             activity.startActivity(toOfflineActivity);

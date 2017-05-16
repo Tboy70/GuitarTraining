@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Fragment containing the choice of authentification (connected mode or not).
+ * Fragment containing the choice of authentication (connected mode or not).
  */
 public class AuthenticationChoiceFragment extends Fragment implements AuthenticationChoiceView {
 
@@ -34,7 +34,7 @@ public class AuthenticationChoiceFragment extends Fragment implements Authentica
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.main_authentification_choice, container, false);
+        rootView = inflater.inflate(R.layout.main_authentication_choice, container, false);
         ((MainActivity) getActivity()).getActivityComponent().inject(this);
 
         return rootView;
@@ -49,11 +49,10 @@ public class AuthenticationChoiceFragment extends Fragment implements Authentica
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, rootView);
-
     }
 
-    @OnClick(R.id.authentification_choice_offline_button)
-    public void handleAuthenticationChoiceOfflineButton() {
+    @OnClick(R.id.main_authentication_choice_offline_button)
+    public void handleClickAuthenticationChoiceOfflineButton() {
         authenticationChoicePresenter.launchOfflineActivity();
     }
 }

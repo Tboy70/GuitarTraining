@@ -31,6 +31,7 @@ public class UserDataRepository implements UserRepository {
 
     /**
      * Get all the users of the application.
+     *
      * @return Observable -> List of User.
      */
     @Override

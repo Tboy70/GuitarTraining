@@ -14,10 +14,12 @@ public class UserMapper {
 
     @Inject
     @SuppressWarnings("WeakerAccess")
-    public UserMapper() {}
+    public UserMapper() {
+    }
 
     /**
      * To transform a "User" entity to "User" model.
+     *
      * @param userEntity A user entity.
      * @return A user model.
      */
@@ -33,6 +35,7 @@ public class UserMapper {
 
     /**
      * To transform a "User" model to "User" entity.
+     *
      * @param userModel A user model
      * @return A user entity.
      */

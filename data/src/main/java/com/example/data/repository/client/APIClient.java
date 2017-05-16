@@ -1,5 +1,6 @@
 package com.example.data.repository.client;
 
+import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
 import com.example.data.module.APIModule;
@@ -26,6 +27,7 @@ public class APIClient {
 
     /**
      * To get all users of the application from the API.
+     *
      * @return Observable -> List of UserEntity.
      */
     public Observable<List<UserEntity>> getAllUsersFromAPI() {
@@ -34,9 +36,14 @@ public class APIClient {
 
     /**
      * To get the information about the application.
+     *
      * @return An observable of TextEntity.
      */
     public Observable<TextEntity> getApplicationAboutInformationFromAPI() {
         return apiModule.getInformationsTextAboutApplication();
+    }
+
+    public Observable<ProgramEntity> getProgramFromId(int idProgram) {
+        return apiModule.getProgramById(idProgram);
     }
 }

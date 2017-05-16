@@ -1,4 +1,4 @@
-package com.example.thomas.guitartraining.presentation.fragment;
+package com.example.thomas.guitartraining.presentation.fragment.user;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.example.model.User;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.MainActivity;
 import com.example.thomas.guitartraining.presentation.adapter.ListUsersAdapter;
-import com.example.thomas.guitartraining.presentation.presenter.ListUsersPresenter;
+import com.example.thomas.guitartraining.presentation.presenter.user.ListUsersPresenter;
 import com.example.thomas.guitartraining.presentation.view.ListUsersView;
 import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener;
 
@@ -32,6 +32,7 @@ public class ListUsersFragment extends Fragment implements ListUsersView {
 
     @Inject
     ListUsersPresenter listUsersPresenter;
+
     @Inject
     ListUsersAdapter listUsersAdapter;
 

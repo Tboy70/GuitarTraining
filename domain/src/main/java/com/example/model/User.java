@@ -15,7 +15,8 @@ public class User {
         this.passwordUser = passwordUser;
     }
 
-    public User() {}
+    public User() {
+    }
 
     public int getIdUser() {
         return idUser;

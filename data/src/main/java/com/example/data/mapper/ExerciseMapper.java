@@ -17,10 +17,10 @@ public class ExerciseMapper {
     public Exercise transformToModel(ExerciseEntity exerciseEntity) {
         Exercise exerciseModel = new Exercise();
 
-        exerciseModel.setIdExercise(exerciseEntity.getIdExercice());
-        exerciseModel.setDurationExercise(exerciseEntity.getDurationExercice());
+        exerciseModel.setIdExercise(exerciseEntity.getIdExercise());
+        exerciseModel.setDurationExercise(exerciseEntity.getDurationExercise());
         exerciseModel.setIdProgram(exerciseEntity.getIdProgram());
-        exerciseModel.setTypeExercise(exerciseEntity.getTypeExercice());
+        exerciseModel.setTypeExercise(exerciseEntity.getTypeExercise());
 
         return exerciseModel;
     }
@@ -28,10 +28,10 @@ public class ExerciseMapper {
     public ExerciseEntity transformToEntity(Exercise exerciseModel) {
         ExerciseEntity exerciseEntity = new ExerciseEntity();
 
-        exerciseEntity.setIdExercice(exerciseModel.getIdExercise());
-        exerciseEntity.setDurationExercice(exerciseModel.getDurationExercise());
+        exerciseEntity.setIdExercise(exerciseModel.getIdExercise());
+        exerciseEntity.setDurationExercise(exerciseModel.getDurationExercise());
         exerciseEntity.setIdProgram(exerciseModel.getIdProgram());
-        exerciseEntity.setTypeExercice(exerciseModel.getTypeExercise());
+        exerciseEntity.setTypeExercise(exerciseModel.getTypeExercise());
 
         return exerciseEntity;
     }

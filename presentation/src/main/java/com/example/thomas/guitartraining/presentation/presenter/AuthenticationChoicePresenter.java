@@ -6,7 +6,7 @@ import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener
 import javax.inject.Inject;
 
 /**
- * Presenter for the fragment AuthentificationChoice.
+ * Presenter for the fragment AuthenticationChoice.
  */
 @PerActivity
 public class AuthenticationChoicePresenter {

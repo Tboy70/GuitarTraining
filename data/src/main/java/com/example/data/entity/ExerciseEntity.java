@@ -5,35 +5,35 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Exercise entity mapping the JSON.
  */
-// TODO : Rename Exercice to exercise in app and API and database !!
+// TODO : Rename Exercice to exercise in API and database !!
 public class ExerciseEntity {
 
-    @SerializedName("idExercice")
-    private int idExercice;
+    @SerializedName("idExercise")
+    private int idExercise;
 
-    @SerializedName("durationExercice")
-    private int durationExercice;
+    @SerializedName("durationExercise")
+    private int durationExercise;
 
     @SerializedName("idProgram")
     private int idProgram;
 
-    @SerializedName("typeExercice")
-    private int typeExercice;
+    @SerializedName("typeExercise")
+    private int typeExercise;
 
-    public int getIdExercice() {
-        return idExercice;
+    public int getIdExercise() {
+        return idExercise;
     }
 
-    public void setIdExercice(int idExercice) {
-        this.idExercice = idExercice;
+    public void setIdExercise(int idExercise) {
+        this.idExercise = idExercise;
     }
 
-    public int getDurationExercice() {
-        return durationExercice;
+    public int getDurationExercise() {
+        return durationExercise;
     }
 
-    public void setDurationExercice(int durationExercice) {
-        this.durationExercice = durationExercice;
+    public void setDurationExercise(int durationExercise) {
+        this.durationExercise = durationExercise;
     }
 
     public int getIdProgram() {
@@ -44,11 +44,11 @@ public class ExerciseEntity {
         this.idProgram = idProgram;
     }
 
-    public int getTypeExercice() {
-        return typeExercice;
+    public int getTypeExercise() {
+        return typeExercise;
     }
 
-    public void setTypeExercice(int typeExercice) {
-        this.typeExercice = typeExercice;
+    public void setTypeExercise(int typeExercise) {
+        this.typeExercise = typeExercise;
     }
 }

@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface ListUsersView {
     void displayError(String s);
+
     void updateUI(List<User> users);
 }

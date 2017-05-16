@@ -1,4 +1,4 @@
-package com.example.thomas.guitartraining.presentation.presenter;
+package com.example.thomas.guitartraining.presentation.presenter.activity;
 
 import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
 

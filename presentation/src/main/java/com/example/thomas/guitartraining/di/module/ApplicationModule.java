@@ -30,32 +30,38 @@ public class ApplicationModule {
         this.application = application;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     Context provideApplicationContext() {
         return this.application;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     UserRepository provideUserRepository(UserDataRepository userDataRepository) {
         return userDataRepository;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     TextRepository provideTextRepository(TextDataRepository textDataRepository) {
         return textDataRepository;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     ProgramRepository provideProgramRepository(ProgramDataRepository programDataRepository) {
         return programDataRepository;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
         return jobExecutor;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     PostExecutionThread providePostExecutionThread(UIThread uiThread) {
         return uiThread;
     }

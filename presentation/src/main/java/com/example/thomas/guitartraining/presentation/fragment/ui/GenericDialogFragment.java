@@ -1,4 +1,4 @@
-package com.example.thomas.guitartraining.presentation.fragment;
+package com.example.thomas.guitartraining.presentation.fragment.ui;
 
 import android.app.DialogFragment;
 import android.os.Build;
@@ -21,27 +21,32 @@ import butterknife.OnClick;
 /**
  * Generic dialog fragment class.
  */
+// TODO : Make a component instead of fragment ?
 public class GenericDialogFragment extends DialogFragment implements GenericDialogFragmentView {
 
-    @BindView(R.id.generic_dialog_content) TextView dialogFragmentContent;
-    @BindView(R.id.generic_dialog_dismiss_button) Button dismissButton;
+    @BindView(R.id.generic_dialog_content)
+    TextView dialogFragmentContent;
 
-    private static final String DIALOG_FRAGMENT_TITLE = "com.example.thomas.guitartraining.presentation.fragment.dialogTitle";
-    private static final String DIALOG_FRAGMENT_CONTENT = "com.example.thomas.guitartraining.presentation.fragment.dialogContent";
-    private static final String DIALOG_FRAGMENT_DISMISS_BUTTON_TEXT = "com.example.thomas.guitartraining.presentation.fragment.dismissButtonText";
+    @BindView(R.id.generic_dialog_dismiss_button)
+    Button dismissButton;
+
+    private static final String DIALOG_FRAGMENT_TITLE = "com.example.thomas.guitartraining.presentation.fragment.ui.GenericDialogFragment.DIALOG_FRAGMENT_TITLE";
+    private static final String DIALOG_FRAGMENT_CONTENT = "com.example.thomas.guitartraining.presentation.fragment.ui.GenericDialogFragment.DIALOG_FRAGMENT_CONTENT";
+    private static final String DIALOG_FRAGMENT_DISMISS_BUTTON_TEXT = "com.example.thomas.guitartraining.presentation.fragment.ui.GenericDialogFragment.DIALOG_FRAGMENT_DISMISS_BUTTON_TEXT";
 
     private String dialogTitle;
     private String dialogContent;
     private String dialogDismissButtonText;
 
     public static GenericDialogFragment newInstance(String dialogTitle, String dialogContent, String dismissButtonText) {
-        GenericDialogFragment genericDialogFragment = new GenericDialogFragment();
         Bundle args = new Bundle();
         args.putString(DIALOG_FRAGMENT_TITLE, dialogTitle);
         args.putString(DIALOG_FRAGMENT_CONTENT, dialogContent);
         args.putString(DIALOG_FRAGMENT_DISMISS_BUTTON_TEXT, dismissButtonText);
 
+        GenericDialogFragment genericDialogFragment = new GenericDialogFragment();
         genericDialogFragment.setArguments(args);
+
         return genericDialogFragment;
     }
 
@@ -73,7 +78,7 @@ public class GenericDialogFragment extends DialogFragment implements GenericDial
     }
 
     @OnClick(R.id.generic_dialog_dismiss_button)
-    public void handleClickDialogDismissButton() {
+    public void handleClickGenericDialogDismissButton() {
         dismiss();
     }
 }

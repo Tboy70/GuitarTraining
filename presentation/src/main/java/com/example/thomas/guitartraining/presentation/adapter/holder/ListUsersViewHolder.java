@@ -16,13 +16,13 @@ import butterknife.ButterKnife;
  */
 public class ListUsersViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.id_user)
+    @BindView(R.id.list_users_row_id_user)
     TextView idUser;
 
-    @BindView(R.id.first_name_user)
+    @BindView(R.id.list_users_row_first_name_user)
     TextView firstNameUser;
 
-    @BindView(R.id.last_name_user)
+    @BindView(R.id.list_users_row_last_name_user)
     TextView lastNameUser;
 
     public ListUsersViewHolder(View itemView) {

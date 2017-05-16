@@ -10,7 +10,7 @@
         android:id="@+id/offline_program_choice_theoretical"
         android:layout_width="@dimen/button_width_1"
         android:layout_height="@dimen/button_height_1"
-        android:text="@string/offline_session_choice_theoretical_session"/>
+        android:text="@string/offline_session_choice_theoretical_session" />
 
     <android.support.v4.widget.Space
         android:layout_width="wrap_content"
@@ -20,6 +20,6 @@
         android:id="@+id/offline_program_choice_technical"
         android:layout_width="@dimen/button_width_1"
         android:layout_height="@dimen/button_height_1"
-        android:text="@string/offline_session_choice_technical_session"/>
+        android:text="@string/offline_session_choice_technical_session" />
 
 </LinearLayout>

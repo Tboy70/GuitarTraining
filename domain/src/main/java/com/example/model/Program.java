@@ -13,7 +13,7 @@ public class Program {
     private int userId;  // TODO : Rename userId EVERYWHERE ! --> Make convention of naming.
     private List<Exercise> exercises;
 
-    public Program (int idProgram, String nameProgram, boolean defaultProgram, int userId, List<Exercise> exercises) {
+    public Program(int idProgram, String nameProgram, boolean defaultProgram, int userId, List<Exercise> exercises) {
         this.idProgram = idProgram;
         this.nameProgram = nameProgram;
         this.defaultProgram = defaultProgram;
@@ -21,7 +21,8 @@ public class Program {
         this.exercises = exercises;
     }
 
-    public Program() {}
+    public Program() {
+    }
 
     public int getIdProgram() {
         return idProgram;

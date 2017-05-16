@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.example.model.Text;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.navigator.MainNavigator;
-import com.example.thomas.guitartraining.presentation.presenter.MainPresenter;
+import com.example.thomas.guitartraining.presentation.presenter.activity.MainPresenter;
 import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener;
 
 import javax.inject.Inject;
@@ -22,7 +22,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements MainNavigatorListener {
 
     // Injection via dagger.
-    @Inject MainPresenter mainPresenter;
+    @Inject
+    MainPresenter mainPresenter;
 
     private MainNavigator mainNavigator;
 
@@ -36,7 +37,7 @@ public class MainActivity extends BaseActivity implements MainNavigatorListener 
 
     private void injectParameters() {
         // TODO : See to inject the navigator.
-        mainNavigator = new MainNavigator(this);
+        mainNavigator = new MainNavigator();
     }
 
     @Override
@@ -75,6 +76,7 @@ public class MainActivity extends BaseActivity implements MainNavigatorListener 
 
     /**
      * Launch the dialog fragment.
+     *
      * @param text The text to be displayed by the dialog.
      */
     @Override
@@ -94,6 +96,6 @@ public class MainActivity extends BaseActivity implements MainNavigatorListener 
      */
     @Override
     public void launchOfflineActivity() {
-        mainNavigator.launchOfflineActivity();
+        mainNavigator.launchOfflineActivity(this);
     }
 }

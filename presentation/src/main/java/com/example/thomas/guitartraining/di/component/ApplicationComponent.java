@@ -20,9 +20,14 @@ import dagger.Component;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
     Context context();
+
     UserRepository userRepository();
-    TextRepository textRepossitory();
+
+    TextRepository textRepository();
+
     ProgramRepository programRepository();
+
     ThreadExecutor threadExecutor();
+
     PostExecutionThread postExecutionThread();
 }

@@ -16,7 +16,8 @@ public class UIThread implements PostExecutionThread {
 
     @Inject
     @SuppressWarnings("WeakerAccess")
-    public UIThread() {}
+    public UIThread() {
+    }
 
     @Override
     public Scheduler getScheduler() {

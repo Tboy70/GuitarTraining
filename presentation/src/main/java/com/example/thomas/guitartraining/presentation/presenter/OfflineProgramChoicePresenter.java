@@ -18,7 +18,7 @@ public class OfflineProgramChoicePresenter {
         this.offlineNavigatorListener = offlineNavigatorListener;
     }
 
-    public void launchOfflineTheoreticalProgram() {
-        offlineNavigatorListener.launchOfflineTheoreticalProgram();
+    public void launchProgramActivity(int idProgram) {
+        offlineNavigatorListener.launchProgramActivity(idProgram);
     }
 }

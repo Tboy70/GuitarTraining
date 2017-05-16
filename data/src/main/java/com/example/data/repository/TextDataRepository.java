@@ -29,6 +29,7 @@ public class TextDataRepository implements TextRepository {
 
     /**
      * Get the information about the application.
+     *
      * @return An observable of Text.
      */
     @Override

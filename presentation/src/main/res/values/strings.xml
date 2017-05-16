@@ -18,6 +18,14 @@
     <!-- Exercises fragment -->
     <string name="exercise_scale_title">Pratique des gammes</string>
     <string name="exercise_mode_title">Pratique des modes</string>
+    <string name="exercise_pull_off_hammer_on_title">Pull off / Hammer on</string>
+    <string name="exercise_bend_slide_title">Bend / Slide</string>
+    <string name="exercise_go_back_title">Allers et retours</string>
+    <string name="exercise_palm_mute_title">Palm mute</string>
+    <string name="exercise_skip_string_title">Muter une corde en accord</string>
+    <string name="exercise_tapping_title">Tapping</string>
+    <string name="exercise_sweep_picking_title">Sweep picking</string>
+    <string name="exercise_speed_title">Vitesse</string>
     <string name="exercise_end_title">FELICITATIONS !</string>
     <string name="exercise_end_description">Vous êtes parvenu au bout du programme. A bientôt !</string>
     <string name="exercise_next_exercise">Exercice suivant</string>

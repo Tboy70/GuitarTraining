@@ -1,8 +1,11 @@
 package com.example.data.module;
 
+import android.util.Log;
+
 import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
+import com.example.model.Text;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
@@ -50,12 +53,23 @@ public class APIModuleRetrofitImpl implements APIModule {
         Observable<List<UserEntity>> allUsers();
 
         /**
-         * Method GET to retrieve the informations text about the application.
+         * Method GET to retrieve the information text about the application.
          *
          * @return Observable in JSON format.
          */
         @GET("info_text")
-        Observable<ApplicationInformationsTextEnveloppe> appInfo();
+        Observable<ApplicationInformationTextEnvelope> appInfo();
+
+        /**
+         * Method GET to retrieve a text given its id.
+         *
+         * @param idText Text ID.
+         * @return Observable in JSON format
+         */
+        @GET("text/{idText}")
+        Observable<TextEntity> getText(
+                @Path("idText") int idText
+        );
 
         /**
          * Method GET to retrieve a program given its id.
@@ -104,13 +118,13 @@ public class APIModuleRetrofitImpl implements APIModule {
      * @return Observable -> A TextEntity.
      */
     @Override
-    public Observable<TextEntity> getInformationsTextAboutApplication() {
-        Observable<ApplicationInformationsTextEnveloppe> defaultRequestResponseEnvelope = apiService.appInfo();
-        return defaultRequestResponseEnvelope.map(new Func1<ApplicationInformationsTextEnveloppe, TextEntity>() {
+    public Observable<TextEntity> getInformationTextAboutApplication() {
+        Observable<ApplicationInformationTextEnvelope> defaultRequestResponseEnvelope = apiService.appInfo();
+        return defaultRequestResponseEnvelope.map(new Func1<ApplicationInformationTextEnvelope, TextEntity>() {
             @Override
-            public TextEntity call(ApplicationInformationsTextEnveloppe applicationInformationsTextEnveloppe) {
-                if (applicationInformationsTextEnveloppe.results.size() == 1) {
-                    return applicationInformationsTextEnveloppe.results.get(0);
+            public TextEntity call(ApplicationInformationTextEnvelope applicationInformationTextEnvelope) {
+                if (applicationInformationTextEnvelope.results.size() == 1) {
+                    return applicationInformationTextEnvelope.results.get(0);
                 } else {
                     return null;
                 }
@@ -129,10 +143,15 @@ public class APIModuleRetrofitImpl implements APIModule {
         return apiService.getProgram(idProgram);
     }
 
+    @Override
+    public Observable<TextEntity> getTextIntroProgram(int idText) {
+        return apiService.getText(idText);
+    }
+
     /**
      * An envelope to map the JSON from the API.
      */
-    private class ApplicationInformationsTextEnveloppe {
+    private class ApplicationInformationTextEnvelope {
         @SuppressWarnings("unused")
         @SerializedName("success")
         boolean success;

@@ -78,8 +78,7 @@ public class ListUsersFragment extends Fragment implements ListUsersView {
 
     @Override
     public void displayError(String s) {
-        // TODO
-        Log.e("TEST", "TODO");
+        // TODO : Handle error.
     }
 
     @Override

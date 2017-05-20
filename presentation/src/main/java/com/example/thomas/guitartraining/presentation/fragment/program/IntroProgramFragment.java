@@ -1,8 +1,10 @@
 package com.example.thomas.guitartraining.presentation.fragment.program;
 
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.model.Exercise;
 import com.example.model.Program;
+import com.example.model.Text;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.presenter.program.IntroProgramPresenter;
@@ -38,6 +41,12 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
     @BindView(R.id.intro_program_name_program)
     TextView introProgramName;
 
+    @BindView(R.id.intro_program_description_program)
+    TextView introProgramDescription;
+
+    @BindView(R.id.intro_program_start_button)
+    TextView introProgramStartButton;
+
     private List<Exercise> programExercisesList;
 
     public static IntroProgramFragment newInstance(int idProgram) {
@@ -65,7 +74,7 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
 
         // TODO : See where to put this to have no latency.
         int idProgram = getArguments().getInt(ID_PROGRAM);
-        introProgramPresenter.retrieveProgramFromId(idProgram);
+        introProgramPresenter.retrieveProgramFromId(this.getActivity(), idProgram);
 
         return rootView;
     }
@@ -81,9 +90,16 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
     }
 
     @Override
-    public void updateUI(Program program) {
+    public void updateUI(Program program, Text text) {
         introProgramName.setText(program.getNameProgram());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            introProgramDescription.setText(Html.fromHtml(text.getContentText(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            introProgramDescription.setText((Html.fromHtml(text.getContentText())));
+        }
         programExercisesList = program.getExercises();
+        introProgramDescription.setVisibility(View.VISIBLE);
+        introProgramStartButton.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.intro_program_start_button)

@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="33"
         android:text="Ceci est le programme théorique par défaut. Il est composé de deux exercices de 15 minutes chacun : Gammes et modes."
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,7 +35,8 @@
             android:id="@+id/intro_program_start_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/exercise_start_program" />
+            android:text="@string/exercise_start_program"
+            android:visibility="gone" />
     </RelativeLayout>
 
 </LinearLayout>

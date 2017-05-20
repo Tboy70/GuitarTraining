@@ -1,5 +1,7 @@
 package com.example.data.repository.client;
 
+import android.util.Log;
+
 import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
@@ -40,10 +42,14 @@ public class APIClient {
      * @return An observable of TextEntity.
      */
     public Observable<TextEntity> getApplicationAboutInformationFromAPI() {
-        return apiModule.getInformationsTextAboutApplication();
+        return apiModule.getInformationTextAboutApplication();
     }
 
     public Observable<ProgramEntity> getProgramFromId(int idProgram) {
         return apiModule.getProgramById(idProgram);
+    }
+
+    public Observable<TextEntity> getTextIntroProgram(int idText) {
+        return apiModule.getTextIntroProgram(idText);
     }
 }

@@ -16,6 +16,8 @@
     <string name="offline_session_choice_technical_session">Programme technique</string>
 
     <!-- Exercises fragment -->
+    <string name="loading_program_title">Chargement du programme</string>
+    <string name="loading_program_description">Récupération des données ... Veuillez patienter.</string>
     <string name="exercise_scale_title">Pratique des gammes</string>
     <string name="exercise_mode_title">Pratique des modes</string>
     <string name="exercise_pull_off_hammer_on_title">Pull off / Hammer on</string>

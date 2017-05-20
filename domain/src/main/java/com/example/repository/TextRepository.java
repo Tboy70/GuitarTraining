@@ -10,4 +10,6 @@ import rx.Observable;
 public interface TextRepository {
 
     Observable<Text> getApplicationAboutInformation();
+
+    Observable<Text> getTextIntroProgram(int idProgram);
 }

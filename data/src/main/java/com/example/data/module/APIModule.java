@@ -16,7 +16,9 @@ public interface APIModule {
 
     Observable<List<UserEntity>> getAllUsers();
 
-    Observable<TextEntity> getInformationsTextAboutApplication();
+    Observable<TextEntity> getInformationTextAboutApplication();
 
     Observable<ProgramEntity> getProgramById(int idProgram);
+
+    Observable<TextEntity> getTextIntroProgram(int idText);
 }

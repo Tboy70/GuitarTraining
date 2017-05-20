@@ -1,31 +1,24 @@
 package com.example.interactor;
 
-import com.example.model.Program;
+import com.example.executor.PostExecutionThread;
+import com.example.executor.ThreadExecutor;
 import com.example.repository.ProgramRepository;
 
-import rx.Scheduler;
-import rx.Subscriber;
+import rx.Observable;
 
-/**
- * Created by Thomas on 08/05/2017.
- */
-
-public class GetProgramFromId {
+public class GetProgramFromId extends UseCase {
 
     private ProgramRepository programRepository;
-    private Scheduler io;
-    private Scheduler scheduler;
+    private int idProgram;
 
-    public GetProgramFromId(Scheduler io, Scheduler scheduler, ProgramRepository programRepository) {
-        this.io = io;
-        this.scheduler = scheduler;
+    public GetProgramFromId(ThreadExecutor io, PostExecutionThread scheduler, ProgramRepository programRepository, int idProgram) {
+        super(io, scheduler);
         this.programRepository = programRepository;
+        this.idProgram = idProgram;
     }
 
-    public void buildUseCaseObservable(int idProgram, Subscriber<Program> subscriber) {
-        programRepository.getProgramFromId(idProgram)
-                .subscribeOn(io)
-                .observeOn(scheduler)
-                .subscribe(subscriber);
+    @Override
+    public Observable buildUseCaseObservable() {
+        return programRepository.getProgramFromId(idProgram);
     }
 }

@@ -4,14 +4,19 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
+import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExercisePullOffHammerOnPresenter;
-import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.program.exercise.ExercisePullOffHammerOnView;
 
 import javax.inject.Inject;
@@ -21,12 +26,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * TODO : Should make a comment for each fragment ? Not sure --> useless
+ * Pull off / Hammer on exercise fragment.
  */
 public class ExercisePullOffHammerOnFragment extends Fragment implements ExercisePullOffHammerOnView {
 
-    public static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment.RANK_EXERCISE";
-    public static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment.DURATION_EXERCISE";
+    private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment.RANK_EXERCISE";
+    private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment.DURATION_EXERCISE";
 
     @Inject
     ExercisePullOffHammerOnPresenter exercisePullOffHammerOnPresenter;
@@ -34,7 +39,16 @@ public class ExercisePullOffHammerOnFragment extends Fragment implements Exercis
     @BindView(R.id.exercise_pull_off_hammer_on_duration)
     TextView exercisePullOffHammerOnDuration;
 
+    @BindView(R.id.exercise_pull_off_hammer_on_duration_left)
+    TextView exercisePullOffHammerOnDurationLeft;
+
+    private DurationComponent durationComponent;
+
     private int rankExercise;
+
+    // Exercise duration variables
+    private int durationExercise;
+    private long durationLeft = DateTimeUtils.DEFAULT_DURATION_LEFT;
 
     public static ExercisePullOffHammerOnFragment newInstance(int exercisePosition, int durationExercise) {
         Bundle args = new Bundle();
@@ -43,6 +57,7 @@ public class ExercisePullOffHammerOnFragment extends Fragment implements Exercis
 
         ExercisePullOffHammerOnFragment fragment = new ExercisePullOffHammerOnFragment();
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -52,16 +67,12 @@ public class ExercisePullOffHammerOnFragment extends Fragment implements Exercis
         View rootView = inflater.inflate(R.layout.exercise_pull_off_hammer_on_fragment, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);  // TODO : Possibility to externalize this ? BaseActivity ?
+        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exercisePullOffHammerOnPresenter.setExercisePullOffHammerOnView(this);
         exercisePullOffHammerOnPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
 
-        rankExercise = getArguments().getInt(RANK_EXERCISE);
-        int durationExercise = getArguments().getInt(DURATION_EXERCISE);
-
-        exercisePullOffHammerOnDuration.setText(String.format(getActivity().getString(R.string.exercise_duration_text),
-                String.valueOf(durationExercise)));
+        durationComponent = new DurationComponent();
 
         return rootView;
     }
@@ -69,15 +80,62 @@ public class ExercisePullOffHammerOnFragment extends Fragment implements Exercis
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        rankExercise = getArguments().getInt(RANK_EXERCISE);
+        durationExercise = getArguments().getInt(DURATION_EXERCISE);
+
+        setDurationUI();
+        setToolbar(getActivity().getString(R.string.toolbar_title_exercise_pull_off_hammer_on));
+
+        setHasOptionsMenu(true);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.program_activity_menu_toolbar, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.program_activity_toolbar_about_icon:
+                exercisePullOffHammerOnPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_pull_off_hammer_on_exercise));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void setLeftDuration(long timeCountInMilliSeconds) {
+        durationLeft = durationComponent.setDurationLeft(
+                exercisePullOffHammerOnDurationLeft,
+                getActivity().getString(R.string.exercise_duration_text_left),
+                timeCountInMilliSeconds);
     }
 
     @OnClick(R.id.exercise_pull_off_hammer_on_next_button)
     public void handleClickExerciseScaleNextButton() {
         exercisePullOffHammerOnPresenter.showNextExercise(rankExercise + 1);
+    }
+
+    @OnClick(R.id.exercise_pull_off_hammer_on_start_exercise)
+    public void handleClickExercisePullOffHammerOnStartExercise() {
+        exercisePullOffHammerOnPresenter.launchTimer(getActivity(), durationLeft);
+    }
+
+    private void setDurationUI() {
+        durationLeft = durationComponent.setDuration(
+                durationExercise,
+                durationLeft,
+                exercisePullOffHammerOnDuration,
+                getActivity().getString(R.string.exercise_duration_text),
+                exercisePullOffHammerOnDurationLeft,
+                getActivity().getString(R.string.exercise_duration_text_left));
+    }
+
+    private void setToolbar(String toolbarTitle) {
+        exercisePullOffHammerOnPresenter.setToolbar(toolbarTitle);
     }
 }

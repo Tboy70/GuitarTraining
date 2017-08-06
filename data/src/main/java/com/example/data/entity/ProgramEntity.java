@@ -18,10 +18,10 @@ public class ProgramEntity {
     @SerializedName("defaultProgram")
     private boolean defaultProgram;
 
-    @SerializedName("userIdProgram")
-    private int userIdProgram;
+    @SerializedName("idUser")
+    private int idUser;
 
-    @SerializedName("exercices")
+    @SerializedName("exercises")
     private List<ExerciseEntity> exerciseEntities;
 
     public int getIdProgram() {
@@ -48,12 +48,12 @@ public class ProgramEntity {
         this.defaultProgram = defaultProgram;
     }
 
-    public int getUserIdProgram() {
-        return userIdProgram;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setUserIdProgram(int userIdProgram) {
-        this.userIdProgram = userIdProgram;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public List<ExerciseEntity> getExerciseEntities() {

@@ -17,4 +17,6 @@ public interface UserRepository {
      * @return Observable -> List of User models.
      */
     Observable<List<User>> getAllUsers();
+
+    Observable<User> connectUser(String username, String password);
 }

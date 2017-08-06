@@ -10,7 +10,7 @@ import rx.Observable;
  * Created by Thomas on 17/05/2017.
  */
 
-public class GetTextIntroProgram extends UseCase{
+public class GetTextIntroProgram extends UseCase {
 
     private TextRepository textRepository;
     private int idProgram;

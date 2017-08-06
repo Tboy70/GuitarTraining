@@ -1,11 +1,8 @@
 package com.example.data.module;
 
-import android.util.Log;
-
 import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
-import com.example.model.Text;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
@@ -20,7 +17,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import rx.Observable;
 import rx.functions.Func1;
@@ -34,7 +34,7 @@ import rx.schedulers.Schedulers;
 public class APIModuleRetrofitImpl implements APIModule {
 
     // The base url to connect to the API.
-    private static final String BASE_URL = "http://192.168.1.15/guitarAPI/web/app_dev.php/";
+    private static final String BASE_URL = "http://192.168.1.15/guitar_api/public/";
 
     // Interface declared below.
     private APIServiceInterface apiService;
@@ -80,6 +80,13 @@ public class APIModuleRetrofitImpl implements APIModule {
         @GET("program/{idProgram}")
         Observable<ProgramEntity> getProgram(
                 @Path("idProgram") int idProgram
+        );
+
+        @FormUrlEncoded
+        @POST("connect")
+        Observable<UserEntity> connectUser(
+                @Field("username") String username,
+                @Field("password") String password
         );
     }
 
@@ -146,6 +153,11 @@ public class APIModuleRetrofitImpl implements APIModule {
     @Override
     public Observable<TextEntity> getTextIntroProgram(int idText) {
         return apiService.getText(idText);
+    }
+
+    @Override
+    public Observable<UserEntity> connectUser(String username, String password) {
+        return apiService.connectUser(username, password);
     }
 
     /**

@@ -2,76 +2,94 @@ package com.example.thomas.guitartraining.presentation.navigator;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.thomas.guitartraining.R;
-import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
-import com.example.thomas.guitartraining.presentation.fragment.AuthenticationChoiceFragment;
-import com.example.thomas.guitartraining.presentation.fragment.ui.GenericDialogFragment;
-import com.example.thomas.guitartraining.presentation.fragment.user.ListUsersFragment;
+import com.example.thomas.guitartraining.presentation.activity.MainActivity;
+import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramsFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserSongsFragment;
 
-/**
- * Navigator of the MainActivity.
- */
-public class MainNavigator extends FragmentActivity {
+import javax.inject.Inject;
 
-    //    private final Activity activity;
-//
-//    // TODO : To be reviewed --> Problem in application class.
-    public MainNavigator() {
+public class MainNavigator extends BaseNavigator {
+
+    // TODO : Do the same for others activity ?
+    private FragmentManager fragmentManager;
+
+    @Inject
+    public MainNavigator(Activity activity, ErrorRendererComponent errorRendererComponent) {
+        super(activity, errorRendererComponent, R.id.activity_main_relative_layout);
     }
 
-//    public MainNavigator(Activity activity) {
-//        this.activity = activity;
-//    }
-
-    public void loadListUsersFragment(Activity activity) {
-        Fragment listUsersFragment = ListUsersFragment.newInstance();
-
-        activity.getFragmentManager().beginTransaction().add(R.id.main_activity_frame_layout, listUsersFragment).commit();
+    public void setFragmentManager(FragmentManager fragmentManager) {
+        this.fragmentManager = fragmentManager;
     }
 
-    /**
-     * Launch the authentication mode fragment.
-     *
-     * @param activity The concerning activity.
-     */
-    public void launchAuthenticationModeChoiceFragment(Activity activity) {
-        Fragment authenticationChoiceFragment = AuthenticationChoiceFragment.newInstance();
-
-        activity.setContentView(R.layout.activity_main);
-        activity.getFragmentManager().beginTransaction().add(R.id.main_activity_frame_layout, authenticationChoiceFragment).commit();
-    }
-
-    /**
-     * Launch a dialog fragment.
-     *
-     * @param activity      The concerning activity.
-     * @param dialogTitle   The title of the dialog fragment.
-     * @param dialogContent The content of the dialog fragment.
-     */
-    public void launchGenericDialogFragment(Activity activity, String dialogTitle, String dialogContent) {
-        GenericDialogFragment genericDialogFragment = GenericDialogFragment.newInstance(dialogTitle, dialogContent, activity.getString(R.string.dialog_fragment_dismiss_button_text_about));
-        genericDialogFragment.show(activity.getFragmentManager(), "DialogFragment");
-    }
-
-    /**
-     * Launch the offline activity.
-     *
-     * @param activity Activity
-     */
-    public void launchOfflineActivity(Activity activity) {
-        Intent toOfflineActivity = new Intent(activity, OfflineActivity.class);
-        if (activity != null) {
-            activity.startActivity(toOfflineActivity);
+    public void onBackPressed() {
+        if (fragmentManager.getBackStackEntryCount() == 0) {
+            showOnBackPressedDialog();
+        } else {
+            if (getCurrentFragment() instanceof UserProgramsFragment) {
+                activity.setTitle(R.string.navigation_drawer_programs);
+                ((MainActivity) activity).enabledBurger(true);
+            } else if (getCurrentFragment() instanceof UserSongsFragment) {
+                activity.setTitle(R.string.navigation_drawer_songs);
+                ((MainActivity) activity).enabledBurger(true);
+            }
+            fragmentManager.popBackStack();
         }
-        // TODO : Handle error (activity = null).
+    }
 
-        // To handle animations.
-        // TODO : See how is it done on Amiltone project.
-        if (activity != null) {
-            activity.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
-        }
+    public void displayUserProgramsFragment() {
+        fragmentTransactionReplace(UserProgramsFragment.newInstance());
+    }
+
+    public void displayUserSongsFragment() {
+        fragmentTransactionReplace(UserSongsFragment.newInstance());
+    }
+
+    private void showOnBackPressedDialog() {
+        int buttonColor = ContextCompat.getColor(activity, R.color.colorPrimary);
+
+        new MaterialDialog.Builder(activity)
+                .content(R.string.dialog_on_back_pressed)
+                .positiveText(android.R.string.yes)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        activity.finish();
+                    }
+                })
+                .negativeText(android.R.string.no)
+                .positiveColor(buttonColor)
+                .negativeColor(buttonColor)
+                .show();
+    }
+
+    private Fragment getCurrentFragment() {
+        return activity.getFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+    }
+
+    private void fragmentTransactionAdd(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, R.animator.slide_in_right, R.animator.slide_out_left);
+
+        fragmentTransaction.add(R.id.activity_main_frame_layout, fragment, fragment.getTag());
+        fragmentTransaction.addToBackStack(fragment.getTag());
+        fragmentTransaction.commit();
+    }
+
+    private void fragmentTransactionReplace(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.activity_main_frame_layout, fragment, fragment.getTag());
+        fragmentTransaction.commit();
     }
 }

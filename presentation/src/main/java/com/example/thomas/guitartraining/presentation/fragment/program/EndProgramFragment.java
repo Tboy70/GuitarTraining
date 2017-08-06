@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.presenter.program.EndProgramPresenter;
-import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.program.EndProgramView;
 
 import javax.inject.Inject;
@@ -41,8 +41,8 @@ public class EndProgramFragment extends Fragment implements EndProgramView {
         View rootView = inflater.inflate(R.layout.end_program_fragment, container, false);
 
         ButterKnife.bind(this, rootView);
-
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
+
         endProgramPresenter.setEndProgramView(this);
         endProgramPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
 
@@ -52,16 +52,18 @@ public class EndProgramFragment extends Fragment implements EndProgramView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        setToolbar(getActivity().getString(R.string.toolbar_title_end_program));
+
+        setHasOptionsMenu(true);
     }
 
     @OnClick(R.id.end_program_finish_button)
     public void handleClickEndProgramFinishButton() {
-        //TODO : Call this on the presenter ?
-        getActivity().onBackPressed();
+        getActivity().finish();
+    }
+
+    private void setToolbar(String toolbarTitle) {
+        endProgramPresenter.setToolbar(toolbarTitle);
     }
 }

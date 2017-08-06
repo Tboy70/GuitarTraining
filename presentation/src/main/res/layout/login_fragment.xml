@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/login_username"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Nom d'utilisateur" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Mot de passe" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+
+    <Button
+        android:id="@+id/login_validate"
+        android:layout_width="@dimen/button_width_1"
+        android:layout_height="@dimen/button_height_1"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:text="VALIDER" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/space_height_1" />
+
+    <TextView
+        android:id="@+id/login_forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Mot de passe oublié ?"
+        android:textColor="@color/colorPrimary" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/login_already_have_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="J'ai déjà un compte"
+        android:textColor="@color/colorPrimary" />
+
+</LinearLayout>

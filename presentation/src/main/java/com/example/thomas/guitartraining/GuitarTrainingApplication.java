@@ -5,32 +5,20 @@ import android.app.Application;
 import com.example.thomas.guitartraining.di.component.ApplicationComponent;
 import com.example.thomas.guitartraining.di.component.DaggerApplicationComponent;
 import com.example.thomas.guitartraining.di.module.ApplicationModule;
-import com.example.thomas.guitartraining.presentation.navigator.MainNavigator;
 
 /**
- * Application class of the application.
+ * Application class.
  */
 public class GuitarTrainingApplication extends Application {
 
-    public static GuitarTrainingApplication application;
+    private static GuitarTrainingApplication application;
     private ApplicationComponent applicationComponent;
-    private MainNavigator mainNavigator;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        injectParameters();
         application = this;
         initializeInjector();
-    }
-
-    private void injectParameters() {
-        mainNavigator = new MainNavigator();
-    }
-
-    private void initializeInjector() {
-        this.applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this)).build();
     }
 
     public static GuitarTrainingApplication application() {
@@ -39,5 +27,10 @@ public class GuitarTrainingApplication extends Application {
 
     public ApplicationComponent getApplicationComponent() {
         return this.applicationComponent;
+    }
+
+    private void initializeInjector() {
+        this.applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this)).build();
     }
 }

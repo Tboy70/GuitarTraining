@@ -1,7 +1,5 @@
 package com.example.data.repository.client;
 
-import android.util.Log;
-
 import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
@@ -51,5 +49,9 @@ public class APIClient {
 
     public Observable<TextEntity> getTextIntroProgram(int idText) {
         return apiModule.getTextIntroProgram(idText);
+    }
+
+    public Observable<UserEntity> connectUser(String username, String password) {
+        return apiModule.connectUser(username, password);
     }
 }

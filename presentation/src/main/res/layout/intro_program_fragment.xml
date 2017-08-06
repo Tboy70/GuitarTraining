@@ -3,40 +3,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/exercise_padding"
-    android:weightSum="100">
+    android:padding="@dimen/exercise_padding">
 
-    <TextView
-        android:id="@+id/intro_program_name_program"
+    <LinearLayout
+        android:id="@+id/intro_program_success"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="33"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/exercise_title_size" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:weightSum="100">
 
-    <!-- TODO : Retrieve the text from API. -->
-    <TextView
-        android:id="@+id/intro_program_description_program"
+        <TextView
+            android:id="@+id/intro_program_name_program"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="33"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/exercise_title_size" />
+
+        <TextView
+            android:id="@+id/intro_program_description_program"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="33"
+            android:textColor="@android:color/black"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="33"
+            android:gravity="center_horizontal|top">
+
+            <Button
+                android:id="@+id/intro_program_start_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exercise_start_program"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/intro_program_error"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="33"
-        android:text="Ceci est le programme théorique par défaut. Il est composé de deux exercices de 15 minutes chacun : Gammes et modes."
-        android:textColor="@android:color/black"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:weightSum="100">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="34"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/intro_program_start_button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/exercise_start_program"
-            android:visibility="gone" />
-    </RelativeLayout>
+            android:drawableTop="@drawable/broken_guitar"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:text="@string/error_text" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/intro_program_error_retry"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_retry"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:id="@+id/intro_program_error_give_up"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_give_up"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

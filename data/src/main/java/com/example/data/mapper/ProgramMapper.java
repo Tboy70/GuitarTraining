@@ -27,7 +27,7 @@ public class ProgramMapper {
         programModel.setIdProgram(programEntity.getIdProgram());
         programModel.setNameProgram(programEntity.getNameProgram());
         programModel.setDefaultProgram(programEntity.isDefaultProgram());
-        programModel.setUserId(programEntity.getUserIdProgram());
+        programModel.setIdUser(programEntity.getIdUser());
 
         List<ExerciseEntity> exerciseEntityList = programEntity.getExerciseEntities();
         List<Exercise> exercisesList = new ArrayList<>();
@@ -52,7 +52,7 @@ public class ProgramMapper {
         programEntity.setIdProgram(programModel.getIdProgram());
         programEntity.setNameProgram(programModel.getNameProgram());
         programEntity.setDefaultProgram(programModel.isDefaultProgram());
-        programEntity.setUserIdProgram(programModel.getUserId());
+        programEntity.setIdUser(programModel.getIdUser());
 
         List<Exercise> exercisesList = programModel.getExercises();
         List<ExerciseEntity> exerciseEntityList = new ArrayList<>();

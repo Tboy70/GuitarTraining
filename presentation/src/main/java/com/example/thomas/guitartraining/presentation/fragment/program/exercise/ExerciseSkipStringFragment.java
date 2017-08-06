@@ -4,14 +4,19 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
+import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseSkipStringPresenter;
-import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.program.exercise.ExerciseSkipStringView;
 
 import javax.inject.Inject;
@@ -21,13 +26,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by Thomas on 16/05/2017.
+ * Skip string exercise fragment.
  */
-
 public class ExerciseSkipStringFragment extends Fragment implements ExerciseSkipStringView {
 
-    public static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSkipStringFragment.RANK_EXERCISE";
-    public static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSkipStringFragment.DURATION_EXERCISE";
+    private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSkipStringFragment.RANK_EXERCISE";
+    private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSkipStringFragment.DURATION_EXERCISE";
 
     @Inject
     ExerciseSkipStringPresenter exerciseSkipStringPresenter;
@@ -35,7 +39,16 @@ public class ExerciseSkipStringFragment extends Fragment implements ExerciseSkip
     @BindView(R.id.exercise_skip_string_duration)
     TextView exerciseSkipStringDuration;
 
+    @BindView(R.id.exercise_skip_string_duration_left)
+    TextView exerciseSkipStringDurationLeft;
+
+    private DurationComponent durationComponent;
+
     private int rankExercise;
+
+    // Exercise duration variables
+    private int durationExercise;
+    private long durationLeft = DateTimeUtils.DEFAULT_DURATION_LEFT;
 
     public static ExerciseSkipStringFragment newInstance(int exercisePosition, int durationExercise) {
         Bundle args = new Bundle();
@@ -44,6 +57,7 @@ public class ExerciseSkipStringFragment extends Fragment implements ExerciseSkip
 
         ExerciseSkipStringFragment fragment = new ExerciseSkipStringFragment();
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -53,16 +67,12 @@ public class ExerciseSkipStringFragment extends Fragment implements ExerciseSkip
         View rootView = inflater.inflate(R.layout.exercise_skip_string_fragment, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);  // TODO : Possibility to externalize this ? BaseActivity ?
+        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseSkipStringPresenter.setExerciseSkipStringView(this);
         exerciseSkipStringPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
 
-        rankExercise = getArguments().getInt(RANK_EXERCISE);
-        int durationExercise = getArguments().getInt(DURATION_EXERCISE);
-
-        exerciseSkipStringDuration.setText(String.format(getActivity().getString(R.string.exercise_duration_text),
-                String.valueOf(durationExercise)));
+        durationComponent = new DurationComponent();
 
         return rootView;
     }
@@ -70,15 +80,62 @@ public class ExerciseSkipStringFragment extends Fragment implements ExerciseSkip
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        rankExercise = getArguments().getInt(RANK_EXERCISE);
+        durationExercise = getArguments().getInt(DURATION_EXERCISE);
+
+        setDurationUI();
+        setToolbar(getActivity().getString(R.string.toolbar_title_exercise_skip_string));
+
+        setHasOptionsMenu(true);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.program_activity_menu_toolbar, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.program_activity_toolbar_about_icon:
+                exerciseSkipStringPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_skip_fragment_exercise));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void setLeftDuration(long timeCountInMilliSeconds) {
+        durationLeft = durationComponent.setDurationLeft(
+                exerciseSkipStringDurationLeft,
+                getActivity().getString(R.string.exercise_duration_text_left),
+                timeCountInMilliSeconds);
     }
 
     @OnClick(R.id.exercise_skip_string_next_button)
     public void handleClickExerciseScaleNextButton() {
         exerciseSkipStringPresenter.showNextExercise(rankExercise + 1);
+    }
+
+    @OnClick(R.id.exercise_skip_string_button_start_exercise)
+    public void handleClickExerciseSkipStringStartExercise() {
+        exerciseSkipStringPresenter.launchTimer(getActivity(), durationLeft);
+    }
+
+    private void setDurationUI() {
+        durationLeft = durationComponent.setDuration(
+                durationExercise,
+                durationLeft,
+                exerciseSkipStringDuration,
+                getActivity().getString(R.string.exercise_duration_text),
+                exerciseSkipStringDurationLeft,
+                getActivity().getString(R.string.exercise_duration_text_left));
+    }
+
+    private void setToolbar(String toolbarTitle) {
+        exerciseSkipStringPresenter.setToolbar(toolbarTitle);
     }
 }

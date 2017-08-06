@@ -1,101 +1,167 @@
 package com.example.thomas.guitartraining.presentation.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.example.model.Text;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.navigator.MainNavigator;
 import com.example.thomas.guitartraining.presentation.presenter.activity.MainPresenter;
-import com.example.thomas.guitartraining.presentation.view.MainNavigatorListener;
+import com.example.thomas.guitartraining.presentation.activity.listener.MainNavigatorListener;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Main activity of the application.
- */
 public class MainActivity extends BaseActivity implements MainNavigatorListener {
 
-    // Injection via dagger.
+    @BindView(R.id.view_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.activity_main_navigation_view)
+    NavigationView navigationView;
+    @BindView(R.id.activity_main_drawer_layout)
+    DrawerLayout drawerLayout;
+
+    @SuppressWarnings("unused")
     @Inject
     MainPresenter mainPresenter;
 
-    private MainNavigator mainNavigator;
+    @Inject
+    MainNavigator mainNavigator;
+
+    private ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivityComponent().inject(this);    // IMPORTANT !
+        setContentView(R.layout.activity_main);
+        getActivityComponent().inject(this);
         ButterKnife.bind(this);
-        injectParameters();
-    }
+        setFragmentManager();
+        initDrawerMenu();
 
-    private void injectParameters() {
-        // TODO : See to inject the navigator.
-        mainNavigator = new MainNavigator();
+        drawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!drawerToggle.isDrawerIndicatorEnabled()) {
+                    onBackPressed();
+                }
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        launchAuthenticationModeChoice();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_activity_toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, android.R.color.white));
-        setSupportActionBar(toolbar);
+        displayUserProgramFragment();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_activity_menu_toolbar, menu);
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
 
-        return super.onCreateOptionsMenu(menu);
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggles
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.main_activity_toolbar_about_icon:
-                mainPresenter.getAppInfoText();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        mainNavigator.onBackPressed();
+    }
+
+    @Override
+    public void requestRenderError(Throwable e, int mode, View viewId) {}
+
+    public void enabledBurger(boolean state) {
+        if (!state) {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            }
+            drawerToggle.setDrawerIndicatorEnabled(false);
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } else {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            drawerToggle.setDrawerIndicatorEnabled(true);
         }
     }
 
-    public void loadListUsers() {
-        mainNavigator.loadListUsersFragment(this);
+    private void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        switch (menuItem.getItemId()) {
+            case R.id.menu_drawer_programs:
+                mainNavigator.displayUserProgramsFragment();
+                break;
+            case R.id.menu_drawer_songs:
+                mainNavigator.displayUserSongsFragment();
+                break;
+            default:
+                mainNavigator.displayUserProgramsFragment();
+        }
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawerLayout.closeDrawers();
     }
 
-    /**
-     * Launch the dialog fragment.
-     *
-     * @param text The text to be displayed by the dialog.
-     */
-    @Override
-    public void callDialogFragment(Text text) {
-        mainNavigator.launchGenericDialogFragment(this, getString(R.string.dialog_fragment_title_about), text.getContentText());
+    private void setFragmentManager() {
+        mainNavigator.setFragmentManager(getFragmentManager());
     }
 
-    /**
-     * Launch the first screen of the application --> Connection or not connected mode.
-     */
-    public void launchAuthenticationModeChoice() {
-        mainNavigator.launchAuthenticationModeChoiceFragment(this);
+    private void initDrawerMenu() {
+        // Setup drawer view
+        setupDrawerContent(navigationView);
+
+        // Set a Toolbar to replace the ActionBar.
+        setSupportActionBar(toolbar);
+
+        // Find our drawer view
+        drawerToggle = setupDrawerToggle();
+
+        // Tie DrawerLayout events to the ActionBarToggle
+        drawerLayout.addDrawerListener(drawerToggle);
     }
 
-    /**
-     * Launch the offline activity -> Without connection.
-     */
-    @Override
-    public void launchOfflineActivity() {
-        mainNavigator.launchOfflineActivity(this);
+    private ActionBarDrawerToggle setupDrawerToggle() {
+        // NOTE: Make sure you pass in a valid view_toolbar reference.  ActionBarDrawToggle() does not require it
+        // and will not render the hamburger icon without it.
+        return new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+    }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+    private void displayUserProgramFragment() {
+        mainNavigator.displayUserProgramsFragment();
     }
 }

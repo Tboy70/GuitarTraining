@@ -4,10 +4,15 @@ import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.model.Exercise;
@@ -16,7 +21,7 @@ import com.example.model.Text;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.presenter.program.IntroProgramPresenter;
-import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.program.IntroProgramView;
 
 import java.util.ArrayList;
@@ -33,10 +38,16 @@ import butterknife.OnClick;
  */
 public class IntroProgramFragment extends Fragment implements IntroProgramView {
 
-    public static final String ID_PROGRAM = "com.example.thomas.guitartraining.presentation.fragment.program.IntroProgramFragment.ID_PROGRAM";
+    private static final String ID_PROGRAM = "com.example.thomas.guitartraining.presentation.fragment.program.IntroProgramFragment.ID_PROGRAM";
 
     @Inject
     IntroProgramPresenter introProgramPresenter;
+
+    @BindView(R.id.intro_program_success)
+    LinearLayout introProgramSuccess;
+
+    @BindView(R.id.intro_program_error)
+    LinearLayout introProgramError;
 
     @BindView(R.id.intro_program_name_program)
     TextView introProgramName;
@@ -48,6 +59,7 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
     TextView introProgramStartButton;
 
     private List<Exercise> programExercisesList;
+    private int idProgram;
 
     public static IntroProgramFragment newInstance(int idProgram) {
         Bundle args = new Bundle();
@@ -72,9 +84,10 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
 
         programExercisesList = new ArrayList<>();
 
-        // TODO : See where to put this to have no latency.
-        int idProgram = getArguments().getInt(ID_PROGRAM);
+        idProgram = getArguments().getInt(ID_PROGRAM);
         introProgramPresenter.retrieveProgramFromId(this.getActivity(), idProgram);
+
+        setToolbarTitle(idProgram);
 
         return rootView;
     }
@@ -89,8 +102,9 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
         super.onActivityCreated(savedInstanceState);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public void updateUI(Program program, Text text) {
+    public void updateUISuccess(Program program, Text text) {
         introProgramName.setText(program.getNameProgram());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             introProgramDescription.setText(Html.fromHtml(text.getContentText(), Html.FROM_HTML_MODE_COMPACT));
@@ -98,12 +112,56 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
             introProgramDescription.setText((Html.fromHtml(text.getContentText())));
         }
         programExercisesList = program.getExercises();
-        introProgramDescription.setVisibility(View.VISIBLE);
-        introProgramStartButton.setVisibility(View.VISIBLE);
+        setLayoutVisibility(View.VISIBLE, View.GONE);
+    }
+
+    @Override
+    public void updateUIError() {
+        setLayoutVisibility(View.GONE, View.VISIBLE);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.program_activity_menu_toolbar, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @OnClick(R.id.intro_program_start_button)
     public void handleClickIntroProgramStartButton() {
         introProgramPresenter.startExercises(programExercisesList);
+    }
+
+    @OnClick(R.id.intro_program_error_retry)
+    public void handleClickIntroProgramErrorRetry() {
+        setLayoutVisibility(View.GONE, View.GONE);
+        introProgramPresenter.retrieveProgramFromId(this.getActivity(), idProgram);
+    }
+
+    @OnClick(R.id.intro_program_error_give_up)
+    public void handleClickIntroProgramErrorGiveUp() {
+        this.getActivity().finish();
+    }
+
+    private void setLayoutVisibility(int visibilityLayoutSuccess, int visibilityLayoutError) {
+        introProgramSuccess.setVisibility(visibilityLayoutSuccess);
+        introProgramError.setVisibility(visibilityLayoutError);
+    }
+
+    private void setToolbarTitle(int idProgram) {
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.activity_program_toolbar);
+        switch (idProgram) {
+            case 1:
+                toolbar.setTitle(getActivity().getString(R.string.toolbar_title_theoretical_program));
+                toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
+                break;
+            case 2:
+                toolbar.setTitle(getActivity().getString(R.string.toolbar_title_technical_program));
+                toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
+                break;
+            default:
+                toolbar.setTitle(getActivity().getString(R.string.toolbar_title_custom_program));
+                toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
+                break;
+        }
     }
 }

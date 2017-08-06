@@ -23,7 +23,7 @@ public abstract class UseCase {
         this.postExecutionThread = postExecutionThread;
     }
 
-    public abstract Observable buildUseCaseObservable();
+    protected abstract Observable buildUseCaseObservable();
 
     @SuppressWarnings("unchecked")
     public void execute(Subscriber useCaseSubscriber) {

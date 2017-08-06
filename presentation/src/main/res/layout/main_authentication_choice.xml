@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical">
 
@@ -10,8 +9,8 @@
         android:id="@+id/main_authentication_choice_online_button"
         android:layout_width="@dimen/button_width_1"
         android:layout_height="@dimen/button_height_1"
-        android:text="@string/main_authentication_choice_connection"
-        android:background="@android:drawable/dialog_holo_light_frame" />
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:text="@string/main_authentication_choice_connection" />
 
     <android.support.v4.widget.Space
         android:layout_width="wrap_content"
@@ -21,7 +20,7 @@
         android:id="@+id/main_authentication_choice_offline_button"
         android:layout_width="@dimen/button_width_1"
         android:layout_height="@dimen/button_height_1"
-        android:text="@string/main_authentication_choice_no_connection"
-        android:background="@android:drawable/dialog_holo_light_frame" />
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:text="@string/main_authentication_choice_no_connection" />
 
 </LinearLayout>

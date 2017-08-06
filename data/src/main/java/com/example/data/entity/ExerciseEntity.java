@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Exercise entity mapping the JSON.
  */
-// TODO : Rename Exercice to exercise in API and database !!
 public class ExerciseEntity {
 
     @SerializedName("idExercise")

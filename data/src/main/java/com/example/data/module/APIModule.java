@@ -21,4 +21,6 @@ public interface APIModule {
     Observable<ProgramEntity> getProgramById(int idProgram);
 
     Observable<TextEntity> getTextIntroProgram(int idText);
+
+    Observable<UserEntity> connectUser(String username, String password);
 }

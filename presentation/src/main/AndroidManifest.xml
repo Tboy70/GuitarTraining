@@ -6,21 +6,23 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".GuitarTrainingApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".GuitarTrainingApplication">
-        <activity android:name=".presentation.activity.MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".presentation.activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.activity.OfflineActivity"></activity>
-        <activity android:name=".presentation.activity.ProgramActivity"></activity>
+        <activity android:name=".presentation.activity.OnlineActivity" />
+        <activity android:name=".presentation.activity.OfflineActivity" />
+        <activity android:name=".presentation.activity.ProgramActivity" />
+        <activity android:name=".presentation.activity.MainActivity" />
     </application>
 
 </manifest>

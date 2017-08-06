@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ProgressBar
+        android:id="@+id/progress_bar_timer"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/timer_circle_black"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/timer_circle_white"
+        android:rotation="-90" />
+
+    <TextView
+        android:id="@+id/text_view_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/black"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/button_start_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_timer"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/timer_start_button"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

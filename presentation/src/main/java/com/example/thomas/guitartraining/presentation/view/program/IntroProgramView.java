@@ -8,5 +8,7 @@ import com.example.model.Text;
  */
 
 public interface IntroProgramView {
-    void updateUI(Program program, Text text);
+    void updateUISuccess(Program program, Text text);
+
+    void updateUIError();
 }

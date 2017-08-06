@@ -2,7 +2,7 @@ package com.example.thomas.guitartraining.presentation.presenter.program;
 
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
-import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.program.EndProgramView;
 
 import javax.inject.Inject;
@@ -14,9 +14,11 @@ import javax.inject.Inject;
 @PerActivity
 public class EndProgramPresenter {
 
+    @SuppressWarnings({"unused", "FieldCanBeLocal"})
     private EndProgramView endProgramView;
     private ProgramNavigatorListener programNavigatorListener;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public EndProgramPresenter() {
     }
@@ -27,5 +29,9 @@ public class EndProgramPresenter {
 
     public void setProgramNavigatorListener(ProgramNavigatorListener programNavigatorListener) {
         this.programNavigatorListener = programNavigatorListener;
+    }
+
+    public void setToolbar(String toolbarTitle) {
+        programNavigatorListener.setProgramToolbar(toolbarTitle);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.data.repository;
 
-import android.util.Log;
-
 import com.example.data.entity.TextEntity;
 import com.example.data.mapper.TextMapper;
 import com.example.data.repository.client.APIClient;

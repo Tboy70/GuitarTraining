@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_program_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.activity.ProgramActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/program_activity_toolbar"
+        android:id="@+id/activity_program_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
+        android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize" />
 
     <FrameLayout
-        android:id="@+id/program_activity_frame_layout"
+        android:id="@+id/activity_program_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/program_activity_toolbar" />
+        android:layout_below="@id/activity_program_toolbar" />
 
 </RelativeLayout>

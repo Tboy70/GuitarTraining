@@ -4,14 +4,20 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
+import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseModePresenter;
-import com.example.thomas.guitartraining.presentation.view.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.program.exercise.ExerciseModeView;
 
 import javax.inject.Inject;
@@ -25,8 +31,8 @@ import butterknife.OnClick;
  */
 public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
 
-    public static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment.RANK_EXERCISE";
-    public static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment.DURATION_EXERCISE";
+    private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment.RANK_EXERCISE";
+    private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment.DURATION_EXERCISE";
 
     @Inject
     ExerciseModePresenter exerciseModePresenter;
@@ -34,7 +40,22 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
     @BindView(R.id.exercise_mode_duration)
     TextView exerciseModeDuration;
 
+    @BindView(R.id.exercise_mode_duration_left)
+    TextView exerciseModeDurationLeft;
+
+    @BindView(R.id.exercise_mode_button_choice_mode)
+    Button buttonChoiceMode;
+
+    @BindView(R.id.exercise_mode_button_start_exercise)
+    Button startExerciseButton;
+
+    private DurationComponent durationComponent;
+
     private int rankExercise;
+
+    // Exercise duration variable
+    private int durationExercise;
+    private long durationLeft = DateTimeUtils.DEFAULT_DURATION_LEFT;
 
     public static ExerciseModeFragment newInstance(int exercisePosition, int durationExercise) {
         Bundle args = new Bundle();
@@ -43,6 +64,7 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
 
         ExerciseModeFragment fragment = new ExerciseModeFragment();
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -57,11 +79,7 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
         exerciseModePresenter.setExerciseModeView(this);
         exerciseModePresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());
 
-        rankExercise = getArguments().getInt(RANK_EXERCISE);
-        int durationExercise = getArguments().getInt(DURATION_EXERCISE);
-
-        exerciseModeDuration.setText(String.format(getActivity().getString(R.string.exercise_duration_text),
-                String.valueOf(durationExercise)));
+        durationComponent = new DurationComponent();
 
         return rootView;
     }
@@ -69,15 +87,79 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        rankExercise = getArguments().getInt(RANK_EXERCISE);
+        durationExercise = getArguments().getInt(DURATION_EXERCISE);
+
+        setDurationUI();
+        setToolbar(getActivity().getString(R.string.toolbar_title_exercise_mode));
+
+        setHasOptionsMenu(true);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.program_activity_menu_toolbar, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.program_activity_toolbar_about_icon:
+                exerciseModePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_mode_exercise));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void displaySelectedChoice(String selectedItem) {
+        if (selectedItem != null && selectedItem.length() > 0) {
+            buttonChoiceMode.setText(selectedItem);
+        }
+    }
+
+    @Override
+    public void setLeftDuration(long timeCountInMilliSeconds) {
+        durationLeft = durationComponent.setDurationLeft(
+                exerciseModeDurationLeft,
+                getActivity().getString(R.string.exercise_duration_text_left),
+                timeCountInMilliSeconds);
     }
 
     @OnClick(R.id.exercise_mode_next_button)
     public void handleClickExerciseModeNextButton() {
         exerciseModePresenter.showNextExercise(rankExercise + 1);
+    }
+
+    @OnClick(R.id.exercise_mode_button_choice_mode)
+    public void handleClickExerciseModeButtonChoiceMode() {
+        exerciseModePresenter.showSimpleChoiceDialog();
+    }
+
+    @OnClick(R.id.exercise_mode_random_selection)
+    public void handleClickExerciseModeRandomSelection() {
+        exerciseModePresenter.randomModeSelection();
+    }
+
+    @OnClick(R.id.exercise_mode_button_start_exercise)
+    public void handleClickExerciseModeButtonStartExercise() {
+        exerciseModePresenter.launchTimer(getActivity(), durationLeft);
+    }
+
+    private void setDurationUI() {
+        durationLeft = durationComponent.setDuration(
+                durationExercise,
+                durationLeft,
+                exerciseModeDuration,
+                getActivity().getString(R.string.exercise_duration_text),
+                exerciseModeDurationLeft,
+                getActivity().getString(R.string.exercise_duration_text_left));
+    }
+
+    private void setToolbar(String toolbarTitle) {
+        exerciseModePresenter.setToolbar(toolbarTitle);
     }
 }

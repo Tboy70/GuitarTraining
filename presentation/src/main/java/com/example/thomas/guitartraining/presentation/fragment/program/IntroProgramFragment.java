@@ -43,19 +43,19 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
     @Inject
     IntroProgramPresenter introProgramPresenter;
 
-    @BindView(R.id.intro_program_success)
+    @BindView(R.id.fragment_intro_program_success_layout)
     LinearLayout introProgramSuccess;
 
-    @BindView(R.id.intro_program_error)
+    @BindView(R.id.fragment_intro_program_error_layout)
     LinearLayout introProgramError;
 
-    @BindView(R.id.intro_program_name_program)
+    @BindView(R.id.fragment_intro_program_name_program_text_view)
     TextView introProgramName;
 
-    @BindView(R.id.intro_program_description_program)
+    @BindView(R.id.fragment_intro_program_description_program_text_view)
     TextView introProgramDescription;
 
-    @BindView(R.id.intro_program_start_button)
+    @BindView(R.id.fragment_intro_program_start_button)
     TextView introProgramStartButton;
 
     private List<Exercise> programExercisesList;
@@ -74,7 +74,7 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.intro_program_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_intro_program, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -126,18 +126,18 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @OnClick(R.id.intro_program_start_button)
+    @OnClick(R.id.fragment_intro_program_start_button)
     public void handleClickIntroProgramStartButton() {
         introProgramPresenter.startExercises(programExercisesList);
     }
 
-    @OnClick(R.id.intro_program_error_retry)
+    @OnClick(R.id.fragment_intro_program_error_retry_button)
     public void handleClickIntroProgramErrorRetry() {
         setLayoutVisibility(View.GONE, View.GONE);
         introProgramPresenter.retrieveProgramFromId(this.getActivity(), idProgram);
     }
 
-    @OnClick(R.id.intro_program_error_give_up)
+    @OnClick(R.id.fragment_intro_program_error_give_up_button)
     public void handleClickIntroProgramErrorGiveUp() {
         this.getActivity().finish();
     }

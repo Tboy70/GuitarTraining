@@ -2,8 +2,6 @@ package com.example.repository;
 
 import com.example.model.User;
 
-import java.util.List;
-
 import rx.Observable;
 
 /**
@@ -11,12 +9,7 @@ import rx.Observable;
  */
 public interface UserRepository {
 
-    /**
-     * Get all the users of the application.
-     *
-     * @return Observable -> List of User models.
-     */
-    Observable<List<User>> getAllUsers();
+    Observable<Boolean> setIdUserInSharedPrefs(int idUser);
 
     Observable<User> connectUser(String username, String password);
 }

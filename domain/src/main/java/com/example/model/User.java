@@ -9,14 +9,14 @@ public class User {
     private String pseudoUser;
     private String passwordUser;
 
+    @SuppressWarnings("unused")
     public User(int idUser, String pseudoUser, String passwordUser) {
         this.idUser = idUser;
         this.pseudoUser = pseudoUser;
         this.passwordUser = passwordUser;
     }
 
-    public User() {
-    }
+    public User() {}
 
     public int getIdUser() {
         return idUser;

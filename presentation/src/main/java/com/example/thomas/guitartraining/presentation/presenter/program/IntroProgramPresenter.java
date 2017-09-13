@@ -5,8 +5,8 @@ import android.app.Activity;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.executor.PostExecutionThread;
 import com.example.executor.ThreadExecutor;
-import com.example.interactor.GetProgramFromId;
-import com.example.interactor.GetTextIntroProgram;
+import com.example.interactor.program.GetProgramFromId;
+import com.example.interactor.text.GetTextIntroProgram;
 import com.example.model.Exercise;
 import com.example.model.Program;
 import com.example.model.Text;
@@ -39,14 +39,19 @@ public class IntroProgramPresenter {
 
     private MaterialDialogComponent materialDialogComponent;
 
+    private GetProgramFromId getProgramFromId;
+    private GetTextIntroProgram getTextIntroProgram;
+
     @SuppressWarnings("WeakerAccess")
     @Inject
-    public IntroProgramPresenter(ProgramRepository programRepository, TextRepository textRepository, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, MaterialDialogComponent materialDialogComponent) {
+    public IntroProgramPresenter(ProgramRepository programRepository, TextRepository textRepository, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, MaterialDialogComponent materialDialogComponent, GetProgramFromId getProgramFromId, GetTextIntroProgram getTextIntroProgram) {
         this.programRepository = programRepository;
         this.textRepository = textRepository;
         this.threadExecutor = threadExecutor;
         this.postExecutionThread = postExecutionThread;
         this.materialDialogComponent = materialDialogComponent;
+        this.getProgramFromId = getProgramFromId;
+        this.getTextIntroProgram = getTextIntroProgram;
     }
 
     public void setIntroProgramView(IntroProgramFragment introProgramView) {
@@ -61,10 +66,9 @@ public class IntroProgramPresenter {
         final MaterialDialog progressDialog =
                 materialDialogComponent.showProgressDialog(
                         activity,
-                        activity.getString(R.string.dialog_loading_program_title),
-                        activity.getString(R.string.dialog_loading_program_description),
+                        activity.getString(R.string.dialog_program_loading_title),
+                        activity.getString(R.string.dialog_program_loading_description),
                         R.color.colorPrimary);
-        GetProgramFromId getProgramFromId = new GetProgramFromId(threadExecutor, postExecutionThread, programRepository, idProgram);
         getProgramFromId.execute(new Subscriber<Program>() {
 
             @Override
@@ -82,11 +86,10 @@ public class IntroProgramPresenter {
             public void onNext(Program program) {
                 retrieveTextIntroProgram(program, progressDialog);
             }
-        });
+        }, GetProgramFromId.Params.toGet(idProgram));
     }
 
     private void retrieveTextIntroProgram(final Program program, final MaterialDialog dialog) {
-        GetTextIntroProgram getTextIntroProgram = new GetTextIntroProgram(threadExecutor, postExecutionThread, textRepository, program.getIdProgram());
         getTextIntroProgram.execute(new Subscriber<Text>() {
             @Override
             public void onCompleted() {
@@ -95,13 +98,14 @@ public class IntroProgramPresenter {
 
             @Override
             public void onError(Throwable e) {
+
             }
 
             @Override
             public void onNext(Text text) {
                 introProgramView.updateUISuccess(program, text);
             }
-        });
+        }, GetTextIntroProgram.Params.toGet(program.getIdProgram()));
     }
 
     public void startExercises(List<Exercise> programExercises) {

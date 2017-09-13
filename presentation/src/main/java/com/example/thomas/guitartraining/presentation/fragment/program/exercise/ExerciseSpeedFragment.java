@@ -36,10 +36,10 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
     @Inject
     ExerciseSpeedPresenter exerciseSpeedPresenter;
 
-    @BindView(R.id.exercise_speed_duration)
+    @BindView(R.id.fragment_exercise_speed_duration)
     TextView exerciseSpeedDuration;
 
-    @BindView(R.id.exercise_speed_duration_left)
+    @BindView(R.id.fragment_exercise_speed_duration_left)
     TextView exerciseSpeedDurationLeft;
 
     private DurationComponent durationComponent;
@@ -64,7 +64,7 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_speed_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_speed, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -100,7 +100,7 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exerciseSpeedPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_speed_exercise));
+                exerciseSpeedPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_speed_exercise_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,16 +111,16 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exerciseSpeedDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
-    @OnClick(R.id.exercise_speed_next_button)
-    public void handleClickExerciseScaleNextButton() {
+    @OnClick(R.id.fragment_exercise_speed_next_button)
+    public void handleClickExerciseSpeedNextButton() {
         exerciseSpeedPresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_speed_button_start_exercise)
+    @OnClick(R.id.fragment_exercise_speed_button_start_exercise)
     public void handleClickExerciseSpeedStartExercise() {
         exerciseSpeedPresenter.launchTimer(getActivity(), durationLeft);
     }
@@ -130,9 +130,9 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
                 durationExercise,
                 durationLeft,
                 exerciseSpeedDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exerciseSpeedDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

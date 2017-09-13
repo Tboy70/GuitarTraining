@@ -1,26 +1,23 @@
 package com.example.data.module;
 
-import com.example.data.entity.ProgramEntity;
-import com.example.data.entity.TextEntity;
-import com.example.data.entity.UserEntity;
+import com.example.data.entity.remote.ProgramRemoteEntity;
+import com.example.data.entity.remote.TextRemoteEntity;
+import com.example.data.entity.remote.UserRemoteEntity;
 
 import java.util.List;
 
 import rx.Observable;
 
 /**
- * Interface implements by APIModuleRetrofitImpl class.
- * Contains declarations of API methods.
+ * Interface implemented by APIModuleRetrofitImpl class.
  */
 public interface APIModule {
 
-    Observable<List<UserEntity>> getAllUsers();
+    Observable<UserRemoteEntity> connectUser(String username, String password);
 
-    Observable<TextEntity> getInformationTextAboutApplication();
+    Observable<TextRemoteEntity> getTextIntroProgram(int idText);
 
-    Observable<ProgramEntity> getProgramById(int idProgram);
+    Observable<ProgramRemoteEntity> getProgramById(int idProgram);
 
-    Observable<TextEntity> getTextIntroProgram(int idText);
-
-    Observable<UserEntity> connectUser(String username, String password);
+    Observable<List<ProgramRemoteEntity>> retrieveProgramsListByUserId(int userId);
 }

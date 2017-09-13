@@ -1,74 +1,82 @@
 <resources>
     <string name="app_name">GuitarTraining</string>
 
-    <!-- Main authentication choice fragment -->
-    <string name="main_authentication_choice_connection">Se connecter</string>
-    <string name="main_authentication_choice_no_connection">Mode hors connexion</string>
+    <!-- Authentication choice fragment -->
+    <string name="fragment_authentication_choice_connection_button_text">Se connecter</string>
+    <string name="fragment_authentication_choice_not_connected_button_text">Mode hors connexion</string>
 
-    <!-- Offline session choice fragment -->
-    <string name="offline_session_choice_theoretical_session">Programme théorique</string>
-    <string name="offline_session_choice_technical_session">Programme technique</string>
+    <!-- Not connected choice fragment -->
+    <string name="fragment_not_connected_program_choice_technical_button_text">Programme technique</string>
+    <string name="fragment_not_connected_program_choice_theoretical_button_text">Programme théorique</string>
 
-    <!-- General exercise -->
-    <string name="exercise_start_program">Let\'s rock</string>
-    <string name="exercise_duration_text"><![CDATA[<b>Durée de l\'exercice :</b>]]> %1$s minutes.</string>
-    <string name="exercise_duration_text_left"><![CDATA[<b>Temps restant :</b>]]> %1$s minutes.</string>
-    <string name="exercise_end_title">FELICITATIONS !</string>
-    <string name="exercise_end_description">Vous êtes parvenu au bout du programme. A bientôt !</string>
-    <string name="exercise_next_exercise">Exercice suivant</string>
-    <string name="exercise_end_program">Terminer</string>
+
+    <!-- ======================================================================================= -->
+    <!-- ====================================== EXERCISES ====================================== -->
+    <!-- ======================================================================================= -->
+
+    <!-- Generic exercise -->
+    <string name="generic_exercise_end_program_text">Terminer</string>
+    <string name="generic_exercise_end_title_text">FELICITATIONS !</string>
+    <string name="generic_exercise_start_program_text">Let\'s rock</string>
+    <string name="generic_exercise_next_exercise_text">Exercice suivant</string>
+    <string name="generic_exercise_start_button_text">Commencer l\'exercice</string>
+    <string name="generic_exercise_duration_left_text"><![CDATA[<b>Temps restant :</b>]]> %1$s minutes.</string>
+    <string name="generic_exercise_duration_text"><![CDATA[<b>Durée de l\'exercice :</b>]]> %1$s minutes.</string>
+    <string name="generic_exercise_end_description_text">Vous êtes parvenu au bout du programme. A bientôt !</string>
 
     <!-- Scale exercise -->
-    <string name="exercise_scale_title">Pratique des gammes</string>
-    <string name="exercise_scale_note">Note</string>
-    <string name="exercise_scale_tone">Mode</string>
-    <string name="exercise_scale_dialog_choice_note">Choix de la note</string>
-    <string name="exercise_scale_dialog_choice_mode">Choix du mode</string>
-    <string name="exercise_scale_description"><![CDATA[Entraine toi à improviser sur une gamme ! Choisi la gamme de ton choix ou sélectionne la aléatoirement à l\'aide des listes ci-dessous.]]></string>
-    <string name="exercise_start_button">Commencer l\'exercice</string>
+    <string name="exercise_scale_note_text">Note</string>
+    <string name="exercise_scale_tone_text">Mode</string>
+    <string name="exercise_scale_title_text">Pratique des gammes</string>
+    <string name="exercise_scale_dialog_choice_mode_text">Choix du mode</string>
+    <string name="exercise_scale_dialog_choice_note_text">Choix de la note</string>
+    <string name="exercise_scale_description_text"><![CDATA[Entraine toi à improviser sur une gamme ! Choisi la gamme de ton choix ou sélectionne la aléatoirement à l\'aide des listes ci-dessous.]]></string>
 
     <!-- Mode exercise -->
-    <string name="exercise_mode_title">Pratique des modes</string>
-    <string name="exercise_mode_description">Entraîne toi à improviser avec un mode de ton choix ou choisi de manière aléatoire ! </string>
-    <string name="exercise_mode_dialog_choice_mode">Choix du mode</string>
-    <string name="exercise_mode_mode">Mode</string>
+    <string name="exercise_mode_mode_text">Mode</string>
+    <string name="exercise_mode_title_text">Pratique des modes</string>
+    <string name="exercise_mode_dialog_choice_mode_text">Choix du mode</string>
+    <string name="exercise_mode_description_text">Entraîne toi à improviser avec un mode de ton choix ou choisi de manière aléatoire ! </string>
 
     <!-- Pull off / hammer on exercise -->
-    <string name="exercise_pull_off_hammer_on_title">Pull off / Hammer on</string>
-    <string name="exercise_pull_off_hammer_on_description">Entraine toi aux hammer on et aux pull off ! </string>
+    <string name="exercise_pull_off_hammer_on_title_text">Pull off / Hammer on</string>
+    <string name="exercise_pull_off_hammer_on_description_text">Entraine toi aux hammer on et aux pull off ! </string>
 
     <!-- Bend / slide exercise -->
-    <string name="exercise_bend_slide_title">Bend / Slide</string>
-    <string name="exercise_bend_slide_description">Entraine toi aux slides et aux bends !</string>
+    <string name="exercise_bend_slide_title_text">Bend / Slide</string>
+    <string name="exercise_bend_slide_description_text">Entraine toi aux slides et aux bends !</string>
 
     <!-- Back forth exercise -->
-    <string name="exercise_back_forth_title">Allers et retours</string>
-    <string name="exercise_back_forth_description">Entraine toi à faire des allers et retours à la main droite !</string>
+    <string name="exercise_back_forth_title_text">Allers et retours</string>
+    <string name="exercise_back_forth_description_text">Entraine toi à faire des allers et retours à la main droite !</string>
 
     <!-- Palm mute exercise -->
-    <string name="exercise_palm_mute_title">Palm mute</string>
-    <string name="exercise_palm_mute_description">Entraine toi aux palm-mutes !</string>
+    <string name="exercise_palm_mute_title_text">Palm mute</string>
+    <string name="exercise_palm_mute_description_text">Entraine toi aux palm-mutes !</string>
 
     <!-- Skip string exercise -->
-    <string name="exercise_skip_string_title">Muter une corde en accord</string>
-    <string name="exercise_skip_fragment_description">Entraine toi à jouer des accords en sautant une corde !</string>
+    <string name="exercise_skip_string_title_text">Muter une corde en accord</string>
+    <string name="exercise_skip_fragment_description_text">Entraine toi à jouer des accords en sautant une corde !</string>
 
     <!-- Tapping exercise -->
-    <string name="exercise_tapping_title">Tapping</string>
-    <string name="exercise_speed_description">Entraine toi à jouer vite !</string>
+    <string name="exercise_tapping_title_text">Tapping</string>
+    <string name="exercise_speed_description_text">Entraine toi à jouer vite !</string>
 
     <!-- Sweep picking exercise -->
-    <string name="exercise_sweep_picking_title">Sweep picking</string>
-    <string name="exercise_sweep_picking_description">Entraine toi au sweep picking !</string>
+    <string name="exercise_sweep_picking_title_text">Sweep picking</string>
+    <string name="exercise_sweep_picking_description_text">Entraine toi au sweep picking !</string>
 
     <!-- Speed exercise -->
-    <string name="exercise_speed_title">Vitesse</string>
-    <string name="exercise_tapping_description">Entraine toi au tapping !</string>
+    <string name="exercise_speed_title_text">Vitesse</string>
+    <string name="exercise_tapping_description_text">Entraine toi au tapping !</string>
 
-    <!-- Error -->
-    <string name="error_text">OUPS ! Tu as cassé une corde …</string>
-    <string name="error_retry">Réessayer</string>
-    <string name="error_give_up">Abandonner</string>
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+
+    <!-- ======================================================================================= -->
+    <!-- ======================================= VALUES ======================================== -->
+    <!-- ======================================================================================= -->
 
     <!-- Notes -->
     <string name="note_C">C</string>
@@ -85,9 +93,9 @@
     <string name="note_B">B</string>
 
     <!-- Tones -->
-    <string name="tone_pentatonic">Pentatonique</string>
     <string name="tone_major">Majeur</string>
     <string name="tone_minor">Mineur</string>
+    <string name="tone_pentatonic">Pentatonique</string>
 
     <!-- Modes -->
     <string name="mode_ionian">Ionien</string>
@@ -98,57 +106,108 @@
     <string name="mode_aeolian">Aeolien</string>
     <string name="mode_locrian">Locrien</string>
 
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+
+    <!-- ======================================================================================= -->
+    <!-- =================================== COMPONENTS ======================================== -->
+    <!-- ======================================================================================= -->
+
     <!-- Timer -->
-    <string name="timer_start_button">Démarrer</string>
     <string name="timer_pause_button">Pause</string>
     <string name="timer_title">C\'est parti !</string>
+    <string name="timer_start_button">Démarrer</string>
 
-    <!-- Dialog texts -->
-    <string name="dialog_loading_program_title">Chargement du programme</string>
-    <string name="dialog_loading_program_description">Récupération des données … Accorde toi en attendant !</string>
-    <string name="dialog_title_about">A propos</string>
-    <string name="dialog_title_attention">Attention …</string>
-    <string name="dialog_quit_confirmation">Es-tu sûr de vouloir quitter ?</string>
-    <string name="dialog_fragment_lets_go">C\'est parti !</string>
-    <string name="dialog_description_scale_exercise">Connaître quelques gammes te permettra de savoir improviser sur n\'importe quelle musique … Et ça c\'est plutôt classe ! </string>
-    <string name="dialog_description_mode_exercise">De la même manière que les gammes, savoir ses modes te permettra de te la péter en concert ! </string>
-    <string name="dialog_description_pull_off_hammer_on_exercise">La base de la base ! Exemple de musique à travailer : The Trooper de Iron Maiden !</string>
-    <string name="dialog_description_scale_bend_slide">La base de la base ! Deux trois bends et slide bien placés, c\'est la classe assurée ! </string>
-    <string name="dialog_description_back_forth_exercise">Avis aux zicos (et surtout aux métalleux) : Des allers retours rapide, c\'est plutôt utile !</string>
-    <string name="dialog_description_palm_mute_exercise">Réveille le punk qui et en toi ! Exemples de groupe : Sum 41, Blink 182, The Offspring !</string>
-    <string name="dialog_description_tapping_exercise">Prends toi pour Van Halen et fais nous quelques tappings !</string>
-    <string name="dialog_description_sweep_picking_exercise">Balaye les cordes de la main droite en coordonnant les mouvements de ta main gauche ! </string>
-    <string name="dialog_description_speed_exercise">Joue le plus rapidement possible … Mais toujours en rythme !</string>
-    <string name="dialog_description_skip_fragment_exercise">Joue tes accords en mutant une corde !</string>
-    <string name="dialog_on_back_pressed">Es-tu certain de vouloir quitter l\'application ?</string>
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
 
-    <!-- Toolbar -->
-    <string name="toolbar_about_title">A propos</string>
-    <string name="toolbar_title_offline_mode">Mode hors connexion</string>
+    <!-- ======================================================================================= -->
+    <!-- ====================================== UI ============================================= -->
+    <!-- ======================================================================================= -->
+
+    <!-- Generic dialog  -->
+    <string name="generic_dialog_title_about">A propos</string>
+    <string name="generic_dialog_title_attention">Attention …</string>
+    <string name="generic_dialog_quit_confirmation">Es-tu sûr de vouloir quitter ?</string>
+    <string name="generic_dialog_on_back_pressed">Es-tu certain de vouloir quitter l\'application ?</string>
+
+    <!-- Dialog program -->
+    <string name="dialog_program_loading_title">Chargement du programme</string>
+    <string name="dialog_program_loading_description">Récupération des données … Accorde toi en attendant !</string>
+
+    <!-- Dialog exercises fragments -->
+    <string name="generic_dialog_exercise_fragment_lets_go">C\'est parti !</string>
+    <string name="dialog_skip_fragment_exercise_description">Joue tes accords en mutant une corde !</string>
+    <string name="dialog_tapping_exercise_description">Prends toi pour Van Halen et fais nous quelques tappings !</string>
+    <string name="dialog_speed_exercise_description">Joue le plus rapidement possible … Mais toujours en rythme !</string>
+    <string name="dialog_bend_slide_description">La base de la base ! Deux trois bends et slide bien placés, c\'est la classe assurée ! </string>
+    <string name="dialog_palm_mute_exercise_description">Réveille le punk qui et en toi ! Exemples de groupe : Sum 41, Blink 182, The Offspring !</string>
+    <string name="dialog_mode_exercise_description">De la même manière que les gammes, savoir ses modes te permettra de te la péter en concert ! </string>
+    <string name="dialog_sweep_picking_exercise_description">Balaye les cordes de la main droite en coordonnant les mouvements de ta main gauche ! </string>
+    <string name="dialog_pull_off_hammer_on_exercise_description">La base de la base ! Exemple de musique à travailer : The Trooper de Iron Maiden !</string>
+    <string name="dialog_back_forth_exercise_description">Avis aux zicos (et surtout aux métalleux) : Des allers retours rapide, c\'est plutôt utile !</string>
+    <string name="dialog_scale_exercise_description">Connaître quelques gammes te permettra de savoir improviser sur n\'importe quelle musique … Et ça c\'est plutôt classe ! </string>
+
+    <!-- Generic toolbar -->
+    <string name="generic_toolbar_about_title">A propos</string>
+
+    <!-- Authentication toolbar -->
     <string name="toolbar_title_online_mode">Connexion</string>
-    <string name="toolbar_title_theoretical_program">Programme théorique</string>
-    <string name="toolbar_title_technical_program">Programme technique</string>
+    <string name="toolbar_title_not_connected_mode">Mode hors connexion</string>
+
+    <!-- Program toolbar -->
+    <string name="toolbar_title_end_program">Fin du programme</string>
     <string name="toolbar_title_custom_program">Mon programme</string>
-    <string name="toolbar_title_exercise_scale">Gammes</string>
+    <string name="toolbar_title_technical_program">Programme technique</string>
+    <string name="toolbar_title_theoretical_program">Programme théorique</string>
+
+    <!-- Exercise toolbar -->
     <string name="toolbar_title_exercise_mode">Modes</string>
-    <string name="toolbar_title_exercise_pull_off_hammer_on">Pull off / Hammer on</string>
+    <string name="toolbar_title_exercise_scale">Gammes</string>
+    <string name="toolbar_title_exercise_speed">Vitesse</string>
+    <string name="toolbar_title_exercise_tapping">Tapping</string>
+    <string name="toolbar_title_exercise_palm_mute">Palm mute</string>
     <string name="toolbar_title_exercise_bend_slide">Bend / Slide</string>
     <string name="toolbar_title_exercise_back_forth">Allers retours</string>
-    <string name="toolbar_title_exercise_palm_mute">Palm mute</string>
     <string name="toolbar_title_exercise_skip_string">Mute une corde</string>
-    <string name="toolbar_title_exercise_tapping">Tapping</string>
     <string name="toolbar_title_exercise_sweep_picking">Sweep picking</string>
-    <string name="toolbar_title_exercise_speed">Vitesse</string>
-    <string name="toolbar_title_end_program">Fin du programme</string>
-
-    <!-- Content description -->
-    <string name="content_description_random_button">To select randomly</string>
-    <string name="content_description_header_menu_drawer">Header image of menu drawer</string>
+    <string name="toolbar_title_exercise_pull_off_hammer_on">Pull off / Hammer on</string>
 
     <!-- Menu drawer -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="navigation_drawer_programs">Mes programmes</string>
     <string name="navigation_drawer_songs">Mes chansons</string>
+    <string name="navigation_drawer_programs">Mes programmes</string>
+
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+
+    <!-- ======================================================================================= -->
+    <!-- ====================================== ERRORS ========================================= -->
+    <!-- ======================================================================================= -->
+
+    <string name="generic_error_retry_text">Réessayer</string>
+    <string name="generic_error_give_up_text">Abandonner</string>
+    <string name="generic_error_text">OUPS ! Tu as cassé une corde …</string>
+
+    <string name="wrong_login_error_value_from_API">WRONG LOGIN</string>
+    <string name="snackbar_error_wrong_login">Authentification incorrecte</string>
+
+    <string name="snackbar_error_unknown_error">Erreur inconnue</string>
+
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+    <!-- ======================================================================================= -->
+
+    <!-- ======================================================================================= -->
+    <!-- ====================================== OTHERS ========================================= -->
+    <!-- ======================================================================================= -->
+
+    <!-- Content description -->
+    <string name="content_description_random_button">To select randomly</string>
+    <string name="content_description_header_menu_drawer">Header image of menu drawer</string>
 
 </resources>

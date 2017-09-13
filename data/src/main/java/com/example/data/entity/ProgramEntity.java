@@ -1,27 +1,16 @@
 package com.example.data.entity;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 /**
- * Program entity mapping the JSON.
+ * Program entity.
  */
 public class ProgramEntity {
 
-    @SerializedName("idProgram")
     private int idProgram;
-
-    @SerializedName("nameProgram")
     private String nameProgram;
-
-    @SerializedName("defaultProgram")
     private boolean defaultProgram;
-
-    @SerializedName("idUser")
     private int idUser;
-
-    @SerializedName("exercises")
     private List<ExerciseEntity> exerciseEntities;
 
     public int getIdProgram() {

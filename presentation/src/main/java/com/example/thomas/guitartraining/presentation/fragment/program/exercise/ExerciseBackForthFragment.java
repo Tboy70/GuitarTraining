@@ -36,10 +36,10 @@ public class ExerciseBackForthFragment extends Fragment implements ExerciseBackF
     @Inject
     ExerciseBackForthPresenter exerciseBackForthPresenter;
 
-    @BindView(R.id.exercise_back_forth_duration)
+    @BindView(R.id.fragment_exercise_back_forth_duration)
     TextView exerciseBackForthDuration;
 
-    @BindView(R.id.exercise_back_forth_duration_left)
+    @BindView(R.id.fragment_exercise_back_forth_duration_left)
     TextView exerciseBackForthDurationLeft;
 
     private DurationComponent durationComponent;
@@ -64,7 +64,7 @@ public class ExerciseBackForthFragment extends Fragment implements ExerciseBackF
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_back_forth_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_back_forth, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -100,7 +100,7 @@ public class ExerciseBackForthFragment extends Fragment implements ExerciseBackF
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exerciseBackForthPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_back_forth_exercise));
+                exerciseBackForthPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_back_forth_exercise_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,16 +111,16 @@ public class ExerciseBackForthFragment extends Fragment implements ExerciseBackF
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exerciseBackForthDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
-    @OnClick(R.id.exercise_back_forth_next_button)
-    public void handleClickExerciseScaleNextButton() {
+    @OnClick(R.id.fragment_exercise_back_forth_next_button)
+    public void handleClickExerciseBackForthNextButton() {
         exerciseBackForthPresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_back_forth_button_start_exercise)
+    @OnClick(R.id.fragment_exercise_back_forth_button_start_exercise)
     public void handleClickExerciseBackForthStartExercise() {
         exerciseBackForthPresenter.launchTimer(getActivity(), durationLeft);
     }
@@ -130,9 +130,9 @@ public class ExerciseBackForthFragment extends Fragment implements ExerciseBackF
                 durationExercise,
                 durationLeft,
                 exerciseBackForthDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exerciseBackForthDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

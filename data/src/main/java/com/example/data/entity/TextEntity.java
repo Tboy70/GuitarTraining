@@ -1,19 +1,12 @@
 package com.example.data.entity;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
- * Text entity mapping the database.
+ * Text entity.
  */
 public class TextEntity {
 
-    @SerializedName("idText")
     private int idText;
-
-    @SerializedName("nameText")
     private String nameText;
-
-    @SerializedName("contentText")
     private String contentText;
 
     public int getIdText() {

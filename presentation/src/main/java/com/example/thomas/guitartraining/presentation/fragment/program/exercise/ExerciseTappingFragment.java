@@ -36,10 +36,10 @@ public class ExerciseTappingFragment extends Fragment implements ExerciseTapping
     @Inject
     ExerciseTappingPresenter exerciseTappingPresenter;
 
-    @BindView(R.id.exercise_tapping_duration)
+    @BindView(R.id.fragment_exercise_tapping_duration)
     TextView exerciseTappingDuration;
 
-    @BindView(R.id.exercise_tapping_duration_left)
+    @BindView(R.id.fragment_exercise_tapping_duration_left)
     TextView exerciseTappingDurationLeft;
 
     private DurationComponent durationComponent;
@@ -65,7 +65,7 @@ public class ExerciseTappingFragment extends Fragment implements ExerciseTapping
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_tapping_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_tapping, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -101,7 +101,7 @@ public class ExerciseTappingFragment extends Fragment implements ExerciseTapping
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exerciseTappingPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_tapping_exercise));
+                exerciseTappingPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_tapping_exercise_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -112,7 +112,7 @@ public class ExerciseTappingFragment extends Fragment implements ExerciseTapping
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exerciseTappingDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
@@ -121,7 +121,7 @@ public class ExerciseTappingFragment extends Fragment implements ExerciseTapping
         exerciseTappingPresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_tapping_button_start_exercise)
+    @OnClick(R.id.fragment_exercise_tapping_button_start_exercise)
     public void handleClickExerciseTappingStartExercise() {
         exerciseTappingPresenter.launchTimer(getActivity(), durationLeft);
     }
@@ -131,9 +131,9 @@ public class ExerciseTappingFragment extends Fragment implements ExerciseTapping
                 durationExercise,
                 durationLeft,
                 exerciseTappingDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exerciseTappingDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExercisePalmMutePresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
-import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.program.exercise.ExercisePalmMuteView;
 
 import javax.inject.Inject;
@@ -33,10 +33,10 @@ public class ExercisePalmMuteFragment extends Fragment implements ExercisePalmMu
     @Inject
     ExercisePalmMutePresenter exercisePalmMutePresenter;
 
-    @BindView(R.id.exercise_palm_mute_duration)
+    @BindView(R.id.fragment_exercise_palm_mute_duration)
     TextView exercisePalmMuteDuration;
 
-    @BindView(R.id.exercise_palm_mute_duration_left)
+    @BindView(R.id.fragment_exercise_palm_mute_duration_left)
     TextView exercisePalmMuteDurationLeft;
 
     private DurationComponent durationComponent;
@@ -61,7 +61,7 @@ public class ExercisePalmMuteFragment extends Fragment implements ExercisePalmMu
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_palm_mute_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_palm_mute, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -97,7 +97,7 @@ public class ExercisePalmMuteFragment extends Fragment implements ExercisePalmMu
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exercisePalmMutePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_palm_mute_exercise));
+                exercisePalmMutePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_palm_mute_exercise_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -108,16 +108,16 @@ public class ExercisePalmMuteFragment extends Fragment implements ExercisePalmMu
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exercisePalmMuteDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
-    @OnClick(R.id.exercise_palm_mute_next_button)
+    @OnClick(R.id.fragment_exercise_palm_mute_next_button)
     public void handleClickExerciseScaleNextButton() {
         exercisePalmMutePresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_palm_mute_button_start_exercise)
+    @OnClick(R.id.fragment_exercise_palm_mute_start_exercise_button)
     public void handleClickExercisePalmMuteStartExercise() {
         exercisePalmMutePresenter.launchTimer(getActivity(), durationLeft);
     }
@@ -127,9 +127,9 @@ public class ExercisePalmMuteFragment extends Fragment implements ExercisePalmMu
                 durationExercise,
                 durationLeft,
                 exercisePalmMuteDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exercisePalmMuteDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

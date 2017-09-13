@@ -21,11 +21,11 @@ public class AuthenticationChoicePresenter {
         }
     }
 
-    public void launchOfflineActivity() {
-        startNavigatorListener.launchOfflineActivity();
+    public void launchNotConnectedActivity() {
+        startNavigatorListener.launchNotConnectedActivity();
     }
 
-    public void launchOnlineActivity() {
-        startNavigatorListener.launchOnlineActivity();
+    public void launchLoginActivity() {
+        startNavigatorListener.launchLoginActivity();
     }
 }

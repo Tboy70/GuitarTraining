@@ -40,16 +40,16 @@ public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView
     @Inject
     ExerciseScalePresenter exerciseScalePresenter;
 
-    @BindView(R.id.exercise_scale_duration)
+    @BindView(R.id.fragment_exercise_scale_duration)
     TextView exerciseScaleDuration;
 
-    @BindView(R.id.exercise_scale_duration_left)
+    @BindView(R.id.fragment_exercise_scale_duration_left)
     TextView exerciseScaleDurationLeft;
 
-    @BindView(R.id.exercise_scale_button_choice_note)
+    @BindView(R.id.fragment_exercise_scale_button_choice_note)
     Button buttonChoiceNote;
 
-    @BindView(R.id.exercise_scale_button_choice_tone)
+    @BindView(R.id.fragment_exercise_scale_button_choice_mode)
     Button buttonChoiceTone;
 
     private DurationComponent durationComponent;
@@ -74,7 +74,7 @@ public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_scale_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_scale, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -110,7 +110,7 @@ public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exerciseScalePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_scale_exercise));
+                exerciseScalePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_scale_exercise_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -135,31 +135,31 @@ public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exerciseScaleDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
-    @OnClick(R.id.exercise_scale_next_button)
+    @OnClick(R.id.fragment_exercise_scale_next_button)
     public void handleClickExerciseScaleNextButton() {
         exerciseScalePresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_scale_button_choice_note)
+    @OnClick(R.id.fragment_exercise_scale_button_choice_note)
     public void handleClickExerciseScaleButtonChoiceNote() {
         exerciseScalePresenter.showSimpleChoiceDialog(SCALE_NOTE_SELECTION);
     }
 
-    @OnClick(R.id.exercise_scale_button_choice_tone)
+    @OnClick(R.id.fragment_exercise_scale_button_choice_mode)
     public void handleClickExerciseScaleButtonChoiceMode() {
         exerciseScalePresenter.showSimpleChoiceDialog(SCALE_MODE_SELECTION);
     }
 
-    @OnClick(R.id.exercise_scale_random_selection)
+    @OnClick(R.id.fragment_exercise_scale_random_selection)
     public void handleClickExerciseScaleRandomSelection() {
         exerciseScalePresenter.randomScaleSelection();
     }
 
-    @OnClick(R.id.exercise_scale_button_start_exercise)
+    @OnClick(R.id.fragment_exercise_scale_button_start_exercise)
     public void handleClickExerciseScaleStartExercise() {
         exerciseScalePresenter.launchTimer(getActivity(), durationLeft);
     }
@@ -169,9 +169,9 @@ public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView
                 durationExercise,
                 durationLeft,
                 exerciseScaleDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exerciseScaleDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

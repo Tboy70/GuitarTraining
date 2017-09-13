@@ -36,10 +36,10 @@ public class ExerciseSweepPickingFragment extends Fragment implements ExerciseSw
     @Inject
     ExerciseSweepPickingPresenter exerciseSweepPickingPresenter;
 
-    @BindView(R.id.exercise_sweep_picking_duration)
+    @BindView(R.id.fragment_exercise_sweep_picking_duration)
     TextView exerciseSweepPickingDuration;
 
-    @BindView(R.id.exercise_sweep_picking_duration_left)
+    @BindView(R.id.fragment_exercise_sweep_picking_duration_left)
     TextView exerciseSweepPickingDurationLeft;
 
     private DurationComponent durationComponent;
@@ -63,7 +63,7 @@ public class ExerciseSweepPickingFragment extends Fragment implements ExerciseSw
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_sweep_picking_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_sweep_picking, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -99,7 +99,7 @@ public class ExerciseSweepPickingFragment extends Fragment implements ExerciseSw
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exerciseSweepPickingPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_sweep_picking_exercise));
+                exerciseSweepPickingPresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_sweep_picking_exercise_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -110,17 +110,17 @@ public class ExerciseSweepPickingFragment extends Fragment implements ExerciseSw
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exerciseSweepPickingDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
-    @OnClick(R.id.exercise_sweep_picking_next_button)
-    public void handleClickExerciseScaleNextButton() {
+    @OnClick(R.id.fragment_exercise_sweep_picking_next_button)
+    public void handleClickExerciseSweepPickingNextButton() {
         exerciseSweepPickingPresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_sweep_picking_button_start_exercise)
-    public void handleClickExerciseScaleStartExercise() {
+    @OnClick(R.id.fragment_exercise_sweep_picking_button_start_exercise)
+    public void handleClickExerciseSweepPickingStartExercise() {
         exerciseSweepPickingPresenter.launchTimer(getActivity(), durationLeft);
     }
 
@@ -129,9 +129,9 @@ public class ExerciseSweepPickingFragment extends Fragment implements ExerciseSw
                 durationExercise,
                 durationLeft,
                 exerciseSweepPickingDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exerciseSweepPickingDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

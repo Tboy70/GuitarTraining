@@ -28,6 +28,7 @@ import javax.inject.Inject;
  */
 public class ProgramNavigator extends BaseNavigator {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public ProgramNavigator(Activity activity, ErrorRendererComponent errorRendererComponent) {
         super(activity, errorRendererComponent, R.id.activity_program_relative_layout);

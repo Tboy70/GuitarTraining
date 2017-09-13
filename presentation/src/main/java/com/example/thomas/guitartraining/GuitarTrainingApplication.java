@@ -14,15 +14,15 @@ public class GuitarTrainingApplication extends Application {
     private static GuitarTrainingApplication application;
     private ApplicationComponent applicationComponent;
 
+    public static GuitarTrainingApplication application() {
+        return application;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
         initializeInjector();
-    }
-
-    public static GuitarTrainingApplication application() {
-        return application;
     }
 
     public ApplicationComponent getApplicationComponent() {

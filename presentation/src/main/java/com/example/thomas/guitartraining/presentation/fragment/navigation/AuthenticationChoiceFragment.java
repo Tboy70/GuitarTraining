@@ -32,7 +32,7 @@ public class AuthenticationChoiceFragment extends Fragment implements Authentica
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.main_authentication_choice, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_authentication_choice, container, false);
         ButterKnife.bind(this, rootView);
 
         ((StartActivity) getActivity()).getActivityComponent().inject(this);
@@ -50,13 +50,13 @@ public class AuthenticationChoiceFragment extends Fragment implements Authentica
         super.onActivityCreated(savedInstanceState);
     }
 
-    @OnClick(R.id.main_authentication_choice_offline_button)
-    public void handleClickAuthenticationChoiceOfflineButton() {
-        authenticationChoicePresenter.launchOfflineActivity();
+    @OnClick(R.id.fragment_authentication_choice_not_connected_button)
+    public void handleClickAuthenticationChoiceNotConnectedButton() {
+        authenticationChoicePresenter.launchNotConnectedActivity();
     }
 
-    @OnClick(R.id.main_authentication_choice_online_button)
-    public void handleClickAuthentificationOnlineButton() {
-        authenticationChoicePresenter.launchOnlineActivity();
+    @OnClick(R.id.fragment_authentication_choice_connection_button)
+    public void handleClickAuthentificationChoiceConnectionButton() {
+        authenticationChoicePresenter.launchLoginActivity();
     }
 }

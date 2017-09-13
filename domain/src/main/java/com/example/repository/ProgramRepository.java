@@ -2,12 +2,15 @@ package com.example.repository;
 
 import com.example.model.Program;
 
+import java.util.List;
+
 import rx.Observable;
 
 /**
- * Created by Thomas on 04/05/2017.
+ * Interface implemented by the ProgramDataRepository class.
  */
-
 public interface ProgramRepository {
     Observable<Program> getProgramFromId(int idProgram);
+
+    Observable<List<Program>> retrieveProgramsListByUserId(int userId);
 }

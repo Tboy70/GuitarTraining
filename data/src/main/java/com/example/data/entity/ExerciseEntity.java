@@ -1,22 +1,13 @@
 package com.example.data.entity;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
- * Exercise entity mapping the JSON.
+ * Exercise entity.
  */
 public class ExerciseEntity {
 
-    @SerializedName("idExercise")
     private int idExercise;
-
-    @SerializedName("durationExercise")
     private int durationExercise;
-
-    @SerializedName("idProgram")
     private int idProgram;
-
-    @SerializedName("typeExercise")
     private int typeExercise;
 
     public int getIdExercise() {

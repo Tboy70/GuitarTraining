@@ -12,22 +12,21 @@ import rx.subscriptions.Subscriptions;
 /**
  * DO NOT TOUCH : Generic class for the use cases.
  */
-public abstract class UseCase {
+public abstract class UseCase<Params> {
+
     private final ThreadExecutor threadExecutor;
     private final PostExecutionThread postExecutionThread;
 
     private Subscription subscription = Subscriptions.empty();
 
-    UseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+    protected UseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
         this.threadExecutor = threadExecutor;
         this.postExecutionThread = postExecutionThread;
     }
 
-    protected abstract Observable buildUseCaseObservable();
-
     @SuppressWarnings("unchecked")
-    public void execute(Subscriber useCaseSubscriber) {
-        this.subscription = this.buildUseCaseObservable()
+    public void execute(Subscriber useCaseSubscriber, Params params) {
+        this.subscription = this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
                 .subscribe(useCaseSubscriber);
@@ -39,4 +38,6 @@ public abstract class UseCase {
             subscription.unsubscribe();
         }
     }
+
+    protected abstract Observable buildUseCaseObservable(Params params);
 }

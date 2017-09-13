@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
-import com.example.thomas.guitartraining.presentation.presenter.program.EndProgramPresenter;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.presenter.program.EndProgramPresenter;
 import com.example.thomas.guitartraining.presentation.view.program.EndProgramView;
 
 import javax.inject.Inject;
@@ -38,7 +38,7 @@ public class EndProgramFragment extends Fragment implements EndProgramView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.end_program_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_end_program, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -58,7 +58,7 @@ public class EndProgramFragment extends Fragment implements EndProgramView {
         setHasOptionsMenu(true);
     }
 
-    @OnClick(R.id.end_program_finish_button)
+    @OnClick(R.id.fragment_end_program_finish_button)
     public void handleClickEndProgramFinishButton() {
         getActivity().finish();
     }

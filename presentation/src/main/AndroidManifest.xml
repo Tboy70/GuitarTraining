@@ -19,10 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.activity.OnlineActivity" />
-        <activity android:name=".presentation.activity.OfflineActivity" />
+        <activity android:name=".presentation.activity.LoginActivity" />
+        <activity android:name=".presentation.activity.NotConnectedActivity" />
         <activity android:name=".presentation.activity.ProgramActivity" />
-        <activity android:name=".presentation.activity.MainActivity" />
+        <activity android:name=".presentation.activity.UserPanelActivity" />
     </application>
 
 </manifest>

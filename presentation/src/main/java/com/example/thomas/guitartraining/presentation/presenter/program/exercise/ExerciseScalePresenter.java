@@ -64,12 +64,12 @@ public class ExerciseScalePresenter {
         switch (listTypeSelection) {
             case ExerciseScaleFragment.SCALE_NOTE_SELECTION:
                 String[] notesArray = context.getResources().getStringArray(R.array.list_notes);
-                title = context.getString(R.string.exercise_scale_dialog_choice_note);
+                title = context.getString(R.string.exercise_scale_dialog_choice_note_text);
                 items = Arrays.asList(notesArray);
                 break;
             case ExerciseScaleFragment.SCALE_MODE_SELECTION:
                 String[] toneArray = context.getResources().getStringArray(R.array.list_tones);
-                title = context.getString(R.string.exercise_scale_dialog_choice_mode);
+                title = context.getString(R.string.exercise_scale_dialog_choice_mode_text);
                 items = Arrays.asList(toneArray);
                 break;
         }
@@ -131,9 +131,9 @@ public class ExerciseScalePresenter {
     public void displayDescriptionExercise(Activity activity, String descriptionExercise) {
         materialDialogComponent.showSingleDialog(
                 activity,
-                activity.getString(R.string.dialog_title_about),
+                activity.getString(R.string.generic_dialog_title_about),
                 descriptionExercise,
-                activity.getString(R.string.dialog_fragment_lets_go),
+                activity.getString(R.string.generic_dialog_exercise_fragment_lets_go),
                 R.color.colorPrimary);
     }
 }

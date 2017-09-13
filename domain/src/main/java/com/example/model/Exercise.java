@@ -17,9 +17,7 @@ public class Exercise {
         this.typeExercise = typeExercise;
     }
 
-    public Exercise() {
-
-    }
+    public Exercise() {}
 
     public int getIdExercise() {
         return idExercise;

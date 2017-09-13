@@ -60,7 +60,7 @@ public class ExerciseModePresenter {
         String title;
 
         String[] modesArray = context.getResources().getStringArray(R.array.list_modes);
-        title = context.getString(R.string.exercise_mode_dialog_choice_mode);
+        title = context.getString(R.string.exercise_mode_dialog_choice_mode_text);
         items = Arrays.asList(modesArray);
 
         materialDialogComponent.showSingleChoiceDialog(title, items, selectedItem, R.color.colorPrimary, true, new SingleChoiceMaterialDialogListener() {
@@ -111,9 +111,9 @@ public class ExerciseModePresenter {
     public void displayDescriptionExercise(Activity activity, String descriptionExercise) {
         materialDialogComponent.showSingleDialog(
                 activity,
-                activity.getString(R.string.dialog_title_about),
+                activity.getString(R.string.generic_dialog_title_about),
                 descriptionExercise,
-                activity.getString(R.string.dialog_fragment_lets_go),
+                activity.getString(R.string.generic_dialog_exercise_fragment_lets_go),
                 R.color.colorPrimary);
     }
 }

@@ -36,10 +36,10 @@ public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendS
     @Inject
     ExerciseBendSlidePresenter exerciseBendSlidePresenter;
 
-    @BindView(R.id.exercise_bend_slide_duration)
+    @BindView(R.id.fragment_exercise_bend_slide_duration)
     TextView exerciseBendSlideDuration;
 
-    @BindView(R.id.exercise_bend_slide_duration_left)
+    @BindView(R.id.fragment_exercise_bend_slide_duration_left)
     TextView exerciseBendSlideDurationLeft;
 
     private DurationComponent durationComponent;
@@ -64,7 +64,7 @@ public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendS
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_bend_slide_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_bend_slide, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -100,7 +100,7 @@ public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendS
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exerciseBendSlidePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_scale_bend_slide));
+                exerciseBendSlidePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_bend_slide_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,16 +111,16 @@ public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendS
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exerciseBendSlideDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
-    @OnClick(R.id.exercise_bend_slide_next_button)
-    public void handleClickExerciseScaleNextButton() {
+    @OnClick(R.id.fragment_exercise_bend_slide_next_button)
+    public void handleClickExerciseBendSlideNextButton() {
         exerciseBendSlidePresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_bend_slide_button_start_exercise)
+    @OnClick(R.id.fragment_exercise_bend_slide_button_start_exercise)
     public void handleClickExerciseBendSlideStartExercise() {
         exerciseBendSlidePresenter.launchTimer(getActivity(), durationLeft);
     }
@@ -130,9 +130,9 @@ public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendS
                 durationExercise,
                 durationLeft,
                 exerciseBendSlideDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exerciseBendSlideDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

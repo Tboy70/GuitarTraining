@@ -1,9 +1,8 @@
 package com.example.data.values;
 
 /**
- * Created by Thomas on 09/05/2017.
+ * Exercises types values.
  */
-
 public interface ExercisesTypeValues {
     int EXERCISE_SCALE = 1;
     int EXERCISE_MODE = 2;

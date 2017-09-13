@@ -21,8 +21,7 @@ public class Program {
         this.exercises = exercises;
     }
 
-    public Program() {
-    }
+    public Program() {}
 
     public int getIdProgram() {
         return idProgram;

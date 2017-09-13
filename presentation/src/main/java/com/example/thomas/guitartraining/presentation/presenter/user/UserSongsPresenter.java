@@ -1,7 +1,7 @@
 package com.example.thomas.guitartraining.presentation.presenter.user;
 
 import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorListener;
-import com.example.thomas.guitartraining.presentation.activity.listener.MainNavigatorListener;
+import com.example.thomas.guitartraining.presentation.activity.listener.UserPanelNavigatorListener;
 import com.example.thomas.guitartraining.presentation.view.user.UserSongsView;
 
 import javax.inject.Inject;
@@ -9,12 +9,12 @@ import javax.inject.Inject;
 public class UserSongsPresenter {
 
     private UserSongsView userSongsView;
-    private MainNavigatorListener mainNavigatorListener;
+    private UserPanelNavigatorListener userPanelNavigatorListener;
 
     @Inject
     UserSongsPresenter(BaseNavigatorListener baseNavigatorListener) {
-        if (baseNavigatorListener instanceof MainNavigatorListener) {
-            this.mainNavigatorListener = (MainNavigatorListener) baseNavigatorListener;
+        if (baseNavigatorListener instanceof UserPanelNavigatorListener) {
+            this.userPanelNavigatorListener = (UserPanelNavigatorListener) baseNavigatorListener;
         }
     }
 
@@ -22,7 +22,7 @@ public class UserSongsPresenter {
         this.userSongsView = userSongsView;
     }
 
-    public void setMainNavigatorListener(MainNavigatorListener mainNavigatorListener) {
-        this.mainNavigatorListener = mainNavigatorListener;
+    public void setUserPanelNavigatorListener(UserPanelNavigatorListener userPanelNavigatorListener) {
+        this.userPanelNavigatorListener = userPanelNavigatorListener;
     }
 }

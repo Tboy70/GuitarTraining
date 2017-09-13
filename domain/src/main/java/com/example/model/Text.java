@@ -16,8 +16,7 @@ public class Text {
         this.contentText = contentText;
     }
 
-    public Text() {
-    }
+    public Text() {}
 
     public int getIdText() {
         return idText;

@@ -8,10 +8,10 @@ import android.view.View;
 
 import com.example.model.Exercise;
 import com.example.thomas.guitartraining.R;
+import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.navigator.ProgramNavigator;
 import com.example.thomas.guitartraining.presentation.presenter.activity.ProgramPresenter;
 import com.example.thomas.guitartraining.presentation.utils.ConstantTag;
-import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-import static com.example.thomas.guitartraining.presentation.navigator.OfflineNavigator.ID_PROGRAM;
+import static com.example.thomas.guitartraining.presentation.navigator.NotConnectedNavigator.ID_PROGRAM;
 
 /**
  * Activity handling the program.
@@ -29,7 +29,6 @@ public class ProgramActivity extends BaseActivity implements ProgramNavigatorLis
 
     @Inject
     ProgramPresenter programPresenter;
-
     @Inject
     ProgramNavigator programNavigator;
 
@@ -108,7 +107,8 @@ public class ProgramActivity extends BaseActivity implements ProgramNavigatorLis
     }
 
     @Override
-    public void requestRenderError(Throwable e, int mode, View viewId) {}
+    public void requestRenderError(Throwable e, int mode, View viewId) {
+    }
 
     private void displayQuitProgramDialogFragment(Activity activity) {
         programPresenter.displayQuitProgramDialogFragment(activity);

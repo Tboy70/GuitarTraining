@@ -56,9 +56,9 @@ public class ExerciseSweepPickingPresenter {
     public void displayDescriptionExercise(Activity activity, String descriptionExercise) {
         materialDialogComponent.showSingleDialog(
                 activity,
-                activity.getString(R.string.dialog_title_about),
+                activity.getString(R.string.generic_dialog_title_about),
                 descriptionExercise,
-                activity.getString(R.string.dialog_fragment_lets_go),
+                activity.getString(R.string.generic_dialog_exercise_fragment_lets_go),
                 R.color.colorPrimary);
     }
 }

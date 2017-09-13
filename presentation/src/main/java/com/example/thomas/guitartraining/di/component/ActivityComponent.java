@@ -4,16 +4,13 @@ import android.app.Activity;
 
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.di.module.ActivityModule;
-import com.example.thomas.guitartraining.presentation.activity.MainActivity;
-import com.example.thomas.guitartraining.presentation.activity.OfflineActivity;
-import com.example.thomas.guitartraining.presentation.activity.OnlineActivity;
+import com.example.thomas.guitartraining.presentation.activity.LoginActivity;
+import com.example.thomas.guitartraining.presentation.activity.UserPanelActivity;
+import com.example.thomas.guitartraining.presentation.activity.NotConnectedActivity;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.activity.StartActivity;
 import com.example.thomas.guitartraining.presentation.fragment.navigation.AuthenticationChoiceFragment;
-import com.example.thomas.guitartraining.presentation.fragment.user.LoginFragment;
-import com.example.thomas.guitartraining.presentation.fragment.offline.OfflineProgramChoiceFragment;
-import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramsFragment;
-import com.example.thomas.guitartraining.presentation.fragment.user.UserSongsFragment;
+import com.example.thomas.guitartraining.presentation.fragment.offline.NotConnectedProgramChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.IntroProgramFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBackForthFragment;
@@ -27,6 +24,9 @@ import com.example.thomas.guitartraining.presentation.fragment.program.exercise.
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSweepPickingFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseTappingFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ui.TimerDialogFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.ConnectionFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramsFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserSongsFragment;
 import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorListener;
 
 import dagger.Component;
@@ -44,17 +44,17 @@ public interface ActivityComponent {
 
     void inject(StartActivity startActivity);
 
-    void inject(OnlineActivity onlineActivity);
+    void inject(LoginActivity loginActivity);
 
-    void inject(OfflineActivity offlineActivity);
+    void inject(NotConnectedActivity notConnectedActivity);
 
     void inject(ProgramActivity programActivity);
 
-    void inject(MainActivity mainActivity);
+    void inject(UserPanelActivity userPanelActivity);
 
     void inject(AuthenticationChoiceFragment authenticationChoiceFragment);
 
-    void inject(OfflineProgramChoiceFragment offlineProgramChoiceFragment);
+    void inject(NotConnectedProgramChoiceFragment notConnectedProgramChoiceFragment);
 
     void inject(IntroProgramFragment introProgramFragment);
 
@@ -82,7 +82,7 @@ public interface ActivityComponent {
 
     void inject(TimerDialogFragment timerDialogFragment);
 
-    void inject(LoginFragment loginFragment);
+    void inject(ConnectionFragment connectionFragment);
 
     void inject(UserProgramsFragment userProgramsFragment);
 

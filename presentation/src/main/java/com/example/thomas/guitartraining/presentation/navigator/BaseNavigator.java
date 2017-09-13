@@ -8,10 +8,10 @@ import com.example.thomas.guitartraining.presentation.component.navigator.ErrorR
 public abstract class BaseNavigator {
 
     protected Activity activity;
-    protected ErrorRendererComponent errorRendererComponent;
+    private ErrorRendererComponent errorRendererComponent;
     private int activityViewId;
 
-    public BaseNavigator(Activity activity, ErrorRendererComponent errorRendererComponent, int activityViewId) {
+    BaseNavigator(Activity activity, ErrorRendererComponent errorRendererComponent, int activityViewId) {
         this.activity = activity;
         this.errorRendererComponent = errorRendererComponent;
         this.activityViewId = activityViewId;

@@ -28,8 +28,8 @@ public class ProgramPresenter {
     public void displayQuitProgramDialogFragment(Activity activity) {
         materialDialogComponent.showConfirmationDialog(
                 activity,
-                activity.getString(R.string.dialog_title_attention),
-                activity.getString(R.string.dialog_quit_confirmation),
+                activity.getString(R.string.generic_dialog_title_attention),
+                activity.getString(R.string.generic_dialog_quit_confirmation),
                 R.color.colorPrimary);
     }
 }

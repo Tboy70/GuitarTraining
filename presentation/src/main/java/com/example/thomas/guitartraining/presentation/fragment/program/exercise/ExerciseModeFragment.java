@@ -37,16 +37,16 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
     @Inject
     ExerciseModePresenter exerciseModePresenter;
 
-    @BindView(R.id.exercise_mode_duration)
+    @BindView(R.id.fragment_exercise_mode_duration)
     TextView exerciseModeDuration;
 
-    @BindView(R.id.exercise_mode_duration_left)
+    @BindView(R.id.fragment_exercise_mode_duration_left)
     TextView exerciseModeDurationLeft;
 
-    @BindView(R.id.exercise_mode_button_choice_mode)
+    @BindView(R.id.fragment_exercise_mode_button_choice_mode)
     Button buttonChoiceMode;
 
-    @BindView(R.id.exercise_mode_button_start_exercise)
+    @BindView(R.id.fragment_exercise_mode_button_start_exercise)
     Button startExerciseButton;
 
     private DurationComponent durationComponent;
@@ -71,7 +71,7 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.exercise_mode_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_exercise_mode, container, false);
 
         ButterKnife.bind(this, rootView);
         ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
@@ -107,7 +107,7 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_activity_toolbar_about_icon:
-                exerciseModePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_description_mode_exercise));
+                exerciseModePresenter.displayDescriptionExercise(getActivity(), getActivity().getString(R.string.dialog_mode_exercise_description));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -125,26 +125,26 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
     public void setLeftDuration(long timeCountInMilliSeconds) {
         durationLeft = durationComponent.setDurationLeft(
                 exerciseModeDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left),
+                getActivity().getString(R.string.generic_exercise_duration_left_text),
                 timeCountInMilliSeconds);
     }
 
-    @OnClick(R.id.exercise_mode_next_button)
+    @OnClick(R.id.fragment_exercise_mode_next_button)
     public void handleClickExerciseModeNextButton() {
         exerciseModePresenter.showNextExercise(rankExercise + 1);
     }
 
-    @OnClick(R.id.exercise_mode_button_choice_mode)
+    @OnClick(R.id.fragment_exercise_mode_button_choice_mode)
     public void handleClickExerciseModeButtonChoiceMode() {
         exerciseModePresenter.showSimpleChoiceDialog();
     }
 
-    @OnClick(R.id.exercise_mode_random_selection)
+    @OnClick(R.id.fragment_exercise_mode_random_selection)
     public void handleClickExerciseModeRandomSelection() {
         exerciseModePresenter.randomModeSelection();
     }
 
-    @OnClick(R.id.exercise_mode_button_start_exercise)
+    @OnClick(R.id.fragment_exercise_mode_button_start_exercise)
     public void handleClickExerciseModeButtonStartExercise() {
         exerciseModePresenter.launchTimer(getActivity(), durationLeft);
     }
@@ -154,9 +154,9 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
                 durationExercise,
                 durationLeft,
                 exerciseModeDuration,
-                getActivity().getString(R.string.exercise_duration_text),
+                getActivity().getString(R.string.generic_exercise_duration_text),
                 exerciseModeDurationLeft,
-                getActivity().getString(R.string.exercise_duration_text_left));
+                getActivity().getString(R.string.generic_exercise_duration_left_text));
     }
 
     private void setToolbar(String toolbarTitle) {

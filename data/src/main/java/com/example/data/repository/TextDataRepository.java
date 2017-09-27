@@ -24,13 +24,14 @@ public class TextDataRepository implements TextRepository {
     }
 
     @Override
-    public Observable<Text> getTextIntroProgram(int idProgram) {
+    public Observable<Text> getTextIntroProgram(String idProgram) {
         Observable<TextEntity> resultFromAPI;
+        // TODO: 23/09/2017 Constant values instead of hardcoded
         switch (idProgram) {
-            case 1:
+            case "1":
                 resultFromAPI = apiClient.getTextIntroProgram(2);
                 break;
-            case 2:
+            case "2":
                 resultFromAPI = apiClient.getTextIntroProgram(3);
                 break;
             default:

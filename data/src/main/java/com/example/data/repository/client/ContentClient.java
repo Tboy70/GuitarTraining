@@ -11,12 +11,13 @@ public class ContentClient {
 
     private ModuleSharedPrefs moduleSharedPrefs;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public ContentClient(ModuleSharedPrefsImpl moduleSharedPrefs) {
         this.moduleSharedPrefs = moduleSharedPrefs;
     }
 
-    public Observable<Boolean> setIdUserInSharedPrefs(int idUser) {
+    public Observable<Boolean> setIdUserInSharedPrefs(String idUser) {
         try {
             moduleSharedPrefs.setIdUserInSharedPrefs(idUser);
             return Observable.just(true);

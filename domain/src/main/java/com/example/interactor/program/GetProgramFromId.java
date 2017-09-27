@@ -25,13 +25,13 @@ public class GetProgramFromId extends UseCase<GetProgramFromId.Params> {
     }
 
     public static final class Params {
-        private final int idProgram;
+        private final String idProgram;
 
-        private Params(int idProgram) {
+        private Params(String idProgram) {
             this.idProgram = idProgram;
         }
 
-        public static Params toGet(int idProgram) {
+        public static Params toGet(String idProgram) {
             return new Params(idProgram);
         }
     }

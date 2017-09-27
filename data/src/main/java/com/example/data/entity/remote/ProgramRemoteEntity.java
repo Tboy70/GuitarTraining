@@ -10,7 +10,7 @@ import java.util.List;
 public class ProgramRemoteEntity {
 
     @SerializedName("idProgram")
-    private int idProgram;
+    private String idProgram;
 
     @SerializedName("nameProgram")
     private String nameProgram;
@@ -19,16 +19,16 @@ public class ProgramRemoteEntity {
     private boolean defaultProgram;
 
     @SerializedName("idUser")
-    private int idUser;
+    private String idUser;
 
     @SerializedName("exercises")
     private List<ExerciseRemoteEntity> exerciseRemoteEntities;
 
-    public int getIdProgram() {
+    public String getIdProgram() {
         return idProgram;
     }
 
-    public void setIdProgram(int idProgram) {
+    public void setIdProgram(String idProgram) {
         this.idProgram = idProgram;
     }
 
@@ -48,11 +48,11 @@ public class ProgramRemoteEntity {
         this.defaultProgram = defaultProgram;
     }
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 

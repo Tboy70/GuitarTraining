@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tool="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="vertical">
+              android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/view_user_programs_list_item_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tool="http://schemas.android.com/tools"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:paddingEnd="20dp"
+                  android:paddingStart="20dp">
+
+        <TextView
+            android:id="@+id/view_user_programs_list_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            tool:text="Programme théorique par défaut"/>
+
+        <TextView
+            android:id="@+id/view_user_programs_list_item_nb_exercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/fragment_user_programs_list_nb_exercises_text"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -5,4 +5,7 @@
     <color name="colorPrimaryDark">#E53935</color>
     <color name="colorAccent">#EF5350</color>
     <color name="colorBackground">#E6FAFB</color>
+
+    <!-- User panel color-->
+    <color name="placeholder_text_color">#E0E0E0</color>
 </resources>

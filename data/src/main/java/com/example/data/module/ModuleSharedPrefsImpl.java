@@ -21,9 +21,9 @@ public class ModuleSharedPrefsImpl implements ModuleSharedPrefs {
     }
 
     @Override
-    public void setIdUserInSharedPrefs(int idUser) {
+    public void setIdUserInSharedPrefs(String idUser) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(CURRENT_USER_ID, idUser);
+        editor.putString(CURRENT_USER_ID, idUser);
         editor.apply();
     }
 }

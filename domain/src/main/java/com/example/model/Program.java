@@ -7,13 +7,13 @@ import java.util.List;
  */
 public class Program {
 
-    private int idProgram;
+    private String idProgram;
     private String nameProgram;
     private boolean defaultProgram;
-    private int idUser;
+    private String idUser;
     private List<Exercise> exercises;
 
-    public Program(int idProgram, String nameProgram, boolean defaultProgram, int idUser, List<Exercise> exercises) {
+    public Program(String idProgram, String nameProgram, boolean defaultProgram, String idUser, List<Exercise> exercises) {
         this.idProgram = idProgram;
         this.nameProgram = nameProgram;
         this.defaultProgram = defaultProgram;
@@ -23,11 +23,11 @@ public class Program {
 
     public Program() {}
 
-    public int getIdProgram() {
+    public String getIdProgram() {
         return idProgram;
     }
 
-    public void setIdProgram(int idProgram) {
+    public void setIdProgram(String idProgram) {
         this.idProgram = idProgram;
     }
 
@@ -47,11 +47,11 @@ public class Program {
         this.defaultProgram = defaultProgram;
     }
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 

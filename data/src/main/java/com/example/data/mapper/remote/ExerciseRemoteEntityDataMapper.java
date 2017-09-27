@@ -20,7 +20,7 @@ public class ExerciseRemoteEntityDataMapper {
     public ExerciseRemoteEntityDataMapper() {
     }
 
-    List<ExerciseEntity> transformRemoteToEntityList(List<ExerciseRemoteEntity> exerciseRemoteEntities) {
+    public List<ExerciseEntity> transformRemoteToEntityList(List<ExerciseRemoteEntity> exerciseRemoteEntities) {
         List<ExerciseEntity> exerciseEntities = new ArrayList<>();
         for (ExerciseRemoteEntity exerciseRemoteEntity : exerciseRemoteEntities) {
             exerciseEntities.add(transformRemoteToEntity(exerciseRemoteEntity));
@@ -38,7 +38,7 @@ public class ExerciseRemoteEntityDataMapper {
         return exerciseEntity;
     }
 
-    List<ExerciseRemoteEntity> transformEntityToRemoteList(List<ExerciseEntity> exerciseEntities) {
+    public List<ExerciseRemoteEntity> transformEntityToRemoteList(List<ExerciseEntity> exerciseEntities) {
         List<ExerciseRemoteEntity> exerciseRemoteEntities = new ArrayList<>();
         for (ExerciseEntity exerciseEntity : exerciseEntities) {
             exerciseRemoteEntities.add(transformEntityToRemote(exerciseEntity));
@@ -47,7 +47,7 @@ public class ExerciseRemoteEntityDataMapper {
         return exerciseRemoteEntities;
     }
 
-    private ExerciseRemoteEntity transformEntityToRemote(ExerciseEntity exerciseEntity) {
+    public ExerciseRemoteEntity transformEntityToRemote(ExerciseEntity exerciseEntity) {
         ExerciseRemoteEntity exerciseRemoteEntity = new ExerciseRemoteEntity();
         exerciseRemoteEntity.setIdExercise(exerciseEntity.getIdExercise());
         exerciseRemoteEntity.setDurationExercise(exerciseEntity.getDurationExercise());

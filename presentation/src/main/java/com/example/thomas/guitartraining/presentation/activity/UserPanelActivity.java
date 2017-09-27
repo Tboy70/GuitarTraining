@@ -90,6 +90,16 @@ public class UserPanelActivity extends BaseActivity implements UserPanelNavigato
     public void requestRenderError(Throwable e, int mode, View viewId) {
     }
 
+    @Override
+    public void displayProgramDetails(String programId) {
+        userPanelNavigator.displayUserProgramDetails(programId);
+    }
+
+    @Override
+    public void displayUserProgramCreation(String programId) {
+        userPanelNavigator.displayUserProgramCreation(programId);
+    }
+
     public void enabledBurger(boolean state) {
         if (!state) {
             if (getSupportActionBar() != null) {

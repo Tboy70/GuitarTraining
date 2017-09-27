@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class UserRemoteEntity {
 
     @SerializedName("idUser")
-    private int idUser;
+    private String idUser;
 
     @SerializedName("pseudoUser")
     private String pseudoUser;
@@ -16,12 +16,12 @@ public class UserRemoteEntity {
     @SerializedName("passwordUser")
     private String passwordUser;
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
     @SuppressWarnings("unused")
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 

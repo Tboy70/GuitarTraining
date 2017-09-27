@@ -8,22 +8,22 @@ import com.google.gson.annotations.SerializedName;
 public class ExerciseRemoteEntity {
 
     @SerializedName("idExercise")
-    private int idExercise;
+    private String idExercise;
 
     @SerializedName("durationExercise")
     private int durationExercise;
 
     @SerializedName("idProgram")
-    private int idProgram;
+    private String idProgram;
 
     @SerializedName("typeExercise")
     private int typeExercise;
 
-    public int getIdExercise() {
+    public String getIdExercise() {
         return idExercise;
     }
 
-    public void setIdExercise(int idExercise) {
+    public void setIdExercise(String idExercise) {
         this.idExercise = idExercise;
     }
 
@@ -35,11 +35,11 @@ public class ExerciseRemoteEntity {
         this.durationExercise = durationExercise;
     }
 
-    public int getIdProgram() {
+    public String getIdProgram() {
         return idProgram;
     }
 
-    public void setIdProgram(int idProgram) {
+    public void setIdProgram(String idProgram) {
         this.idProgram = idProgram;
     }
 

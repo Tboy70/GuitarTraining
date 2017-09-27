@@ -32,13 +32,13 @@ public class UserDataRepository implements UserRepository {
     }
 
     @Override
-    public Observable<Boolean> setIdUserInSharedPrefs(int idUser) {
+    public Observable<Boolean> setIdUserInSharedPrefs(String idUser) {
         return contentClient.setIdUserInSharedPrefs(idUser);
     }
 
     @Override
-    public Observable<User> connectUser(final String username, final String password) {
-        return apiClient.connectUser(username, password).map(new Func1<UserEntity, User>() {
+    public Observable<User> connectUser(User user) {
+        return apiClient.connectUser(userEntityDataMapper.transformModelToEntity(user)).map(new Func1<UserEntity, User>() {
             @Override
             public User call(UserEntity userEntity) {
                 return userEntityDataMapper.transformEntityToModel(userEntity);

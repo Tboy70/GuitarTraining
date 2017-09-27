@@ -7,17 +7,17 @@ import java.util.List;
  */
 public class ProgramEntity {
 
-    private int idProgram;
+    private String idProgram;
     private String nameProgram;
     private boolean defaultProgram;
-    private int idUser;
+    private String idUser;
     private List<ExerciseEntity> exerciseEntities;
 
-    public int getIdProgram() {
+    public String getIdProgram() {
         return idProgram;
     }
 
-    public void setIdProgram(int idProgram) {
+    public void setIdProgram(String idProgram) {
         this.idProgram = idProgram;
     }
 
@@ -37,11 +37,11 @@ public class ProgramEntity {
         this.defaultProgram = defaultProgram;
     }
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 

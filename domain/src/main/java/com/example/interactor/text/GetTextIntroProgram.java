@@ -25,13 +25,13 @@ public class GetTextIntroProgram extends UseCase<GetTextIntroProgram.Params> {
     }
 
     public static final class Params {
-        private final int idProgram;
+        private final String idProgram;
 
-        private Params(int idProgram) {
+        private Params(String idProgram) {
             this.idProgram = idProgram;
         }
 
-        public static GetTextIntroProgram.Params toGet(int idProgram) {
+        public static GetTextIntroProgram.Params toGet(String idProgram) {
             return new GetTextIntroProgram.Params(idProgram);
         }
     }

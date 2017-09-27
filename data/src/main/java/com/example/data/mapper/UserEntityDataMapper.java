@@ -47,7 +47,7 @@ public class UserEntityDataMapper {
         return userEntities;
     }
 
-    private UserEntity transformModelToEntity(User user) {
+    public UserEntity transformModelToEntity(User user) {
         UserEntity userEntity = new UserEntity();
         userEntity.setIdUser(user.getIdUser());
         userEntity.setPseudoUser(user.getPseudoUser());

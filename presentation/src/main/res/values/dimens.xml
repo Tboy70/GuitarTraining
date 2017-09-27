@@ -19,4 +19,10 @@
     <!-- Drawer -->
     <dimen name="navigation_drawer_header_height">180dp</dimen>
 
+    <!-- User programs list -->
+    <dimen name="fragment_user_programs_list_icon_placeholder_width">200dp</dimen>
+    <dimen name="fragment_user_programs_list_icon_placeholder_height">200dp</dimen>
+    <dimen name="fragment_user_programs_list_icon_placeholder_padding_bottom">16dp</dimen>
+    <dimen name="fragment_user_programs_list_placeholder_text_size">18sp</dimen>
+
 </resources>

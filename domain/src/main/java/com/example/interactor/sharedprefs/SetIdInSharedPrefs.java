@@ -25,13 +25,13 @@ public class SetIdInSharedPrefs extends UseCase<SetIdInSharedPrefs.Params> {
     }
 
     public static final class Params {
-        private final int idUser;
+        private final String idUser;
 
-        private Params(int idUser) {
+        private Params(String idUser) {
             this.idUser = idUser;
         }
 
-        public static Params forSetting(int idUser) {
+        public static Params forSetting(String idUser) {
             return new Params(idUser);
         }
     }

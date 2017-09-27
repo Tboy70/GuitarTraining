@@ -9,5 +9,5 @@ import rx.Observable;
  */
 public interface TextRepository {
 
-    Observable<Text> getTextIntroProgram(int idProgram);
+    Observable<Text> getTextIntroProgram(String idProgram);
 }

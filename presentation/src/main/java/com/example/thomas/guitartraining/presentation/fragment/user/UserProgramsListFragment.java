@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
@@ -18,8 +18,8 @@ import com.example.thomas.guitartraining.presentation.activity.UserPanelActivity
 import com.example.thomas.guitartraining.presentation.activity.listener.UserPanelNavigatorListener;
 import com.example.thomas.guitartraining.presentation.fragment.ui.adapter.UserProgramsListAdapter;
 import com.example.thomas.guitartraining.presentation.fragment.ui.adapter.UserProgramsListAdapterListener;
-import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramsPresenter;
-import com.example.thomas.guitartraining.presentation.view.user.UserProgramsView;
+import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramsListPresenter;
+import com.example.thomas.guitartraining.presentation.view.user.UserProgramsListView;
 
 import java.util.List;
 
@@ -27,26 +27,29 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class UserProgramsFragment extends Fragment implements UserProgramsView, UserProgramsListAdapterListener {
+public class UserProgramsListFragment extends Fragment implements UserProgramsListView, UserProgramsListAdapterListener {
 
     @BindView(R.id.fragment_user_programs_list_swipe_refresh_layout)
     SwipeRefreshLayout userProgramsListSwipeRefreshLayout;
     @BindView(R.id.fragment_user_programs_list_recycler_view)
     RecyclerView userProgramsListRecyclerView;
-    @BindView(R.id.fragment_user_programs_list_no_program)
-    TextView userProgramsListNoProgram;
+    @BindView(R.id.fragment_user_programs_list_no_program_placeholder)
+    LinearLayout userProgramsListNoProgramPlaceholder;
 
     @Inject
-    UserProgramsPresenter userProgramsPresenter;
+    UserProgramsListPresenter userProgramsListPresenter;
     @Inject
     UserProgramsListAdapter userProgramsListAdapter;
 
-    public static UserProgramsFragment newInstance() {
+    private String idUser;
+
+    public static UserProgramsListFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        UserProgramsFragment fragment = new UserProgramsFragment();
+        UserProgramsListFragment fragment = new UserProgramsListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,18 +57,19 @@ public class UserProgramsFragment extends Fragment implements UserProgramsView, 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_user_programs, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_user_programs_list, container, false);
 
         ButterKnife.bind(this, rootView);
         ((UserPanelActivity) getActivity()).getActivityComponent().inject(this);
 
-        userProgramsPresenter.setUserProgramsView(this);
-        userProgramsPresenter.setUserPanelNavigatorListener((UserPanelNavigatorListener) this.getActivity());
+        userProgramsListPresenter.setUserProgramsListView(this);
+        userProgramsListPresenter.setUserPanelNavigatorListener((UserPanelNavigatorListener) this.getActivity());
         userProgramsListAdapter.setUserProgramsListAdapter(this);
 
         initRecyclerView();
 
-        userProgramsPresenter.getIdUser(getActivity());
+        this.idUser = userProgramsListPresenter.getIdUser(getActivity());
+        userProgramsListPresenter.retrieveProgramsListByUserId(idUser);
 
         return rootView;
     }
@@ -79,12 +83,34 @@ public class UserProgramsFragment extends Fragment implements UserProgramsView, 
     public void displayProgramsList(List<Program> programs) {
         userProgramsListAdapter.updateProgramsList(programs);
         if (programs.isEmpty()) {
-            userProgramsListNoProgram.setVisibility(View.VISIBLE);
+            userProgramsListNoProgramPlaceholder.setVisibility(View.VISIBLE);
             userProgramsListRecyclerView.setVisibility(View.GONE);
         } else {
-            userProgramsListNoProgram.setVisibility(View.GONE);
+            userProgramsListNoProgramPlaceholder.setVisibility(View.GONE);
             userProgramsListRecyclerView.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void startRefresh() {
+        if (!userProgramsListSwipeRefreshLayout.isRefreshing()) {
+            userProgramsListSwipeRefreshLayout.setRefreshing(true);
+        }
+    }
+
+    @Override
+    public void stopRefresh() {
+        userProgramsListSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @OnClick(R.id.fragment_user_programs_floating_action_button)
+    public void handleClickUserProgramsFloatingActionButton() {
+        userProgramsListPresenter.addUserProgram(null);
+    }
+
+    @Override
+    public void onProgramClick(String programId) {
+        userProgramsListPresenter.displayProgramDetails(programId);
     }
 
     private void initRecyclerView() {
@@ -97,7 +123,7 @@ public class UserProgramsFragment extends Fragment implements UserProgramsView, 
         userProgramsListSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // TODO : Refresh list.
+                userProgramsListPresenter.retrieveProgramsListByUserId(idUser);
             }
         });
         userProgramsListSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);

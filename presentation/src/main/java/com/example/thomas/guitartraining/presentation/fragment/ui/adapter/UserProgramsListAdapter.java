@@ -37,7 +37,7 @@ public class UserProgramsListAdapter extends RecyclerView.Adapter<ProgramViewHol
 
     @Override
     public void onBindViewHolder(ProgramViewHolder holder, int position) {
-        holder.bindProgram(new ProgramViewModel(programList.get(position), activity), userProgramsListAdapterListener);
+        holder.bindProgram(new ProgramViewModel(programList.get(position)), userProgramsListAdapterListener);
     }
 
     @Override

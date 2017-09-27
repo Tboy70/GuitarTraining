@@ -5,6 +5,8 @@ import android.app.Application;
 import com.example.thomas.guitartraining.di.component.ApplicationComponent;
 import com.example.thomas.guitartraining.di.component.DaggerApplicationComponent;
 import com.example.thomas.guitartraining.di.module.ApplicationModule;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 /**
  * Application class.
@@ -23,6 +25,7 @@ public class GuitarTrainingApplication extends Application {
         super.onCreate();
         application = this;
         initializeInjector();
+        FlowManager.init(new FlowConfig.Builder(this).build());
     }
 
     public ApplicationComponent getApplicationComponent() {

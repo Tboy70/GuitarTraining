@@ -4,6 +4,10 @@ import com.example.model.Program;
 
 import java.util.List;
 
-public interface UserProgramsView {
+public interface UserProgramsListView {
     void displayProgramsList(List<Program> programs);
+
+    void startRefresh();
+
+    void stopRefresh();
 }

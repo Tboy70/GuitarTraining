@@ -62,7 +62,7 @@ public class IntroProgramPresenter {
         this.programNavigatorListener = programNavigatorListener;
     }
 
-    public void retrieveProgramFromId(Activity activity, final int idProgram) {
+    public void retrieveProgramFromId(Activity activity, final String idProgram) {
         final MaterialDialog progressDialog =
                 materialDialogComponent.showProgressDialog(
                         activity,

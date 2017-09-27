@@ -9,7 +9,7 @@ import rx.Observable;
  */
 public interface UserRepository {
 
-    Observable<Boolean> setIdUserInSharedPrefs(int idUser);
+    Observable<Boolean> setIdUserInSharedPrefs(String idUser);
 
-    Observable<User> connectUser(String username, String password);
+    Observable<User> connectUser(User user);
 }

@@ -52,7 +52,7 @@ public class ProgramRemoteEntityDataMapper {
         return programRemoteEntities;
     }
 
-    private ProgramRemoteEntity transformEntityToRemote(ProgramEntity programEntity) {
+    public ProgramRemoteEntity transformEntityToRemote(ProgramEntity programEntity) {
         ProgramRemoteEntity programRemoteEntity = new ProgramRemoteEntity();
         programRemoteEntity.setIdProgram(programEntity.getIdProgram());
         programRemoteEntity.setNameProgram(programEntity.getNameProgram());

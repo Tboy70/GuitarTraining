@@ -9,6 +9,15 @@
     <string name="fragment_not_connected_program_choice_technical_button_text">Programme technique</string>
     <string name="fragment_not_connected_program_choice_theoretical_button_text">Programme théorique</string>
 
+    <!-- ======================================================================================= -->
+    <!-- ====================================== PROGRAMS ======================================= -->
+    <!-- ======================================================================================= -->
+
+    <!-- User program(s) -->
+    <string name="fragment_user_programs_list_no_program_text">Aucun programme disponible</string>
+    <string name="fragment_user_programs_list_nb_exercises_text">Nombre d\'exercises : %s</string>
+    <string name="fragment_user_programs_creation_type_exercise_text">Type de l\'exercise</string>
+    <string name="fragment_user_programs_creation_duration_exercise_text">Durée de l\'exercise : %s</string>
 
     <!-- ======================================================================================= -->
     <!-- ====================================== EXERCISES ====================================== -->
@@ -23,6 +32,7 @@
     <string name="generic_exercise_duration_left_text"><![CDATA[<b>Temps restant :</b>]]> %1$s minutes.</string>
     <string name="generic_exercise_duration_text"><![CDATA[<b>Durée de l\'exercice :</b>]]> %1$s minutes.</string>
     <string name="generic_exercise_end_description_text">Vous êtes parvenu au bout du programme. A bientôt !</string>
+    <string name="generic_exercise_choice_creation_program">Choix de l\'exercise</string>
 
     <!-- Scale exercise -->
     <string name="exercise_scale_note_text">Note</string>
@@ -71,10 +81,6 @@
     <string name="exercise_tapping_description_text">Entraine toi au tapping !</string>
 
     <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
-
-    <!-- ======================================================================================= -->
     <!-- ======================================= VALUES ======================================== -->
     <!-- ======================================================================================= -->
 
@@ -107,10 +113,6 @@
     <string name="mode_locrian">Locrien</string>
 
     <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
-
-    <!-- ======================================================================================= -->
     <!-- =================================== COMPONENTS ======================================== -->
     <!-- ======================================================================================= -->
 
@@ -118,10 +120,6 @@
     <string name="timer_pause_button">Pause</string>
     <string name="timer_title">C\'est parti !</string>
     <string name="timer_start_button">Démarrer</string>
-
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
 
     <!-- ======================================================================================= -->
     <!-- ====================================== UI ============================================= -->
@@ -175,15 +173,15 @@
     <string name="toolbar_title_exercise_sweep_picking">Sweep picking</string>
     <string name="toolbar_title_exercise_pull_off_hammer_on">Pull off / Hammer on</string>
 
+    <!-- User program toolbar -->
+    <string name="toolbar_title_user_program_creation">Création d\'un programme</string>
+    <string name="toolbar_title_user_program_edition">Modification d\'un programme</string>
+
     <!-- Menu drawer -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_songs">Mes chansons</string>
     <string name="navigation_drawer_programs">Mes programmes</string>
-
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
 
     <!-- ======================================================================================= -->
     <!-- ====================================== ERRORS ========================================= -->
@@ -192,15 +190,12 @@
     <string name="generic_error_retry_text">Réessayer</string>
     <string name="generic_error_give_up_text">Abandonner</string>
     <string name="generic_error_text">OUPS ! Tu as cassé une corde …</string>
+    <string name="generic_error_title_text">Erreur ...</string>
 
     <string name="wrong_login_error_value_from_API">WRONG LOGIN</string>
     <string name="snackbar_error_wrong_login">Authentification incorrecte</string>
 
     <string name="snackbar_error_unknown_error">Erreur inconnue</string>
-
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
-    <!-- ======================================================================================= -->
 
     <!-- ======================================================================================= -->
     <!-- ====================================== OTHERS ========================================= -->
@@ -209,5 +204,6 @@
     <!-- Content description -->
     <string name="content_description_random_button">To select randomly</string>
     <string name="content_description_header_menu_drawer">Header image of menu drawer</string>
+    <string name="content_description_program_icon">Icône des programmes</string>
 
 </resources>

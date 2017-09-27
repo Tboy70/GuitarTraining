@@ -47,7 +47,7 @@ public class ProgramNavigator extends BaseNavigator {
         Fragment fragmentToDisplay;
         String tag;
 
-        switch (exercise.getTypeExercise()) {
+        switch (Integer.valueOf(exercise.getTypeExercise())) {
             case ExercisesTypeValues.EXERCISE_SCALE:
                 fragmentToDisplay = ExerciseScaleFragment.newInstance(i, exercise.getDurationExercise());
                 tag = ConstantTag.SCALE.toString();

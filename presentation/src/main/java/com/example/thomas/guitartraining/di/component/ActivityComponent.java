@@ -9,6 +9,7 @@ import com.example.thomas.guitartraining.presentation.activity.UserPanelActivity
 import com.example.thomas.guitartraining.presentation.activity.NotConnectedActivity;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.activity.StartActivity;
+import com.example.thomas.guitartraining.presentation.activity.UserProgramActivity;
 import com.example.thomas.guitartraining.presentation.fragment.navigation.AuthenticationChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.offline.NotConnectedProgramChoiceFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
@@ -25,7 +26,9 @@ import com.example.thomas.guitartraining.presentation.fragment.program.exercise.
 import com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseTappingFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ui.TimerDialogFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.ConnectionFragment;
-import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramsFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramCreationFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramDetailsFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramsListFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.UserSongsFragment;
 import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorListener;
 
@@ -51,6 +54,8 @@ public interface ActivityComponent {
     void inject(ProgramActivity programActivity);
 
     void inject(UserPanelActivity userPanelActivity);
+
+    void inject(UserProgramActivity userProgramActivity);
 
     void inject(AuthenticationChoiceFragment authenticationChoiceFragment);
 
@@ -84,7 +89,11 @@ public interface ActivityComponent {
 
     void inject(ConnectionFragment connectionFragment);
 
-    void inject(UserProgramsFragment userProgramsFragment);
+    void inject(UserProgramsListFragment userProgramsListFragment);
+
+    void inject(UserProgramDetailsFragment userProgramDetailsFragment);
+
+    void inject(UserProgramCreationFragment userProgramCreationFragment);
 
     void inject(UserSongsFragment userSongsFragment);
 }

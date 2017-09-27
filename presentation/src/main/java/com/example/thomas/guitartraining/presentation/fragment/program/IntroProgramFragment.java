@@ -59,7 +59,7 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
     TextView introProgramStartButton;
 
     private List<Exercise> programExercisesList;
-    private int idProgram;
+    private String idProgram;
 
     public static IntroProgramFragment newInstance(int idProgram) {
         Bundle args = new Bundle();
@@ -84,7 +84,7 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
 
         programExercisesList = new ArrayList<>();
 
-        idProgram = getArguments().getInt(ID_PROGRAM);
+        idProgram = getArguments().getString(ID_PROGRAM);
         introProgramPresenter.retrieveProgramFromId(this.getActivity(), idProgram);
 
         setToolbarTitle(idProgram);
@@ -147,14 +147,14 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
         introProgramError.setVisibility(visibilityLayoutError);
     }
 
-    private void setToolbarTitle(int idProgram) {
+    private void setToolbarTitle(String idProgram) {
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.activity_program_toolbar);
         switch (idProgram) {
-            case 1:
+            case "1":
                 toolbar.setTitle(getActivity().getString(R.string.toolbar_title_theoretical_program));
                 toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
                 break;
-            case 2:
+            case "2":
                 toolbar.setTitle(getActivity().getString(R.string.toolbar_title_technical_program));
                 toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
                 break;

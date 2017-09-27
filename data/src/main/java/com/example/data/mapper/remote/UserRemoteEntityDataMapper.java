@@ -46,7 +46,7 @@ public class UserRemoteEntityDataMapper {
         return userRemoteEntities;
     }
 
-    private UserRemoteEntity transformEntityToRemote(UserEntity userEntity) {
+    public UserRemoteEntity transformEntityToRemote(UserEntity userEntity) {
         UserRemoteEntity userRemoteEntity = new UserRemoteEntity();
         userRemoteEntity.setIdUser(userEntity.getIdUser());
         userRemoteEntity.setPseudoUser(userEntity.getPseudoUser());

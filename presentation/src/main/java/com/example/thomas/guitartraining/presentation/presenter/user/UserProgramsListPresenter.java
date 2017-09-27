@@ -3,7 +3,6 @@ package com.example.thomas.guitartraining.presentation.presenter.user;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.example.data.module.ModuleSharedPrefsImpl;
 import com.example.interactor.program.RetrieveProgramsListByUserId;
@@ -11,7 +10,7 @@ import com.example.model.Program;
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.activity.listener.UserPanelNavigatorListener;
 import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorListener;
-import com.example.thomas.guitartraining.presentation.view.user.UserProgramsView;
+import com.example.thomas.guitartraining.presentation.view.user.UserProgramsListView;
 
 import java.util.List;
 
@@ -20,53 +19,61 @@ import javax.inject.Inject;
 import rx.Subscriber;
 
 @PerActivity
-public class UserProgramsPresenter {
+public class UserProgramsListPresenter {
 
-    private UserProgramsView userProgramsView;
+    private UserProgramsListView userProgramsListView;
     private UserPanelNavigatorListener userPanelNavigatorListener;
 
     private RetrieveProgramsListByUserId retrieveProgramsListByUserId;
 
     @Inject
-    UserProgramsPresenter(BaseNavigatorListener baseNavigatorListener, RetrieveProgramsListByUserId retrieveProgramsListByUserId) {
+    UserProgramsListPresenter(BaseNavigatorListener baseNavigatorListener, RetrieveProgramsListByUserId retrieveProgramsListByUserId) {
         if (baseNavigatorListener instanceof UserPanelNavigatorListener) {
             this.userPanelNavigatorListener = (UserPanelNavigatorListener) baseNavigatorListener;
         }
         this.retrieveProgramsListByUserId = retrieveProgramsListByUserId;
     }
 
-    public void setUserProgramsView(UserProgramsView userProgramsView) {
-        this.userProgramsView = userProgramsView;
+    public void setUserProgramsListView(UserProgramsListView userProgramsListView) {
+        this.userProgramsListView = userProgramsListView;
     }
 
     public void setUserPanelNavigatorListener(UserPanelNavigatorListener userPanelNavigatorListener) {
         this.userPanelNavigatorListener = userPanelNavigatorListener;
     }
 
-    public void getIdUser(Context context) {
+    public String getIdUser(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        int userId = prefs.getInt(ModuleSharedPrefsImpl.CURRENT_USER_ID, 0);
-
-        retrieveProgramsListByUserId(userId);
+        return prefs.getString(ModuleSharedPrefsImpl.CURRENT_USER_ID, "0");
     }
 
-    private void retrieveProgramsListByUserId(int userId) {
+    public void retrieveProgramsListByUserId(String userId) {
+        userProgramsListView.startRefresh();
         retrieveProgramsListByUserId.execute(new Subscriber<List<Program>>() {
             @Override
             public void onCompleted() {
-
+                userProgramsListView.stopRefresh();
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("TEST", "onError: ");
+                userProgramsListView.stopRefresh();
             }
 
             @Override
             public void onNext(List<Program> programs) {
-                userProgramsView.displayProgramsList(programs);
+                userProgramsListView.stopRefresh();
+                userProgramsListView.displayProgramsList(programs);
             }
         }, RetrieveProgramsListByUserId.Params.forList(userId));
+    }
+
+    public void displayProgramDetails(String programId) {
+        userPanelNavigatorListener.displayProgramDetails(programId);
+    }
+
+    public void addUserProgram(String programId) {
+        userPanelNavigatorListener.displayUserProgramCreation(programId);
     }
 }

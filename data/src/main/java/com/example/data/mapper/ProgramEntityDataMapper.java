@@ -65,7 +65,7 @@ public class ProgramEntityDataMapper {
         return programEntityList;
     }
 
-    private ProgramEntity transformModelToEntity(Program program) {
+    public ProgramEntity transformModelToEntity(Program program) {
         ProgramEntity programEntity = new ProgramEntity();
 
         programEntity.setIdProgram(program.getIdProgram());

@@ -5,12 +5,12 @@ package com.example.model;
  */
 public class User {
 
-    private int idUser;
+    private String idUser;
     private String pseudoUser;
     private String passwordUser;
 
     @SuppressWarnings("unused")
-    public User(int idUser, String pseudoUser, String passwordUser) {
+    public User(String idUser, String pseudoUser, String passwordUser) {
         this.idUser = idUser;
         this.pseudoUser = pseudoUser;
         this.passwordUser = passwordUser;
@@ -18,11 +18,11 @@ public class User {
 
     public User() {}
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 

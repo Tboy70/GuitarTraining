@@ -13,7 +13,8 @@ public enum ConstantTag {
     TAPPING("Tapping"),
     SPEED("Speed"),
     END("End"),
-    DIALOG("Dialog");
+    DIALOG("Dialog"),
+    ERROR("Error");
 
     private final String tag;
 

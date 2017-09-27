@@ -5,12 +5,12 @@ package com.example.model;
  */
 public class Exercise {
 
-    private int idExercise;
+    private String idExercise;
     private int durationExercise;
-    private int idProgram;
+    private String idProgram;
     private int typeExercise;
 
-    public Exercise(int idExercise, int durationExercise, int idProgram, int typeExercise) {
+    public Exercise(String idExercise, int durationExercise, String idProgram, int typeExercise) {
         this.idExercise = idExercise;
         this.durationExercise = durationExercise;
         this.idProgram = idProgram;
@@ -19,11 +19,11 @@ public class Exercise {
 
     public Exercise() {}
 
-    public int getIdExercise() {
+    public String getIdExercise() {
         return idExercise;
     }
 
-    public void setIdExercise(int idExercise) {
+    public void setIdExercise(String idExercise) {
         this.idExercise = idExercise;
     }
 
@@ -35,11 +35,11 @@ public class Exercise {
         this.durationExercise = durationExercise;
     }
 
-    public int getIdProgram() {
+    public String getIdProgram() {
         return idProgram;
     }
 
-    public void setIdProgram(int idProgram) {
+    public void setIdProgram(String idProgram) {
         this.idProgram = idProgram;
     }
 

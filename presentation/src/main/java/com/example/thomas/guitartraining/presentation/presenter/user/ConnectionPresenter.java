@@ -53,6 +53,9 @@ public class ConnectionPresenter {
     }
 
     public void connectUser(String username, String password) {
+        User user = new User();
+        user.setPseudoUser(username);
+        user.setPasswordUser(password);
         connectUser.execute(new Subscriber<User>() {
             @Override
             public void onCompleted() {
@@ -69,10 +72,10 @@ public class ConnectionPresenter {
                 loginNavigatorListener.launchUserPanelActivity();
                 setIdInSharedPrefs(user.getIdUser());
             }
-        }, ConnectUser.Params.forLogin(username, password));
+        }, ConnectUser.Params.forLogin(user));
     }
 
-    private void setIdInSharedPrefs(int idUser) {
+    private void setIdInSharedPrefs(String idUser) {
         setIdInSharedPrefs.execute(new Subscriber() {
             @Override
             public void onCompleted() {

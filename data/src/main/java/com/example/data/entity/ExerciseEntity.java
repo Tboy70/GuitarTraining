@@ -5,16 +5,16 @@ package com.example.data.entity;
  */
 public class ExerciseEntity {
 
-    private int idExercise;
+    private String idExercise;
     private int durationExercise;
-    private int idProgram;
+    private String idProgram;
     private int typeExercise;
 
-    public int getIdExercise() {
+    public String getIdExercise() {
         return idExercise;
     }
 
-    public void setIdExercise(int idExercise) {
+    public void setIdExercise(String idExercise) {
         this.idExercise = idExercise;
     }
 
@@ -26,11 +26,11 @@ public class ExerciseEntity {
         this.durationExercise = durationExercise;
     }
 
-    public int getIdProgram() {
+    public String getIdProgram() {
         return idProgram;
     }
 
-    public void setIdProgram(int idProgram) {
+    public void setIdProgram(String idProgram) {
         this.idProgram = idProgram;
     }
 

@@ -25,13 +25,13 @@ public class RetrieveProgramsListByUserId extends UseCase<RetrieveProgramsListBy
     }
 
     public static final class Params {
-        private final int userId;
+        private final String userId;
 
-        private Params(int userId) {
+        private Params(String userId) {
             this.userId = userId;
         }
 
-        public static Params forList(int userId) {
+        public static Params forList(String userId) {
             return new RetrieveProgramsListByUserId.Params(userId);
         }
     }

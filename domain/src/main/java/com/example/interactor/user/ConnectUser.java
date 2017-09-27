@@ -3,6 +3,7 @@ package com.example.interactor.user;
 import com.example.executor.PostExecutionThread;
 import com.example.executor.ThreadExecutor;
 import com.example.interactor.UseCase;
+import com.example.model.User;
 import com.example.repository.UserRepository;
 
 import javax.inject.Inject;
@@ -21,20 +22,18 @@ public class ConnectUser extends UseCase<ConnectUser.Params> {
 
     @Override
     public Observable buildUseCaseObservable(Params params) {
-        return userRepository.connectUser(params.username, params.password);
+        return userRepository.connectUser(params.user);
     }
 
     public static final class Params {
-        private final String username;
-        private final String password;
+        private final User user;
 
-        private Params(String username, String password) {
-            this.username = username;
-            this.password = password;
+        private Params(User user) {
+            this.user = user;
         }
 
-        public static Params forLogin(String username, String password) {
-            return new Params(username, password);
+        public static Params forLogin(User user) {
+            return new Params(user);
         }
     }
 }

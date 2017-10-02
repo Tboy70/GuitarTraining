@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Generic dimens -->
+    <dimen name="generic_button_width">250dp</dimen>
+    <dimen name="generic_button_height">45dp</dimen>
+    <dimen name="generic_padding_size_1">25dp</dimen>
+    <dimen name="generic_title_text_size">24sp</dimen>
+    <dimen name="generic_space_between_two_buttons">20dp</dimen>
+
     <!-- Button dimens -->
     <dimen name="button_width_1">250dp</dimen>
     <dimen name="button_height_1">100dp</dimen>
@@ -9,8 +16,8 @@
     <dimen name="space_height_1">100dp</dimen>
 
     <!-- Dialog dimens -->
-    <dimen name="dialog_content_text_size">15sp</dimen>
     <dimen name="dialog_padding">10dp</dimen>
+    <dimen name="dialog_content_text_size">15sp</dimen>
 
     <!-- Exercise dimens -->
     <dimen name="exercise_padding">16dp</dimen>
@@ -20,9 +27,17 @@
     <dimen name="navigation_drawer_header_height">180dp</dimen>
 
     <!-- User programs list -->
+    <dimen name="fragment_user_programs_list_title_size">18sp</dimen>
+    <dimen name="fragment_user_programs_list_subtitle_size">15sp</dimen>
+    <dimen name="fragment_user_programs_list_padding_end_start">20dp</dimen>
+    <dimen name="fragment_user_programs_list_placeholder_text_size">18sp</dimen>
     <dimen name="fragment_user_programs_list_icon_placeholder_width">200dp</dimen>
     <dimen name="fragment_user_programs_list_icon_placeholder_height">200dp</dimen>
+    <dimen name="fragment_user_programs_list_nb_exercises_padding_end_start">20dp</dimen>
     <dimen name="fragment_user_programs_list_icon_placeholder_padding_bottom">16dp</dimen>
-    <dimen name="fragment_user_programs_list_placeholder_text_size">18sp</dimen>
+
+    <!-- User program details -->
+    <dimen name="fragment_user_programs_details_padding_end_start">20dp</dimen>
+    <dimen name="fragment_user_programs_details_title_size">18sp</dimen>
 
 </resources>

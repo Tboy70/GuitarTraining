@@ -9,6 +9,7 @@ public class ProgramEntity {
 
     private String idProgram;
     private String nameProgram;
+    private String descriptionProgram;
     private boolean defaultProgram;
     private String idUser;
     private List<ExerciseEntity> exerciseEntities;
@@ -27,6 +28,14 @@ public class ProgramEntity {
 
     public void setNameProgram(String nameProgram) {
         this.nameProgram = nameProgram;
+    }
+
+    public String getDescriptionProgram() {
+        return descriptionProgram;
+    }
+
+    public void setDescriptionProgram(String descriptionProgram) {
+        this.descriptionProgram = descriptionProgram;
     }
 
     public boolean isDefaultProgram() {

@@ -14,6 +14,7 @@ public class UserProgramPresenter {
     private UserProgramNavigatorListener userProgramNavigatorListener;
     private UserProgramView userProgramView;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public UserProgramPresenter(BaseNavigatorListener baseNavigatorListener) {
         if (baseNavigatorListener instanceof UserProgramNavigatorListener) {

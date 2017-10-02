@@ -1,4 +1,4 @@
 package com.example.thomas.guitartraining.presentation.view.user;
 
-public interface LoginView {
+public interface ConnectionView {
 }

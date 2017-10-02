@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_start_relative_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.thomas.guitartraining.presentation.activity.StartActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/activity_start_relative_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.example.thomas.guitartraining.presentation.activity.StartActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_start_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize" />
+        android:minHeight="?attr/actionBarSize"/>
 
     <FrameLayout
         android:id="@+id/activity_start_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/activity_start_toolbar" />
+        android:layout_below="@id/activity_start_toolbar"/>
 
 </RelativeLayout>

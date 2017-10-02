@@ -23,6 +23,8 @@ public class UserProgramDetailsPresenter {
 
     private RetrieveProgramById retrieveProgramById;
 
+    private Program currentProgram;
+
     @Inject
     UserProgramDetailsPresenter(BaseNavigatorListener baseNavigatorListener, RetrieveProgramById retrieveProgramById) {
         if (baseNavigatorListener instanceof UserProgramNavigatorListener) {
@@ -51,9 +53,13 @@ public class UserProgramDetailsPresenter {
 
             @Override
             public void onNext(Program program) {
-                ProgramViewModel programViewModel = new ProgramViewModel(program);
-                userProgramDetailsView.displayUserProgramDetails(programViewModel);
+                currentProgram = program;
+                userProgramDetailsView.displayUserProgramDetails(new ProgramViewModel(program));
             }
         }, RetrieveProgramById.Params.forProgram(programId));
+    }
+
+    public void launchProgram() {
+        userProgramNavigatorListener.launchProgram(currentProgram.getIdProgram());
     }
 }

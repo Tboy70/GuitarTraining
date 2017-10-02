@@ -9,6 +9,7 @@ public class Program {
 
     private String idProgram;
     private String nameProgram;
+    private String descriptionProgram;
     private boolean defaultProgram;
     private String idUser;
     private List<Exercise> exercises;
@@ -37,6 +38,14 @@ public class Program {
 
     public void setNameProgram(String nameProgram) {
         this.nameProgram = nameProgram;
+    }
+
+    public String getDescriptionProgram() {
+        return descriptionProgram;
+    }
+
+    public void setDescriptionProgram(String descriptionProgram) {
+        this.descriptionProgram = descriptionProgram;
     }
 
     public boolean isDefaultProgram() {

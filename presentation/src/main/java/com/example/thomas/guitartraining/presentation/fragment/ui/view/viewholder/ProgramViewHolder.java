@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.model.Exercise;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.fragment.ui.adapter.UserProgramsListAdapterListener;
 import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
@@ -21,6 +22,9 @@ public class ProgramViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.view_user_programs_list_item_nb_exercises)
     TextView viewUserProgramsListItemNbExercises;
+
+    @BindView(R.id.view_user_programs_list_item_total_duration_exercises)
+    TextView viewUserProgramsListItemTotalDurationExercises;
 
     private View currentView;
     private Context context;
@@ -45,11 +49,25 @@ public class ProgramViewHolder extends RecyclerView.ViewHolder {
                 context.getString(R.string.fragment_user_programs_list_nb_exercises_text),
                 String.valueOf(programViewModel.getProgram().getExercises().size())));
 
+        viewUserProgramsListItemTotalDurationExercises.setText(String.format(
+                Locale.FRANCE,
+                context.getString(R.string.fragment_user_programs_list_total_duration_exercises_text),
+                String.valueOf(calculateTotalDurationProgram(programViewModel))
+        ));
+
         currentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userProgramsListAdapterListener.onProgramClick(programViewModel.getProgram().getIdProgram());
             }
         });
+    }
+
+    private int calculateTotalDurationProgram(ProgramViewModel programViewModel) {
+        int totalDuration = 0;
+        for (Exercise exercise : programViewModel.getProgram().getExercises()) {
+            totalDuration += exercise.getDurationExercise();
+        }
+        return totalDuration;
     }
 }

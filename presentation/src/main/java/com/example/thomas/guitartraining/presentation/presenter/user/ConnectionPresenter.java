@@ -1,16 +1,13 @@
 package com.example.thomas.guitartraining.presentation.presenter.user;
 
-import com.example.executor.PostExecutionThread;
-import com.example.executor.ThreadExecutor;
-import com.example.interactor.user.ConnectUser;
 import com.example.interactor.sharedprefs.SetIdInSharedPrefs;
+import com.example.interactor.user.ConnectUser;
 import com.example.model.User;
-import com.example.repository.UserRepository;
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.activity.listener.LoginNavigatorListener;
 import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
 import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorListener;
-import com.example.thomas.guitartraining.presentation.view.user.LoginView;
+import com.example.thomas.guitartraining.presentation.view.user.ConnectionView;
 
 import javax.inject.Inject;
 
@@ -19,33 +16,25 @@ import rx.Subscriber;
 @PerActivity
 public class ConnectionPresenter {
 
-    private final ThreadExecutor threadExecutor;
-    private final PostExecutionThread postExecutionThread;
-
-    private LoginView loginView;
+    private ConnectionView connectionView;
     private BaseNavigatorListener baseNavigatorListener;
     private LoginNavigatorListener loginNavigatorListener;
-    private UserRepository userRepository;
 
     private ConnectUser connectUser;
     private SetIdInSharedPrefs setIdInSharedPrefs;
 
     @Inject
-    ConnectionPresenter(BaseNavigatorListener baseNavigatorListener, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread,
-                        UserRepository userRepository, ConnectUser connectUser, SetIdInSharedPrefs setIdInSharedPrefs) {
+    ConnectionPresenter(BaseNavigatorListener baseNavigatorListener, ConnectUser connectUser, SetIdInSharedPrefs setIdInSharedPrefs) {
         this.baseNavigatorListener = baseNavigatorListener;
         if (baseNavigatorListener instanceof LoginNavigatorListener) {
             this.loginNavigatorListener = (LoginNavigatorListener) baseNavigatorListener;
         }
-        this.threadExecutor = threadExecutor;
-        this.postExecutionThread = postExecutionThread;
-        this.userRepository = userRepository;
         this.connectUser = connectUser;
         this.setIdInSharedPrefs = setIdInSharedPrefs;
     }
 
-    public void setLoginView(LoginView loginView) {
-        this.loginView = loginView;
+    public void setConnectionView(ConnectionView connectionView) {
+        this.connectionView = connectionView;
     }
 
     public void setLoginNavigatorListener(LoginNavigatorListener loginNavigatorListener) {

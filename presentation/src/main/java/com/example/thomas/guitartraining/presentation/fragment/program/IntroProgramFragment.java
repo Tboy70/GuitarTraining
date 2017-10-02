@@ -17,11 +17,10 @@ import android.widget.TextView;
 
 import com.example.model.Exercise;
 import com.example.model.Program;
-import com.example.model.Text;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
-import com.example.thomas.guitartraining.presentation.presenter.program.IntroProgramPresenter;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.presenter.program.IntroProgramPresenter;
 import com.example.thomas.guitartraining.presentation.view.program.IntroProgramView;
 
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
 
         programExercisesList = new ArrayList<>();
 
-        idProgram = getArguments().getString(ID_PROGRAM);
+        idProgram = String.valueOf(getArguments().getInt(ID_PROGRAM));
         introProgramPresenter.retrieveProgramFromId(this.getActivity(), idProgram);
 
         setToolbarTitle(idProgram);
@@ -104,14 +103,17 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
 
     @SuppressWarnings("deprecation")
     @Override
-    public void updateUISuccess(Program program, Text text) {
+    public void updateUISuccess(Program program) {
         introProgramName.setText(program.getNameProgram());
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            introProgramDescription.setText(Html.fromHtml(text.getContentText(), Html.FROM_HTML_MODE_COMPACT));
+            introProgramDescription.setText(Html.fromHtml(program.getDescriptionProgram(), Html.FROM_HTML_MODE_COMPACT));
         } else {
-            introProgramDescription.setText((Html.fromHtml(text.getContentText())));
+            introProgramDescription.setText((Html.fromHtml(program.getDescriptionProgram())));
         }
+
         programExercisesList = program.getExercises();
+
         setLayoutVisibility(View.VISIBLE, View.GONE);
     }
 
@@ -149,6 +151,7 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
 
     private void setToolbarTitle(String idProgram) {
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.activity_program_toolbar);
+        // TODO: 02/10/2017 Constant for 1 and 2.
         switch (idProgram) {
             case "1":
                 toolbar.setTitle(getActivity().getString(R.string.toolbar_title_theoretical_program));

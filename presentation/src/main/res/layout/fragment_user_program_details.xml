@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:tool="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingEnd="@dimen/fragment_user_programs_details_padding_end_start"
+              android:paddingStart="@dimen/fragment_user_programs_details_padding_end_start">
 
     <TextView
         android:id="@+id/fragment_user_program_details_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/fragment_user_programs_details_title_size"
+        tool:text="Mon super programme"/>
 
     <FrameLayout
         android:id="@+id/fragment_user_program_details_exercises"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/fragment_user_program_details_start_button"
+        android:layout_width="@dimen/generic_button_width"
+        android:layout_height="@dimen/generic_button_height"
+        android:layout_gravity="center"
+        android:background="@drawable/button_drawable"
+        android:text="@string/fragment_user_details_program_start_button_text"
+        android:textColor="@android:color/white"/>
 </LinearLayout>

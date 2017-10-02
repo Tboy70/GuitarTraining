@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tool="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/fragment_user_programs_list_padding_end_start"
+    android:paddingStart="@dimen/fragment_user_programs_list_padding_end_start">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tool="http://schemas.android.com/tools"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:paddingEnd="20dp"
-                  android:paddingStart="20dp">
+    <TextView
+        android:id="@+id/view_user_programs_list_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/fragment_user_programs_list_title_size"
+        tool:text="Programme théorique par défaut"/>
 
-        <TextView
-            android:id="@+id/view_user_programs_list_item_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            tool:text="Programme théorique par défaut"/>
+    <TextView
+        android:id="@+id/view_user_programs_list_item_nb_exercises"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/fragment_user_programs_list_nb_exercises_padding_end_start"
+        android:paddingStart="@dimen/fragment_user_programs_list_nb_exercises_padding_end_start"
+        android:textSize="@dimen/fragment_user_programs_list_subtitle_size"
+        tool:text="@string/fragment_user_programs_list_nb_exercises_text"/>
 
-        <TextView
-            android:id="@+id/view_user_programs_list_item_nb_exercises"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
-            android:text="@string/fragment_user_programs_list_nb_exercises_text"
-            android:textSize="12sp"/>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/view_user_programs_list_item_total_duration_exercises"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/fragment_user_programs_list_nb_exercises_padding_end_start"
+        android:paddingStart="@dimen/fragment_user_programs_list_nb_exercises_padding_end_start"
+        android:textSize="@dimen/fragment_user_programs_list_subtitle_size"
+        tool:text="@string/fragment_user_programs_list_total_duration_exercises_text"/>
 
 </LinearLayout>

@@ -35,6 +35,7 @@ public class ProgramRemoteEntityDataMapper {
         ProgramEntity programEntity = new ProgramEntity();
         programEntity.setIdProgram(programRemoteEntity.getIdProgram());
         programEntity.setNameProgram(programRemoteEntity.getNameProgram());
+        programEntity.setDescriptionProgram(programRemoteEntity.getDescriptionProgram());
         programEntity.setDefaultProgram(programRemoteEntity.isDefaultProgram());
         programEntity.setIdUser(programRemoteEntity.getIdUser());
         if (programRemoteEntity.getExerciseRemoteEntities() != null) {
@@ -56,6 +57,7 @@ public class ProgramRemoteEntityDataMapper {
         ProgramRemoteEntity programRemoteEntity = new ProgramRemoteEntity();
         programRemoteEntity.setIdProgram(programEntity.getIdProgram());
         programRemoteEntity.setNameProgram(programEntity.getNameProgram());
+        programRemoteEntity.setDescriptionProgram(programEntity.getDescriptionProgram());
         programRemoteEntity.setDefaultProgram(programEntity.isDefaultProgram());
         programRemoteEntity.setIdUser(programEntity.getIdUser());
         if (programEntity.getExerciseEntities() != null) {

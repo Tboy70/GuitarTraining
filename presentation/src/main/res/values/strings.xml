@@ -2,12 +2,21 @@
     <string name="app_name">GuitarTraining</string>
 
     <!-- Authentication choice fragment -->
+    <string name="fragment_authentication_choice_title">Bienvenue sur l\'application Guitar Training</string>
     <string name="fragment_authentication_choice_connection_button_text">Se connecter</string>
     <string name="fragment_authentication_choice_not_connected_button_text">Mode hors connexion</string>
 
     <!-- Not connected choice fragment -->
+    <string name="fragment_not_connected_program_choice_title">Sélectionne un des deux programmes par défaut</string>
     <string name="fragment_not_connected_program_choice_technical_button_text">Programme technique</string>
     <string name="fragment_not_connected_program_choice_theoretical_button_text">Programme théorique</string>
+    <string name="fragment_connection_hint_username">Nom d\'utilisateur</string>
+    <string name="fragment_connection_hint_password">Mot de passe</string>
+    <string name="fragment_connection_forgot_password">Mot de passe oublié ?</string>
+    <string name="fragment_connection_create_account">Créer un compte</string>
+
+    <!-- Connection fragment -->
+    <string name="fragment_connection_title">Renseigne tes informations de connexion</string>
 
     <!-- ======================================================================================= -->
     <!-- ====================================== PROGRAMS ======================================= -->
@@ -16,8 +25,12 @@
     <!-- User program(s) -->
     <string name="fragment_user_programs_list_no_program_text">Aucun programme disponible</string>
     <string name="fragment_user_programs_list_nb_exercises_text">Nombre d\'exercises : %s</string>
+    <string name="fragment_user_programs_list_total_duration_exercises_text">Durée totale du programme: %s</string>
     <string name="fragment_user_programs_creation_type_exercise_text">Type de l\'exercise</string>
     <string name="fragment_user_programs_creation_duration_exercise_text">Durée de l\'exercise : %s</string>
+
+    <!-- User details program -->
+    <string name="fragment_user_details_program_start_button_text">Démarrer le programme</string>
 
     <!-- ======================================================================================= -->
     <!-- ====================================== EXERCISES ====================================== -->
@@ -151,6 +164,9 @@
     <!-- Generic toolbar -->
     <string name="generic_toolbar_about_title">A propos</string>
 
+    <!-- Buttons -->
+    <string name="generic_button_validate">Valider</string>
+
     <!-- Authentication toolbar -->
     <string name="toolbar_title_online_mode">Connexion</string>
     <string name="toolbar_title_not_connected_mode">Mode hors connexion</string>
@@ -190,7 +206,7 @@
     <string name="generic_error_retry_text">Réessayer</string>
     <string name="generic_error_give_up_text">Abandonner</string>
     <string name="generic_error_text">OUPS ! Tu as cassé une corde …</string>
-    <string name="generic_error_title_text">Erreur ...</string>
+    <string name="generic_error_title_text">Erreur …</string>
 
     <string name="wrong_login_error_value_from_API">WRONG LOGIN</string>
     <string name="snackbar_error_wrong_login">Authentification incorrecte</string>

@@ -34,6 +34,7 @@ public class ProgramEntityDataMapper {
         Program program = new Program();
         program.setIdProgram(programEntity.getIdProgram());
         program.setNameProgram(programEntity.getNameProgram());
+        program.setDescriptionProgram(programEntity.getDescriptionProgram());
         program.setDefaultProgram(programEntity.isDefaultProgram());
         program.setIdUser(programEntity.getIdUser());
 
@@ -70,6 +71,7 @@ public class ProgramEntityDataMapper {
 
         programEntity.setIdProgram(program.getIdProgram());
         programEntity.setNameProgram(program.getNameProgram());
+        programEntity.setDescriptionProgram(program.getDescriptionProgram());
         programEntity.setDefaultProgram(program.isDefaultProgram());
         programEntity.setIdUser(program.getIdUser());
 

@@ -26,8 +26,9 @@ public class UserProgramsListPresenter {
 
     private RetrieveProgramsListByUserId retrieveProgramsListByUserId;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
-    UserProgramsListPresenter(BaseNavigatorListener baseNavigatorListener, RetrieveProgramsListByUserId retrieveProgramsListByUserId) {
+    public UserProgramsListPresenter(BaseNavigatorListener baseNavigatorListener, RetrieveProgramsListByUserId retrieveProgramsListByUserId) {
         if (baseNavigatorListener instanceof UserPanelNavigatorListener) {
             this.userPanelNavigatorListener = (UserPanelNavigatorListener) baseNavigatorListener;
         }

@@ -5,4 +5,6 @@ import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorLis
 
 public interface UserProgramNavigatorListener extends BaseNavigatorListener {
     void requestDisplayProgramList();
+
+    void launchProgram(String idProgram);
 }

@@ -15,6 +15,9 @@ public class ProgramRemoteEntity {
     @SerializedName("nameProgram")
     private String nameProgram;
 
+    @SerializedName("descriptionProgram")
+    private String descriptionProgram;
+
     @SerializedName("defaultProgram")
     private boolean defaultProgram;
 
@@ -38,6 +41,14 @@ public class ProgramRemoteEntity {
 
     public void setNameProgram(String nameProgram) {
         this.nameProgram = nameProgram;
+    }
+
+    public String getDescriptionProgram() {
+        return descriptionProgram;
+    }
+
+    public void setDescriptionProgram(String descriptionProgram) {
+        this.descriptionProgram = descriptionProgram;
     }
 
     public boolean isDefaultProgram() {

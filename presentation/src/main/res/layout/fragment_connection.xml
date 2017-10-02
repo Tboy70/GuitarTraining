@@ -1,56 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     android:gravity="center_horizontal|center_vertical"
-    android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/fragment_connection_username_edit_text"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Nom d'utilisateur" />
-
-    <EditText
-        android:id="@+id/fragment_connection_password_edit_text"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Mot de passe" />
-
-    <android.support.v4.widget.Space
-        android:layout_width="wrap_content"
-        android:layout_height="50dp" />
-
-    <Button
-        android:id="@+id/fragment_connection_validate_button"
-        android:layout_width="@dimen/button_width_1"
-        android:layout_height="@dimen/button_height_1"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:text="VALIDER" />
-
-    <android.support.v4.widget.Space
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/space_height_1" />
+    android:orientation="vertical"
+    android:weightSum="100">
 
     <TextView
-        android:id="@+id/fragment_connection_forgot_password_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Mot de passe oublié ?"
-        android:textColor="@color/colorPrimary" />
-
-    <android.support.v4.widget.Space
         android:layout_width="wrap_content"
-        android:layout_height="20dp" />
-
-    <TextView
-        android:id="@+id/fragment_connection_already_have_account_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="35"
         android:gravity="center"
-        android:text="J'ai déjà un compte"
-        android:textColor="@color/colorPrimary" />
+        android:text="@string/fragment_connection_title"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/generic_title_text_size"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="32.5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/fragment_connection_username_edit_text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/fragment_connection_hint_username"/>
+
+        <EditText
+            android:id="@+id/fragment_connection_password_edit_text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/fragment_connection_hint_password"
+            android:inputType="textPassword"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="32.5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/fragment_connection_validate_button"
+            android:layout_width="@dimen/generic_button_width"
+            android:layout_height="@dimen/generic_button_height"
+            android:background="@drawable/button_drawable"
+            android:text="@string/generic_button_validate"
+            android:textColor="@android:color/white"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/generic_space_between_two_buttons"/>
+
+        <TextView
+            android:id="@+id/fragment_connection_forgot_password_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/fragment_connection_forgot_password"
+            android:textColor="@color/colorPrimary"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"/>
+
+        <TextView
+            android:id="@+id/fragment_connection_already_have_account_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/fragment_connection_create_account"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
 
 </LinearLayout>

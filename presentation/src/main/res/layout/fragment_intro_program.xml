@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -18,7 +19,7 @@
             android:id="@+id/fragment_intro_program_name_program_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="33"
+            android:layout_weight="15"
             android:gravity="center_horizontal"
             android:textColor="@android:color/black"
             android:textSize="@dimen/exercise_title_size"/>
@@ -27,21 +28,25 @@
             android:id="@+id/fragment_intro_program_description_program_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="33"
+            android:layout_weight="35"
+            android:gravity="center_vertical"
             android:textColor="@android:color/black"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            tool:text="TEST"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="33"
-            android:gravity="center_horizontal|top">
+            android:layout_weight="50"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/fragment_intro_program_start_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/generic_button_width"
+                android:layout_height="@dimen/generic_button_height"
+                android:background="@drawable/button_drawable"
                 android:text="@string/generic_exercise_start_program_text"
+                android:textColor="@android:color/white"
                 android:visibility="visible"/>
         </RelativeLayout>
 

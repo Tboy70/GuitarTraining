@@ -4,28 +4,23 @@ import com.example.data.entity.ExerciseEntity;
 import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
-import com.example.data.entity.remote.ExerciseRemoteEntity;
 import com.example.data.entity.remote.ProgramRemoteEntity;
 import com.example.data.entity.remote.TextRemoteEntity;
 import com.example.data.entity.remote.UserRemoteEntity;
 import com.example.data.mapper.db.ProgramDBEntityDataMapper;
 import com.example.data.mapper.remote.ExerciseRemoteEntityDataMapper;
 import com.example.data.mapper.remote.ProgramRemoteEntityDataMapper;
-import com.example.data.mapper.remote.TextRemoteEntityDataMapper;
 import com.example.data.mapper.remote.UserRemoteEntityDataMapper;
 import com.example.data.module.APIModule;
 import com.example.data.module.APIModuleRetrofitImpl;
 import com.example.data.module.db.ModuleDB;
 import com.example.data.module.db.ModuleDBFlowImpl;
-import com.example.model.Exercise;
-import com.example.model.User;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import retrofit2.Response;
 import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -42,7 +37,6 @@ public class APIClient {
     private ExerciseRemoteEntityDataMapper exerciseRemoteEntityDataMapper;
     private ProgramDBEntityDataMapper programDBEntityDataMapper;
     private UserRemoteEntityDataMapper userRemoteEntityDataMapper;
-    private TextRemoteEntityDataMapper textRemoteEntityDataMapper;
 
     @SuppressWarnings("WeakerAccess")
     @Inject
@@ -50,15 +44,13 @@ public class APIClient {
                      ProgramRemoteEntityDataMapper programRemoteEntityDataMapper,
                      ExerciseRemoteEntityDataMapper exerciseRemoteEntityDataMapper,
                      ProgramDBEntityDataMapper programDBEntityDataMapper,
-                     UserRemoteEntityDataMapper userRemoteEntityDataMapper,
-                     TextRemoteEntityDataMapper textRemoteEntityDataMapper) {
+                     UserRemoteEntityDataMapper userRemoteEntityDataMapper) {
         this.apiModule = apiModule;
         this.moduleDB = moduleDB;
         this.programRemoteEntityDataMapper = programRemoteEntityDataMapper;
         this.exerciseRemoteEntityDataMapper = exerciseRemoteEntityDataMapper;
         this.programDBEntityDataMapper = programDBEntityDataMapper;
         this.userRemoteEntityDataMapper = userRemoteEntityDataMapper;
-        this.textRemoteEntityDataMapper = textRemoteEntityDataMapper;
     }
 
     public Observable<ProgramEntity> getProgramFromId(String idProgram) {
@@ -66,15 +58,6 @@ public class APIClient {
             @Override
             public ProgramEntity call(ProgramRemoteEntity programRemoteEntity) {
                 return programRemoteEntityDataMapper.transformRemoteToEntity(programRemoteEntity);
-            }
-        });
-    }
-
-    public Observable<TextEntity> getTextIntroProgram(int idText) {
-        return apiModule.getTextIntroProgram(idText).map(new Func1<TextRemoteEntity, TextEntity>() {
-            @Override
-            public TextEntity call(TextRemoteEntity textRemoteEntity) {
-                return textRemoteEntityDataMapper.transformRemoteToEntity(textRemoteEntity);
             }
         });
     }
@@ -126,5 +109,9 @@ public class APIClient {
 
     public Observable<Boolean> createExercise(final List<ExerciseEntity> exerciseEntity) {
         return apiModule.createExercise(exerciseRemoteEntityDataMapper.transformEntityToRemoteList(exerciseEntity));
+    }
+
+    public Observable<Boolean> removeProgram(String idProgram) {
+        return apiModule.removeProgram(idProgram);
     }
 }

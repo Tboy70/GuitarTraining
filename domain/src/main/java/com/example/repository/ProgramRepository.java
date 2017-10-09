@@ -20,4 +20,6 @@ public interface ProgramRepository {
     Observable<Program> createProgram(Program program);
 
     Observable<Boolean> createExercise(List<Exercise> exercise);
+
+    Observable<Boolean> removeProgram(String idExercise);
 }

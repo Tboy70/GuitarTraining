@@ -14,4 +14,5 @@ public interface ExercisesTypeValues {
     int EXERCISE_TAPPING = 8;
     int EXERCISE_SWEEP_PICKING = 9;
     int EXERCISE_SPEED = 10;
+    int EXERCISE_EMPTY = -1;
 }

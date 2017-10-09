@@ -91,6 +91,11 @@ public class UserPanelActivity extends BaseActivity implements UserPanelNavigato
     }
 
     @Override
+    public void requestRenderErrorString(String error, int mode, View viewId) {
+
+    }
+
+    @Override
     public void displayProgramDetails(String programId) {
         userPanelNavigator.displayUserProgramDetails(programId);
     }

@@ -29,4 +29,6 @@ public interface APIModule {
     Observable<String> createProgram(ProgramRemoteEntity programRemoteEntity);
 
     Observable<Boolean> createExercise(List<ExerciseRemoteEntity> exerciseRemoteEntity);
+
+    Observable<Boolean> removeProgram(String idProgram);
 }

@@ -37,6 +37,7 @@ public class ProgramDBEntityDataMapper {
 
         programEntity.setIdProgram(programDBEntity.getIdProgram());
         programEntity.setNameProgram(programDBEntity.getNameProgram());
+        programEntity.setDescriptionProgram(programDBEntity.getDescriptionProgram());
         programEntity.setIdUser(programDBEntity.getIdUser());
         programEntity.setDefaultProgram(programDBEntity.isDefaultProgram());
         programEntity.setExerciseEntities(programDBEntity.getExercisesList());
@@ -49,6 +50,7 @@ public class ProgramDBEntityDataMapper {
 
         programDBEntity.setIdProgram(programEntity.getIdProgram());
         programDBEntity.setNameProgram(programEntity.getNameProgram());
+        programDBEntity.setDescriptionProgram(programEntity.getDescriptionProgram());
         programDBEntity.setIdUser(programEntity.getIdUser());
         programDBEntity.setDefaultProgram(programEntity.isDefaultProgram());
         programDBEntity.setExercisesList(programEntity.getExerciseEntities());

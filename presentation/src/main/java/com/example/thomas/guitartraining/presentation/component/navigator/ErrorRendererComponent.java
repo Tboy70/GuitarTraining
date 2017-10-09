@@ -38,6 +38,17 @@ public class ErrorRendererComponent {
         throwable.printStackTrace();
     }
 
+    public void displayErrorInFragmentView(String error, Context context, View view) {
+        if (view != null) {
+            Snackbar snackbar = Snackbar.make(view, error, Snackbar.LENGTH_LONG);
+            snackbar.setActionTextColor(Color.WHITE);
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_red_light));
+            View yourSnackBarView = snackbar.getView();
+            TextView textView = (TextView) yourSnackBarView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setMaxLines(3);
+            snackbar.show();
+        }
+    }
     public void displayError(Throwable throwable, Activity activity, int activityViewId) {
         Snackbar snackbar = Snackbar.make(activity.findViewById(activityViewId), ErrorUtils.translateException(activity.getApplicationContext(), throwable), Snackbar.LENGTH_LONG);
         snackbar.setActionTextColor(Color.WHITE);
@@ -47,5 +58,15 @@ public class ErrorRendererComponent {
         textView.setMaxLines(3);
         snackbar.show();
         throwable.printStackTrace();
+    }
+
+    public void displayErrorString(String error, Activity activity, int activityViewId) {
+        Snackbar snackbar = Snackbar.make(activity.findViewById(activityViewId), error, Snackbar.LENGTH_LONG);
+        snackbar.setActionTextColor(Color.WHITE);
+        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, android.R.color.holo_red_light));
+        View yourSnackBarView = snackbar.getView();
+        TextView textView = (TextView) yourSnackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setMaxLines(3);
+        snackbar.show();
     }
 }

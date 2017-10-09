@@ -32,6 +32,6 @@
         android:paddingEnd="@dimen/fragment_user_programs_list_nb_exercises_padding_end_start"
         android:paddingStart="@dimen/fragment_user_programs_list_nb_exercises_padding_end_start"
         android:textSize="@dimen/fragment_user_programs_list_subtitle_size"
-        tool:text="@string/fragment_user_programs_list_total_duration_exercises_text"/>
+        tool:text="@string/fragment_user_programs_list_total_duration_exercises_minutes_text"/>
 
 </LinearLayout>

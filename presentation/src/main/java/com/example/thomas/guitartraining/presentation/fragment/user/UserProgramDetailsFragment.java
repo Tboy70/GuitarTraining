@@ -8,12 +8,12 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.model.Exercise;
-import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
@@ -34,8 +34,12 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
 
     @BindView(R.id.fragment_user_program_details_name)
     TextView userProgramDetailsName;
+    @BindView(R.id.fragment_user_program_details_description)
+    TextView userProgramDetailsDescription;
     @BindView(R.id.fragment_user_program_details_exercises)
     FrameLayout userProgramDetailsExercises;
+    @BindView(R.id.fragment_user_program_details_remove_button)
+    Button userProgramDetailsRemoveButton;
 
     private static final String PROGRAM_ID = "com.example.thomas.guitartraining.presentation.fragment.user.PROGRAM_ID";
 
@@ -65,6 +69,9 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
         if (bundle != null) {
             if (bundle.containsKey(PROGRAM_ID)) {
                 programId = bundle.getString(PROGRAM_ID);
+                if (programId != null && (programId.equals("1") || programId.equals("2"))) {
+                    userProgramDetailsRemoveButton.setVisibility(View.GONE);
+                }
             }
         }
 
@@ -73,10 +80,24 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setToolbar(getActivity().getString(R.string.toolbar_title_details_program));
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public void displayUserProgramDetails(ProgramViewModel programViewModel) {
         userProgramDetailsName.setText(programViewModel.getProgram().getNameProgram());
+
+        String descriptionProgram = programViewModel.getProgram().getDescriptionProgram();
+        if (descriptionProgram.isEmpty()) {
+            userProgramDetailsDescription.setText(getActivity().getString(R.string.fragment_user_details_program_no_description_text));
+        } else {
+            userProgramDetailsDescription.setText(descriptionProgram);
+        }
 
         LinearLayout exercisesLinearLayout = new LinearLayout(getActivity());
         exercisesLinearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -109,5 +130,14 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
     @OnClick(R.id.fragment_user_program_details_start_button)
     public void handleClickUserProgramDetailsStartButton() {
         userProgramsListPresenter.launchProgram();
+    }
+
+    @OnClick(R.id.fragment_user_program_details_remove_button)
+    public void handleClickUserProgramDetailsRemoveButton() {
+        userProgramsListPresenter.removeProgram();
+    }
+
+    public void setToolbar(String toolbarTitle) {
+        userProgramsListPresenter.setToolbar(toolbarTitle);
     }
 }

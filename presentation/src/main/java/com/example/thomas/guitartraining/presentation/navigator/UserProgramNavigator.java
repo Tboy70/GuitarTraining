@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.view.View;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.di.PerActivity;
@@ -36,8 +37,7 @@ public class UserProgramNavigator extends BaseNavigator {
 
     public void displayProgramDetailsFragment(String programId) {
         fragmentTransactionReplace(UserProgramDetailsFragment.newInstance(programId));
-        // TODO: 21/09/2017 Change title toolbar
-        activity.setTitle("A CHANGER");
+        activity.setTitle(activity.getString(R.string.toolbar_title_details_program));
     }
 
     public void displayUserProgramEditionFragment(String programId) {

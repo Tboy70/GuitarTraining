@@ -2,6 +2,7 @@ package com.example.thomas.guitartraining.presentation.presenter.user;
 
 import android.util.Log;
 
+import com.example.interactor.exercise.RemoveProgram;
 import com.example.interactor.program.RetrieveProgramById;
 import com.example.model.Program;
 import com.example.thomas.guitartraining.di.PerActivity;
@@ -16,23 +17,26 @@ import rx.Subscriber;
 
 @PerActivity
 public class UserProgramDetailsPresenter {
-    
+
     private UserProgramDetailsView userProgramDetailsView;
 
     private UserProgramNavigatorListener userProgramNavigatorListener;
 
     private RetrieveProgramById retrieveProgramById;
+    private RemoveProgram removeProgram;
 
     private Program currentProgram;
 
     @Inject
-    UserProgramDetailsPresenter(BaseNavigatorListener baseNavigatorListener, RetrieveProgramById retrieveProgramById) {
+    UserProgramDetailsPresenter(BaseNavigatorListener baseNavigatorListener, RetrieveProgramById retrieveProgramById,
+                                RemoveProgram removeProgram) {
         if (baseNavigatorListener instanceof UserProgramNavigatorListener) {
             this.userProgramNavigatorListener = (UserProgramNavigatorListener) baseNavigatorListener;
         }
         this.retrieveProgramById = retrieveProgramById;
+        this.removeProgram = removeProgram;
     }
-    
+
     public void setUserProgramDetailsView(UserProgramDetailsView userProgramDetailsView) {
         this.userProgramDetailsView = userProgramDetailsView;
     }
@@ -48,7 +52,7 @@ public class UserProgramDetailsPresenter {
             @Override
             public void onError(Throwable t) {
                 // TODO : HANDLE ERROR !
-                 Log.e("TEST", "onError: ");
+                Log.e("TEST", "onError: ");
             }
 
             @Override
@@ -61,5 +65,30 @@ public class UserProgramDetailsPresenter {
 
     public void launchProgram() {
         userProgramNavigatorListener.launchProgram(currentProgram.getIdProgram());
+    }
+
+    public void setToolbar(String toolbarTitle) {
+        userProgramNavigatorListener.setUserProgramToolbar(toolbarTitle);
+    }
+
+    public void removeProgram() {
+        removeProgram.execute(new Subscriber<Boolean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                // TODO: 03/10/2017 Handle error
+            }
+
+            @Override
+            public void onNext(Boolean success) {
+                if (success) {
+                    userProgramNavigatorListener.requestDisplayProgramList();
+                }
+            }
+        }, RemoveProgram.Params.forSuppression(currentProgram.getIdProgram()));
     }
 }

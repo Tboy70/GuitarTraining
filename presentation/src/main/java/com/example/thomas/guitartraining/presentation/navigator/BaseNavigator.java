@@ -26,4 +26,12 @@ public abstract class BaseNavigator {
             }
         }
     }
+
+    public void renderErrorString(String error, int mode, View view) {
+        if (view != null) {
+            errorRendererComponent.displayErrorInFragmentView(error, activity, view);
+        } else {
+            errorRendererComponent.displayErrorString(error, activity, activityViewId);
+        }
+    }
 }

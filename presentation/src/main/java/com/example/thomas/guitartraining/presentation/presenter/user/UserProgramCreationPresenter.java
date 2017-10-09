@@ -14,6 +14,7 @@ import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.activity.listener.UserProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
 import com.example.thomas.guitartraining.presentation.component.presenter.MaterialDialogComponent;
 import com.example.thomas.guitartraining.presentation.component.presenter.listener.SingleChoiceMaterialDialogListener;
 import com.example.thomas.guitartraining.presentation.listener.AddExerciseListener;
@@ -22,7 +23,9 @@ import com.example.thomas.guitartraining.presentation.view.user.UserProgramCreat
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -86,44 +89,56 @@ public class UserProgramCreationPresenter {
         });
     }
 
-    public void validateCreation(String nameProgram, final SparseIntArray exercises) {
-        // TODO: 24/09/2017 Faire un useCase pour récupérer l'id user dans les shared prefs
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    public void checkInformationAndValidateCreation(String nameProgram, String descriptionProgram, final Map<Integer, String> exercises) {
+        if (checkInformation(nameProgram, exercises)) {
+            // TODO: 24/09/2017 Faire un useCase pour récupérer l'id user dans les shared prefs
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        Program program = new Program();
-        program.setNameProgram(nameProgram);
-        program.setDefaultProgram(false);
-        program.setIdUser(prefs.getString(ModuleSharedPrefsImpl.CURRENT_USER_ID, "0"));
+            Program program = new Program();
+            program.setNameProgram(nameProgram);
+            program.setDescriptionProgram(descriptionProgram);
+            program.setDefaultProgram(false);
+            program.setIdUser(prefs.getString(ModuleSharedPrefsImpl.CURRENT_USER_ID, "0"));
 
-        createProgram.execute(new Subscriber<Program>() {
-            @Override
-            public void onCompleted() {
+            createProgram.execute(new Subscriber<Program>() {
+                @Override
+                public void onCompleted() {
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                Log.e("TEST", "onError: ");
-            }
+                @Override
+                public void onError(Throwable e) {
+                    // TODO: 03/10/2017 Handle error
+                    Log.e("TEST", "onError: ");
+                }
 
-            @Override
-            public void onNext(Program program) {
-                setCreatedExercisesToCreatedProgram(program.getIdProgram(), exercises);
-            }
-        }, CreateProgram.Params.forCreation(program));
+                @Override
+                public void onNext(Program program) {
+                    // TODO: Normalement, pas de use case enchaînés !
+                    setCreatedExercisesToCreatedProgram(program.getIdProgram(), exercises);
+                }
+            }, CreateProgram.Params.forCreation(program));
+        } else {
+            userProgramNavigatorListener.requestRenderErrorString(context.getString(R.string.snackbar_error_wrong_information), ErrorRendererComponent.ERROR_DISPLAY_MODE_SNACKBAR, null);
+        }
     }
 
+    public void setToolbar(String toolbarTitle) {
+        userProgramNavigatorListener.setUserProgramToolbar(toolbarTitle);
+    }
 
-    private void setCreatedExercisesToCreatedProgram(final String idProgram, final SparseIntArray exercises) {
+    private void setCreatedExercisesToCreatedProgram(final String idProgram, final Map<Integer, String> exercises) {
         List<Exercise> exercisesList = new ArrayList<>();
-        for (int i = 0; i < exercises.size(); i++) {
+
+        Iterator it = exercises.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
             Exercise exercise = new Exercise();
             exercise.setIdProgram(idProgram);
-            int key = exercises.keyAt(i);
-            exercise.setTypeExercise(key);
-            exercise.setDurationExercise(exercises.get(key));
-
+            exercise.setTypeExercise((Integer)pair.getKey());
+            exercise.setDurationExercise(Integer.valueOf((String)pair.getValue()));
             exercisesList.add(exercise);
+            it.remove(); // avoids a ConcurrentModificationException
         }
 
         createExercise.execute(new Subscriber<Boolean>() {
@@ -150,5 +165,22 @@ public class UserProgramCreationPresenter {
     private void displaySelectedChoice(AddExerciseListener addExerciseListener) {
         addExerciseListener.onExerciseChosen(selectedItem);
         addExerciseListener.onAllInformationCompleted();
+    }
+
+    private boolean checkInformation(String nameProgram, Map<Integer, String> exercises) {
+        if (nameProgram == null || nameProgram.isEmpty()) {
+            return false;
+        } else {
+            Iterator it = exercises.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                if ((Integer)pair.getKey() == -1) {
+                    return false;
+                } else if (((String)pair.getValue()).isEmpty() || !((String)pair.getValue()).trim().matches("^[0-9]*$")) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

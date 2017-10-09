@@ -87,7 +87,6 @@ public class ProgramActivity extends BaseActivity implements ProgramNavigatorLis
         if (toolbarTitle != null) {
             toolbar.setTitle(toolbarTitle);
         }
-
     }
 
     @Override
@@ -108,6 +107,11 @@ public class ProgramActivity extends BaseActivity implements ProgramNavigatorLis
 
     @Override
     public void requestRenderError(Throwable e, int mode, View viewId) {
+    }
+
+    @Override
+    public void requestRenderErrorString(String error, int mode, View viewId) {
+
     }
 
     private void displayQuitProgramDialogFragment(Activity activity) {

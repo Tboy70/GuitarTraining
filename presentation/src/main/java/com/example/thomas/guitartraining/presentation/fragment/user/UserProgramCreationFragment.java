@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.data.values.ExercisesTypeValues;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.listener.AddExerciseListener;
 import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramCreationPresenter;
+import com.example.thomas.guitartraining.presentation.utils.ExerciseUtils;
 import com.example.thomas.guitartraining.presentation.view.user.UserProgramCreationView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -30,11 +29,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
 public class UserProgramCreationFragment extends Fragment implements UserProgramCreationView {
 
     @BindView(R.id.fragment_user_program_creation_name)
     EditText userProgramCreationName;
+    @BindView(R.id.fragment_user_program_creation_description)
+    EditText userProgramCreationDescription;
     @BindView(R.id.fragment_user_program_creation_exercises)
     LinearLayout userProgramCreationExercisesLayout;
     @BindView(R.id.fragment_user_program_creation_add_exercise)
@@ -72,6 +72,13 @@ public class UserProgramCreationFragment extends Fragment implements UserProgram
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setToolbar(getActivity().getString(R.string.toolbar_title_creation_program));
+    }
+
     @OnClick(R.id.fragment_user_program_creation_add_exercise)
     public void handleClickUserProgramAddExercise() {
         userProgramCreationPresenter.requestAddExercise();
@@ -79,52 +86,18 @@ public class UserProgramCreationFragment extends Fragment implements UserProgram
 
     @OnClick(R.id.fragment_user_program_creation_validation)
     public void handleClickUserProgramValidation() {
-
-        int viewCounter = 0;
-
-        SparseIntArray exercises = new SparseIntArray();
+        // TODO : Check sparse array
+        Map<Integer, String> exercises = new HashMap<>();
 
         for (int i = 0; i < userProgramCreationExercisesLayout.getChildCount(); i++) {
             if (i % NB_ITEMS_BY_VIEW == 0) {
-                exercises.append(
-                        getTypeExerciseIdByName(((Button) userProgramCreationExercisesLayout.getChildAt(i)).getText().toString()),
-                        Integer.valueOf(((EditText) userProgramCreationExercisesLayout.getChildAt(i+1)).getText().toString()
-                        ));
+                exercises.put(
+                        ExerciseUtils.getTypeExerciseIdByName(((Button) userProgramCreationExercisesLayout.getChildAt(i)).getText().toString(),
+                                getActivity()),
+                                ((EditText) userProgramCreationExercisesLayout.getChildAt(i + 1)).getText().toString());
             }
-//            if (i % NB_ITEMS_BY_VIEW == 0) {   // Champ "type de l'exercise"
-//                typeExercises.add(viewCounter, getTypeExerciseIdByName(((Button) userProgramCreationExercisesLayout.getChildAt(i)).getText().toString()));
-//            } else {    // Champ "durée de l'exercise"
-//                durationExercises.add(viewCounter, Integer.valueOf(((EditText) userProgramCreationExercisesLayout.getChildAt(i)).getText().toString()));
-//            }
         }
-        userProgramCreationPresenter.validateCreation(userProgramCreationName.getText().toString(), exercises);
-    }
-
-    // TODO: 24/09/2017 Externalize this method ! --> See if it's not possible with enum
-    private int getTypeExerciseIdByName(String nameExercise) {
-        if (nameExercise.equals(getString(R.string.exercise_scale_title_text))) {
-            return ExercisesTypeValues.EXERCISE_SCALE;
-        } else if (nameExercise.equals(getString(R.string.exercise_mode_title_text))) {
-            return ExercisesTypeValues.EXERCISE_MODE;
-        } else if (nameExercise.equals(getString(R.string.exercise_pull_off_hammer_on_title_text))) {
-            return ExercisesTypeValues.EXERCISE_PULL_OFF_HAMMER_ON;
-        } else if (nameExercise.equals(getString(R.string.exercise_bend_slide_title_text))) {
-            return ExercisesTypeValues.EXERCISE_BEND_SLIDE;
-        } else if (nameExercise.equals(getString(R.string.exercise_back_forth_title_text))) {
-            return ExercisesTypeValues.EXERCISE_BACK_FORTH;
-        } else if (nameExercise.equals(getString(R.string.exercise_palm_mute_title_text))) {
-            return ExercisesTypeValues.EXERCISE_PALM_MUTE;
-        } else if (nameExercise.equals(getString(R.string.exercise_skip_string_title_text))) {
-            return ExercisesTypeValues.EXERCISE_SKIP_STRING;
-        } else if (nameExercise.equals(getString(R.string.exercise_tapping_title_text))) {
-            return ExercisesTypeValues.EXERCISE_TAPPING;
-        } else if (nameExercise.equals(getString(R.string.exercise_sweep_picking_title_text))) {
-            return ExercisesTypeValues.EXERCISE_SWEEP_PICKING;
-        } else if (nameExercise.equals(getString(R.string.exercise_speed_title_text))) {
-            return ExercisesTypeValues.EXERCISE_SPEED;
-        } else {
-            return ExercisesTypeValues.EXERCISE_SCALE; // TODO: 24/09/2017  Change that !
-        }
+        userProgramCreationPresenter.checkInformationAndValidateCreation(userProgramCreationName.getText().toString(), userProgramCreationDescription.getText().toString(), exercises);
     }
 
     @Override
@@ -134,6 +107,10 @@ public class UserProgramCreationFragment extends Fragment implements UserProgram
 
         userProgramCreationExercisesLayout.addView(buttonTypeExercise);
         userProgramCreationExercisesLayout.addView(durationExercise);
+    }
+
+    public void setToolbar(String toolbarTitle) {
+        userProgramCreationPresenter.setToolbar(toolbarTitle);
     }
 
     private void createUIViews() {

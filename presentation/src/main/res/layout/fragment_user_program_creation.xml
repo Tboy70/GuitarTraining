@@ -8,7 +8,17 @@
         android:id="@+id/fragment_user_program_creation_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"/>
+        android:hint="@string/fragment_user_programs_creation_name_program_hint"
+        android:inputType="text"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/fragment_user_program_creation_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/fragment_user_programs_creation_description_program_hint"
+        android:inputType="text"
+        android:maxLines="1"/>
 
     <LinearLayout
         android:id="@+id/fragment_user_program_creation_exercises"
@@ -20,12 +30,12 @@
         android:id="@+id/fragment_user_program_creation_add_exercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajouter un exercise"/>
+        android:text="@string/fragment_user_programs_creation_add_exercise_text"/>
 
     <Button
         android:id="@+id/fragment_user_program_creation_validation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Créer"/>
+        android:text="@string/fragment_user_programs_creation_button_validate_text"/>
 
 </LinearLayout>

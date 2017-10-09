@@ -1,6 +1,5 @@
 package com.example.data.repository;
 
-import com.example.data.entity.ExerciseEntity;
 import com.example.data.entity.ProgramEntity;
 import com.example.data.mapper.ExerciseEntityDataMapper;
 import com.example.data.mapper.ProgramEntityDataMapper;
@@ -74,5 +73,10 @@ public class ProgramDataRepository implements ProgramRepository {
     @Override
     public Observable<Boolean> createExercise(List<Exercise> exercise) {
         return apiClient.createExercise(exerciseEntityDataMapper.transformModelToEntityList(exercise));
+    }
+
+    @Override
+    public Observable<Boolean> removeProgram(String idExercise) {
+        return apiClient.removeProgram(idExercise);
     }
 }

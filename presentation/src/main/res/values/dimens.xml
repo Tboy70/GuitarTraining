@@ -2,6 +2,7 @@
 <resources>
 
     <!-- Generic dimens -->
+    <dimen name="generic_margin">10dp</dimen>
     <dimen name="generic_button_width">250dp</dimen>
     <dimen name="generic_button_height">45dp</dimen>
     <dimen name="generic_padding_size_1">25dp</dimen>
@@ -37,7 +38,7 @@
     <dimen name="fragment_user_programs_list_icon_placeholder_padding_bottom">16dp</dimen>
 
     <!-- User program details -->
-    <dimen name="fragment_user_programs_details_padding_end_start">20dp</dimen>
     <dimen name="fragment_user_programs_details_title_size">18sp</dimen>
+    <dimen name="fragment_user_programs_details_padding_end_start">20dp</dimen>
 
 </resources>

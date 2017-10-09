@@ -5,7 +5,6 @@ import com.example.data.entity.remote.ProgramRemoteEntity;
 import com.example.data.entity.remote.TextRemoteEntity;
 import com.example.data.entity.remote.UserRemoteEntity;
 import com.example.data.entity.remote.program.ProgramResponseRemoteEntity;
-import com.example.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -21,8 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -37,7 +35,8 @@ import rx.schedulers.Schedulers;
 public class APIModuleRetrofitImpl implements APIModule {
 
     // The base url to connect to the API.
-    private static final String BASE_URL = "http://192.168.0.29/guitar_api/public/";
+//    private static final String BASE_URL = "http://192.168.0.29/guitar_api/public/"; // BOX
+    private static final String BASE_URL = "http://192.168.43.235/guitar_api/public/"; // 4G
 
     // Interface declared below.
     private APIServiceInterface apiService;
@@ -105,6 +104,16 @@ public class APIModuleRetrofitImpl implements APIModule {
         });
     }
 
+    @Override
+    public Observable<Boolean> removeProgram(String idProgram) {
+        return apiService.removeProgram(idProgram).map(new Func1<Response<Void>, Boolean>() {
+            @Override
+            public Boolean call(Response<Void> voidResponse) {
+                return voidResponse.isSuccessful();
+            }
+        });
+    }
+
     /**
      * Interface containing methods with access path to the API.
      */
@@ -149,5 +158,8 @@ public class APIModuleRetrofitImpl implements APIModule {
 
         @POST("exercise")
         Observable<Response<Void>> createExercise(@Body List<ExerciseRemoteEntity> exerciseRemoteEntity);
+
+        @DELETE("program/{idProgram}")
+        Observable<Response<Void>> removeProgram(@Path("idProgram") String idProgram);
     }
 }

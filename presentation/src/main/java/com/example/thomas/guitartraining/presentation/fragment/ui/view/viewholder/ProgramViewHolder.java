@@ -49,11 +49,22 @@ public class ProgramViewHolder extends RecyclerView.ViewHolder {
                 context.getString(R.string.fragment_user_programs_list_nb_exercises_text),
                 String.valueOf(programViewModel.getProgram().getExercises().size())));
 
-        viewUserProgramsListItemTotalDurationExercises.setText(String.format(
-                Locale.FRANCE,
-                context.getString(R.string.fragment_user_programs_list_total_duration_exercises_text),
-                String.valueOf(calculateTotalDurationProgram(programViewModel))
-        ));
+        int totalDurationProgram = calculateTotalDurationProgram(programViewModel);
+        if (totalDurationProgram < 60) {
+            viewUserProgramsListItemTotalDurationExercises.setText(String.format(
+                    Locale.FRANCE,
+                    context.getString(R.string.fragment_user_programs_list_total_duration_exercises_minutes_text),
+                    String.valueOf(calculateTotalDurationProgram(programViewModel))
+            ));
+        } else {
+            int hours = totalDurationProgram / 60;
+            int minutes = totalDurationProgram % 60;
+            viewUserProgramsListItemTotalDurationExercises.setText(String.format(
+                    Locale.FRANCE,
+                    context.getString(R.string.fragment_user_programs_list_total_duration_exercises_hours_text),
+                    String.valueOf(hours), String.valueOf(minutes))
+            );
+        }
 
         currentView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@ package com.example.thomas.guitartraining.presentation.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -41,16 +42,6 @@ public class UserProgramActivity extends BaseActivity implements UserProgramNavi
     }
 
     @Override
-    public void requestDisplayProgramList() {
-        userProgramNavigator.restoreUserPanelActivity();
-    }
-
-    @Override
-    public void launchProgram(String idProgram) {
-        userProgramNavigator.requestLaunchProgram(idProgram);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_program);
@@ -79,12 +70,45 @@ public class UserProgramActivity extends BaseActivity implements UserProgramNavi
             case UserProgramNavigator.FRAGMENT_USER_PROGRAM_EDITION:
                 userProgramNavigator.displayUserProgramEditionFragment(programId);
         }
+    }
 
+    @Override
+    public void requestDisplayProgramList() {
+        userProgramNavigator.restoreUserPanelActivity();
+    }
+
+    @Override
+    public void launchProgram(String idProgram) {
+        userProgramNavigator.requestLaunchProgram(idProgram);
+    }
+
+    @Override
+    public void setUserProgramToolbar(String toolbarTitle) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_user_program_toolbar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, android.R.color.white));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        if (toolbarTitle != null) {
+            toolbar.setTitle(toolbarTitle);
+        }
     }
 
     @Override
     public void requestRenderError(Throwable e, int mode, View viewId) {
 
+    }
+
+    @Override
+    public void requestRenderErrorString(String error, int mode, View view) {
+        userProgramNavigator.renderErrorString(error, mode, view);
     }
 
     private void setFragmentManager() {

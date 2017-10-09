@@ -21,6 +21,7 @@ public class UserProgramPresenter {
             this.userProgramNavigatorListener = (UserProgramNavigatorListener) baseNavigatorListener;
         }
     }
+
     public void setUserProgramView(UserProgramView userProgramView) {
         this.userProgramView = userProgramView;
     }

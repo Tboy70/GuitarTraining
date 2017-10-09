@@ -7,4 +7,6 @@ public interface UserProgramNavigatorListener extends BaseNavigatorListener {
     void requestDisplayProgramList();
 
     void launchProgram(String idProgram);
+
+    void setUserProgramToolbar(String toolbarTitle);
 }

@@ -55,6 +55,11 @@ public class NotConnectedActivity extends BaseActivity implements NotConnectedNa
         // TODO ?
     }
 
+    @Override
+    public void requestRenderErrorString(String error, int mode, View viewId) {
+
+    }
+
     private void launchDefaultProgramChoice() {
         notConnectedNavigator.launchDefaultProgramChoice(this);
     }

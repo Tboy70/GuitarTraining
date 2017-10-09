@@ -52,6 +52,11 @@ public class LoginActivity extends BaseActivity implements LoginNavigatorListene
         loginNavigator.renderError(throwable, mode, viewId);
     }
 
+    @Override
+    public void requestRenderErrorString(String error, int mode, View viewId) {
+
+    }
+
     private void launchConnectionScreen() {
         loginNavigator.launchConnectionScreen(this);
     }

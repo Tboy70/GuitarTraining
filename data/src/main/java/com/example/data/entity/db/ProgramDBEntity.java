@@ -20,6 +20,9 @@ public class ProgramDBEntity extends BaseModel {
     private String nameProgram;
 
     @Column
+    private String descriptionProgram;
+
+    @Column
     private String idUser;
 
     @Column
@@ -42,6 +45,14 @@ public class ProgramDBEntity extends BaseModel {
 
     public void setNameProgram(String nameProgram) {
         this.nameProgram = nameProgram;
+    }
+
+    public String getDescriptionProgram() {
+        return descriptionProgram;
+    }
+
+    public void setDescriptionProgram(String descriptionProgram) {
+        this.descriptionProgram = descriptionProgram;
     }
 
     public String getIdUser() {

@@ -106,10 +106,15 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
     public void updateUISuccess(Program program) {
         introProgramName.setText(program.getNameProgram());
 
+        String descriptionProgram = program.getDescriptionProgram();
+        if (descriptionProgram.isEmpty()) {
+            descriptionProgram = getActivity().getString(R.string.fragment_user_details_program_no_description_text);
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            introProgramDescription.setText(Html.fromHtml(program.getDescriptionProgram(), Html.FROM_HTML_MODE_COMPACT));
+            introProgramDescription.setText(Html.fromHtml(descriptionProgram, Html.FROM_HTML_MODE_COMPACT));
         } else {
-            introProgramDescription.setText((Html.fromHtml(program.getDescriptionProgram())));
+            introProgramDescription.setText((Html.fromHtml(descriptionProgram)));
         }
 
         programExercisesList = program.getExercises();

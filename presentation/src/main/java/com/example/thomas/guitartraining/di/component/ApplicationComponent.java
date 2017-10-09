@@ -5,7 +5,6 @@ import android.content.Context;
 import com.example.executor.PostExecutionThread;
 import com.example.executor.ThreadExecutor;
 import com.example.repository.ProgramRepository;
-import com.example.repository.TextRepository;
 import com.example.repository.UserRepository;
 import com.example.thomas.guitartraining.di.module.ApplicationModule;
 
@@ -22,8 +21,6 @@ public interface ApplicationComponent {
     Context context();
 
     UserRepository userRepository();
-
-    TextRepository textRepository();
 
     ProgramRepository programRepository();
 

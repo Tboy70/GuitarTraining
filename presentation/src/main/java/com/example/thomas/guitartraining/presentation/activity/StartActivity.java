@@ -72,6 +72,11 @@ public class StartActivity extends BaseActivity implements StartNavigatorListene
     public void requestRenderError(Throwable e, int mode, View viewId) {
     }
 
+    @Override
+    public void requestRenderErrorString(String error, int mode, View viewId) {
+
+    }
+
     private void launchAuthenticationModeChoice() {
         startNavigator.launchAuthenticationModeChoiceFragment(this);
     }

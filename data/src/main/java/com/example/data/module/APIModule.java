@@ -1,5 +1,6 @@
 package com.example.data.module;
 
+import com.example.data.entity.ProgramEntity;
 import com.example.data.entity.remote.ExerciseRemoteEntity;
 import com.example.data.entity.remote.ProgramRemoteEntity;
 import com.example.data.entity.remote.TextRemoteEntity;
@@ -20,8 +21,6 @@ public interface APIModule {
 
     Observable<UserRemoteEntity> connectUser(UserRemoteEntity userRemoteEntity);
 
-    Observable<TextRemoteEntity> getTextIntroProgram(int idText);
-
     Observable<ProgramRemoteEntity> getProgramById(String idProgram);
 
     Observable<List<ProgramRemoteEntity>> retrieveProgramsListByUserId(String userId);
@@ -31,4 +30,10 @@ public interface APIModule {
     Observable<Boolean> createExercise(List<ExerciseRemoteEntity> exerciseRemoteEntity);
 
     Observable<Boolean> removeProgram(String idProgram);
+
+    Observable<Boolean> updateProgram(ProgramRemoteEntity programRemoteEntity);
+
+    Observable<Boolean> updateExercises(List<ExerciseRemoteEntity> exerciseRemoteEntities);
+
+    Observable<Boolean> removeExercises(List<ExerciseRemoteEntity> exercisesRemoteEntitiesToBeRemoved);
 }

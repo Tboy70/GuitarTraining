@@ -37,7 +37,7 @@ public class StartActivity extends BaseActivity implements StartNavigatorListene
     @Override
     protected void onStart() {
         super.onStart();
-        launchAuthenticationModeChoice();
+        getUserPrefIsConnected();
         setToolbar();
     }
 
@@ -69,6 +69,15 @@ public class StartActivity extends BaseActivity implements StartNavigatorListene
     }
 
     @Override
+    public void launchRightScreen(String idUser) {
+        if (idUser == null || idUser.isEmpty()) {
+            startNavigator.launchLoginActivity(this);
+        } else {
+            startNavigator.launchUserPanelActivity(this);
+        }
+    }
+
+    @Override
     public void requestRenderError(Throwable e, int mode, View viewId) {
     }
 
@@ -77,7 +86,8 @@ public class StartActivity extends BaseActivity implements StartNavigatorListene
 
     }
 
-    private void launchAuthenticationModeChoice() {
+    private void getUserPrefIsConnected() {
+        startPresenter.getUserPrefIsConnected();
         startNavigator.launchAuthenticationModeChoiceFragment(this);
     }
 

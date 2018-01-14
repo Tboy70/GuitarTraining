@@ -29,15 +29,24 @@
     <string name="fragment_user_programs_list_no_program_text">Aucun programme disponible</string>
     <string name="fragment_user_programs_list_nb_exercises_text">Nombre d\'exercises : %s</string>
     <string name="fragment_user_programs_creation_type_exercise_text">Type de l\'exercise</string>
+    <string name="fragment_user_programs_creation_duration_exercise_hint">Durée de l\'exercise</string>
     <string name="fragment_user_programs_creation_duration_exercise_text">Durée de l\'exercise : %s</string>
     <string name="fragment_user_programs_creation_description_program_hint">Description du programme</string>
     <string name="fragment_user_programs_list_total_duration_exercises_minutes_text">Durée totale du programme: %s minutes</string>
     <string name="fragment_user_programs_list_total_duration_exercises_hours_text">Durée totale du programme: %1$s heure(s) et %2$s minutes</string>
 
     <!-- User details program -->
+    <string name="fragment_user_details_program_exercises_text">Exercices</string>
     <string name="fragment_user_details_program_no_description_text">Pas de description</string>
     <string name="fragment_user_details_program_start_button_text">Démarrer le programme</string>
+    <string name="fragment_user_details_program_update_button_text">Modifier le programme</string>
     <string name="fragment_user_details_program_remove_button_text">Supprimer le programme</string>
+    <string name="fragment_user_details_duration_exercise_minutes_txt">%1$s minutes</string>
+    <string name="fragment_user_details_duration_exercise_hours_txt">%1$s heures %2$s minutes</string>
+
+    <!-- user program update -->
+    <string name="fragment_user_details_update_exercises_text">Exercices</string>
+    <string name="fragment_user_update_program_start_button_text">Valider</string>
 
     <!-- ======================================================================================= -->
     <!-- ====================================== EXERCISES ====================================== -->
@@ -151,6 +160,10 @@
     <string name="generic_dialog_quit_confirmation">Es-tu sûr de vouloir quitter ?</string>
     <string name="generic_dialog_on_back_pressed">Es-tu certain de vouloir quitter l\'application ?</string>
 
+    <!-- Dialog login -->
+    <string name="login_dialog_title">Connexion en cours …</string>
+    <string name="login_dialog_content">Veuillez patientez …</string>
+
     <!-- Dialog program -->
     <string name="dialog_program_loading_title">Chargement du programme</string>
     <string name="dialog_program_loading_description">Récupération des données … Accorde toi en attendant !</string>
@@ -222,6 +235,7 @@
     <string name="snackbar_error_wrong_information">Informations invalides</string>
 
     <string name="snackbar_error_unknown_error">Erreur inconnue</string>
+    <string name="snackbar_error_connection_problem">Problème de connexion internet</string>
 
     <!-- ======================================================================================= -->
     <!-- ====================================== OTHERS ========================================= -->

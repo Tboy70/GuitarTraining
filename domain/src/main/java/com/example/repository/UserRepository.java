@@ -12,4 +12,6 @@ public interface UserRepository {
     Observable<Boolean> setIdUserInSharedPrefs(String idUser);
 
     Observable<User> connectUser(User user);
+
+    Observable<String> getIdInSharedPrefs();
 }

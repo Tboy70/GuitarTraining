@@ -64,7 +64,8 @@ public class ConnectionFragment extends Fragment implements ConnectionView {
     @OnClick(R.id.fragment_connection_validate_button)
     public void handleClickValidateLogin() {
         KeyboardUtils.hideKeyboard(getActivity());
-        connectionPresenter.connectUser(String.valueOf(connectionUsernameEditText.getText()), String.valueOf(connectionPasswordEditText.getText()));
+        connectionPresenter.connectUser(this.getActivity(),
+                String.valueOf(connectionUsernameEditText.getText()), String.valueOf(connectionPasswordEditText.getText()));
     }
 
 }

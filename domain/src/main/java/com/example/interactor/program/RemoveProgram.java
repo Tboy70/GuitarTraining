@@ -1,4 +1,4 @@
-package com.example.interactor.exercise;
+package com.example.interactor.program;
 
 import com.example.executor.PostExecutionThread;
 import com.example.executor.ThreadExecutor;

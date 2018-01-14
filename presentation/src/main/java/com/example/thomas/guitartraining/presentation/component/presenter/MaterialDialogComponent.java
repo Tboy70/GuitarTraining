@@ -17,6 +17,7 @@ import javax.inject.Inject;
 public class MaterialDialogComponent {
 
     private Activity activity;
+    private MaterialDialog materialDialog;
 
     @SuppressWarnings("WeakerAccess")
     @Inject
@@ -27,7 +28,7 @@ public class MaterialDialogComponent {
     public void showSingleChoiceDialog(String title, final List<String> items, String selectedItem, int color, boolean cancelable,
                                        final SingleChoiceMaterialDialogListener singleChoiceMaterialDialogListener) {
         int selectedIndex = getSelectedItemIndex(items, selectedItem);
-        MaterialDialog materialDialog = new MaterialDialog.Builder(activity)
+        materialDialog = new MaterialDialog.Builder(activity)
                 .title(title)
                 .items(items)
                 .itemsCallbackSingleChoice(selectedIndex, new MaterialDialog.ListCallbackSingleChoice() {
@@ -65,7 +66,7 @@ public class MaterialDialogComponent {
     }
 
     public void showConfirmationDialog(final Activity activity, String title, String content, int color) {
-        new MaterialDialog.Builder(activity)
+        materialDialog = new MaterialDialog.Builder(activity)
                 .title(title)
                 .content(content)
                 .positiveText(activity.getString(android.R.string.yes))
@@ -87,9 +88,9 @@ public class MaterialDialogComponent {
                 .show();
     }
 
-    public MaterialDialog showProgressDialog(Activity activity, String title, String content, int color) {
+    public void showProgressDialog(Activity activity, String title, String content, int color) {
 
-        return new MaterialDialog.Builder(activity)
+        materialDialog = new MaterialDialog.Builder(activity)
                 .title(title)
                 .content(content)
                 .progress(true, 0)
@@ -98,7 +99,7 @@ public class MaterialDialogComponent {
     }
 
     public void showSingleDialog(Activity activity, String title, String content, String dismissText, int color) {
-        new MaterialDialog.Builder(activity)
+        materialDialog = new MaterialDialog.Builder(activity)
                 .title(title)
                 .content(content)
                 .negativeText(dismissText)
@@ -110,5 +111,9 @@ public class MaterialDialogComponent {
                     }
                 })
                 .show();
+    }
+
+    public void dismissDialog() {
+        materialDialog.dismiss();
     }
 }

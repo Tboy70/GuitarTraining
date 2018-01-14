@@ -69,7 +69,7 @@ public class UserProgramsListFragment extends Fragment implements UserProgramsLi
         initRecyclerView();
 
         this.idUser = userProgramsListPresenter.getIdUser(getActivity());
-        userProgramsListPresenter.retrieveProgramsListByUserId(idUser);
+//        userProgramsListPresenter.retrieveProgramsListByUserId(idUser);
 
         return rootView;
     }
@@ -77,6 +77,12 @@ public class UserProgramsListFragment extends Fragment implements UserProgramsLi
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        userProgramsListPresenter.retrieveProgramsListByUserId(idUser);
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.listener.UserProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
 import com.example.thomas.guitartraining.presentation.navigator.UserProgramNavigator;
 import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramPresenter;
 import com.example.thomas.guitartraining.presentation.view.user.UserProgramView;
@@ -99,6 +100,11 @@ public class UserProgramActivity extends BaseActivity implements UserProgramNavi
         if (toolbarTitle != null) {
             toolbar.setTitle(toolbarTitle);
         }
+    }
+
+    @Override
+    public void displayUserProgramUpdate(ProgramViewModel programViewModel) {
+        userProgramNavigator.requestUserProgramUpdate(programViewModel);
     }
 
     @Override

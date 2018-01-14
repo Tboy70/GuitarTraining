@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.util.SparseArray;
 
 import com.example.data.module.ModuleSharedPrefsImpl;
-import com.example.interactor.exercise.CreateExercise;
-import com.example.interactor.program.CreateProgram;
+import com.example.interactor.program.UpdateProgramAndRemoveExercises;
 import com.example.model.Exercise;
 import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
@@ -19,9 +17,8 @@ import com.example.thomas.guitartraining.presentation.component.presenter.Materi
 import com.example.thomas.guitartraining.presentation.component.presenter.listener.SingleChoiceMaterialDialogListener;
 import com.example.thomas.guitartraining.presentation.listener.AddExerciseListener;
 import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorListener;
-import com.example.thomas.guitartraining.presentation.view.user.UserProgramCreationView;
+import com.example.thomas.guitartraining.presentation.view.user.UserProgramUpdateView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,38 +27,31 @@ import javax.inject.Inject;
 import rx.Subscriber;
 
 @PerActivity
-public class UserProgramCreationPresenter {
+public class UserProgramUpdatePresenter {
 
     private Context context;
     private MaterialDialogComponent materialDialogComponent;
 
-    private UserProgramCreationView userProgramCreationView;
+    private UserProgramUpdateView userProgramUpdateView;
     private UserProgramNavigatorListener userProgramNavigatorListener;
 
-    private CreateProgram createProgram;
-    private CreateExercise createExercise;
+    private UpdateProgramAndRemoveExercises updateProgramAndRemoveExercises;
 
     private String selectedItem;
 
     @Inject
-    UserProgramCreationPresenter(Context context, BaseNavigatorListener baseNavigatorListener,
-                                 MaterialDialogComponent materialDialogComponent, CreateProgram createProgram,
-                                 CreateExercise createExercise) {
+    UserProgramUpdatePresenter(Context context, MaterialDialogComponent materialDialogComponent,
+                               BaseNavigatorListener baseNavigatorListener, UpdateProgramAndRemoveExercises updateProgramAndRemoveExercises) {
         this.context = context;
         this.materialDialogComponent = materialDialogComponent;
         if (baseNavigatorListener instanceof UserProgramNavigatorListener) {
             this.userProgramNavigatorListener = (UserProgramNavigatorListener) baseNavigatorListener;
         }
-        this.createProgram = createProgram;
-        this.createExercise = createExercise;
+        this.updateProgramAndRemoveExercises = updateProgramAndRemoveExercises;
     }
 
-    public void setUserProgramCreationView(UserProgramCreationView userProgramCreationView) {
-        this.userProgramCreationView = userProgramCreationView;
-    }
-
-    public void requestAddExercise() {
-        userProgramCreationView.addFieldToCreateExercise();
+    public void setUserProgramUpdateView(UserProgramUpdateView userProgramUpdateView) {
+        this.userProgramUpdateView = userProgramUpdateView;
     }
 
     public void showSimpleDialog(final AddExerciseListener addExerciseListener) {
@@ -87,18 +77,20 @@ public class UserProgramCreationPresenter {
         });
     }
 
-    public void checkInformationAndValidateCreation(String nameProgram, String descriptionProgram, final SparseArray<String> exercises) {
-        if (checkInformation(nameProgram, exercises)) {
+    public void checkInformationAndValidateUpdate(String idProgram, String nameProgram, String descriptionProgram, List<Exercise> programListExercises, List<Exercise> exercisesToBeRemoved) {
+        if (checkInformation(nameProgram, programListExercises)) {
             // TODO: 24/09/2017 Faire un useCase pour récupérer l'id user dans les shared prefs
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
             Program program = new Program();
+            program.setIdProgram(idProgram);
             program.setNameProgram(nameProgram);
             program.setDescriptionProgram(descriptionProgram);
+            program.setExercises(programListExercises);
             program.setDefaultProgram(false);
             program.setIdUser(prefs.getString(ModuleSharedPrefsImpl.CURRENT_USER_ID, "0"));
 
-            createProgram.execute(new Subscriber<Program>() {
+            updateProgramAndRemoveExercises.execute(new Subscriber<Boolean>() {
                 @Override
                 public void onCompleted() {
 
@@ -111,51 +103,15 @@ public class UserProgramCreationPresenter {
                 }
 
                 @Override
-                public void onNext(Program program) {
-                    // TODO: Normalement, pas de use case enchaînés !
-                    setCreatedExercisesToCreatedProgram(program.getIdProgram(), exercises);
+                public void onNext(Boolean isSuccess) {
+                    if (isSuccess) {
+                        userProgramNavigatorListener.requestDisplayProgramList();
+                    }
                 }
-            }, CreateProgram.Params.forCreation(program));
+            }, UpdateProgramAndRemoveExercises.Params.forUpdate(program, exercisesToBeRemoved));
         } else {
             userProgramNavigatorListener.requestRenderErrorString(context.getString(R.string.snackbar_error_wrong_information), ErrorRendererComponent.ERROR_DISPLAY_MODE_SNACKBAR, null);
         }
-    }
-
-    public void setToolbar(String toolbarTitle) {
-        userProgramNavigatorListener.setUserProgramToolbar(toolbarTitle);
-    }
-
-    private void setCreatedExercisesToCreatedProgram(final String idProgram, final SparseArray<String> exercises) {
-        List<Exercise> exercisesList = new ArrayList<>();
-
-        for (int i = 0; i < exercises.size(); i++) {
-            int key = exercises.keyAt(i);
-            Exercise exercise = new Exercise();
-            exercise.setIdProgram(idProgram);
-            exercise.setTypeExercise(key);
-            exercise.setDurationExercise(Integer.valueOf(exercises.get(key)));
-            exercisesList.add(exercise);
-        }
-
-        createExercise.execute(new Subscriber<Boolean>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                // TODO: 28/10/2017 Handle error
-                Log.e("TEST", "onError: ");
-            }
-
-            @Override
-            public void onNext(Boolean isSuccess) {
-                if (isSuccess) {
-                    userProgramNavigatorListener.requestDisplayProgramList();
-                }
-            }
-        }, CreateExercise.Params.forCreation(exercisesList));
     }
 
     private void displaySelectedChoice(AddExerciseListener addExerciseListener) {
@@ -163,15 +119,14 @@ public class UserProgramCreationPresenter {
         addExerciseListener.onAllInformationCompleted();
     }
 
-    private boolean checkInformation(String nameProgram, SparseArray<String> exercises) {
+    private boolean checkInformation(String nameProgram, List<Exercise> exercises) {
         if (nameProgram == null || nameProgram.isEmpty()) {
             return false;
         } else {
-            for (int i = 0; i < exercises.size(); i++) {
-                int key = exercises.keyAt(i);
-                if (key == -1) {
+            for (Exercise exercise : exercises) {
+                if (exercise.getTypeExercise() == -1) {
                     return false;
-                } else if (exercises.get(key).isEmpty() || !exercises.get(key).trim().matches("^[0-9]*$")) {
+                } else if (!String.valueOf(exercise.getDurationExercise()).trim().matches("^[0-9]*$")) {
                     return false;
                 }
             }

@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.model.Exercise;
@@ -37,9 +37,11 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
     @BindView(R.id.fragment_user_program_details_description)
     TextView userProgramDetailsDescription;
     @BindView(R.id.fragment_user_program_details_exercises)
-    FrameLayout userProgramDetailsExercises;
+    LinearLayout userProgramDetailsExercises;
     @BindView(R.id.fragment_user_program_details_remove_button)
     Button userProgramDetailsRemoveButton;
+    @BindView(R.id.fragment_user_program_details_update_button)
+    Button userProgramDetailsUpdateButton;
 
     private static final String PROGRAM_ID = "com.example.thomas.guitartraining.presentation.fragment.user.PROGRAM_ID";
 
@@ -71,6 +73,7 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
                 programId = bundle.getString(PROGRAM_ID);
                 if (programId != null && (programId.equals("1") || programId.equals("2"))) {
                     userProgramDetailsRemoveButton.setVisibility(View.GONE);
+                    userProgramDetailsUpdateButton.setVisibility(View.GONE);
                 }
             }
         }
@@ -117,14 +120,28 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
             } else {
                 durationExercise.setTextAppearance(R.style.TextAppearance_AppCompat_Caption);
             }
-            durationExercise.setText(String.valueOf(exercise.getDurationExercise()));
+            if ((exercise.getDurationExercise() < 60)) {
+                durationExercise.setText(
+                        String.format(getString(R.string.fragment_user_details_duration_exercise_minutes_txt),
+                                String.valueOf(exercise.getDurationExercise()))
+                );
+            } else {
+                int hours = exercise.getDurationExercise() / 60;
+                int minutes = exercise.getDurationExercise() % 60;
+
+                durationExercise.setText(
+                        String.format(getString(R.string.fragment_user_details_duration_exercise_hours_txt),
+                                String.valueOf(hours), String.valueOf(minutes))
+                );
+            }
             durationExercise.setTextSize(15); // TODO: 02/10/2017 See how to get dimens value
 
             exercisesLinearLayout.addView(nameExercise, 0);
             exercisesLinearLayout.addView(durationExercise, 1);
         }
 
-        userProgramDetailsExercises.addView(exercisesLinearLayout);
+        exercisesLinearLayout.setPadding(0,0,0,10);
+        userProgramDetailsExercises.addView(exercisesLinearLayout, 1);
     }
 
     @OnClick(R.id.fragment_user_program_details_start_button)
@@ -135,6 +152,11 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
     @OnClick(R.id.fragment_user_program_details_remove_button)
     public void handleClickUserProgramDetailsRemoveButton() {
         userProgramsListPresenter.removeProgram();
+    }
+
+    @OnClick(R.id.fragment_user_program_details_update_button)
+    public void handleClickUserProgramDetailsUpdateButton() {
+        userProgramsListPresenter.updateProgram(programId);
     }
 
     public void setToolbar(String toolbarTitle) {

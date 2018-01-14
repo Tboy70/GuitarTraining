@@ -2,9 +2,9 @@ package com.example.data.module;
 
 import com.example.data.entity.remote.ExerciseRemoteEntity;
 import com.example.data.entity.remote.ProgramRemoteEntity;
-import com.example.data.entity.remote.TextRemoteEntity;
 import com.example.data.entity.remote.UserRemoteEntity;
 import com.example.data.entity.remote.program.ProgramResponseRemoteEntity;
+import com.example.model.Exercise;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -22,6 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import rx.Observable;
@@ -35,8 +37,8 @@ import rx.schedulers.Schedulers;
 public class APIModuleRetrofitImpl implements APIModule {
 
     // The base url to connect to the API.
-//    private static final String BASE_URL = "http://192.168.0.29/guitar_api/public/"; // BOX
-    private static final String BASE_URL = "http://192.168.43.235/guitar_api/public/"; // 4G
+    private static final String BASE_URL = "http://192.168.1.30/guitar_api/public/"; // BOX
+//    private static final String B ASE_URL = "http://192.168.43.235/guitar_api/public/"; // 4G
 
     // Interface declared below.
     private APIServiceInterface apiService;
@@ -63,11 +65,6 @@ public class APIModuleRetrofitImpl implements APIModule {
     @Override
     public Observable<UserRemoteEntity> connectUser(UserRemoteEntity userRemoteEntity) {
         return apiService.connectUser(userRemoteEntity);
-    }
-
-    @Override
-    public Observable<TextRemoteEntity> getTextIntroProgram(int idText) {
-        return apiService.getText(idText);
     }
 
     @Override
@@ -114,21 +111,40 @@ public class APIModuleRetrofitImpl implements APIModule {
         });
     }
 
+    @Override
+    public Observable<Boolean> updateProgram(ProgramRemoteEntity programRemoteEntity) {
+        return apiService.updateProgram(programRemoteEntity.getIdProgram(), programRemoteEntity).map(new Func1<Response<Void>, Boolean>() {
+            @Override
+            public Boolean call(Response<Void> response) {
+                return response.isSuccessful();
+            }
+        });
+    }
+
+    @Override
+    public Observable<Boolean> updateExercises(List<ExerciseRemoteEntity> exerciseRemoteEntities) {
+        return apiService.updateExercises(exerciseRemoteEntities).map(new Func1<Response<Void>, Boolean>() {
+            @Override
+            public Boolean call(Response<Void> response) {
+                return response.isSuccessful();
+            }
+        });
+    }
+
+    @Override
+    public Observable<Boolean> removeExercises(List<ExerciseRemoteEntity> exercisesRemoteEntitiesToBeRemoved) {
+        return apiService.removeExercises(exercisesRemoteEntitiesToBeRemoved).map(new Func1<Response<Void>, Boolean>() {
+            @Override
+            public Boolean call(Response<Void> voidResponse) {
+                return voidResponse.isSuccessful();
+            }
+        });
+    }
+
     /**
      * Interface containing methods with access path to the API.
      */
     interface APIServiceInterface {
-
-        /**
-         * Method GET to retrieve a text given its id.
-         *
-         * @param idText Text ID.
-         * @return Observable in JSON format.
-         */
-        @GET("text/{idText}")
-        Observable<TextRemoteEntity> getText(
-                @Path("idText") int idText
-        );
 
         /**
          * Method GET to retrieve a program given its id.
@@ -156,10 +172,19 @@ public class APIModuleRetrofitImpl implements APIModule {
         @POST("program")
         Observable<Response<ProgramResponseRemoteEntity>> createProgram(@Body ProgramRemoteEntity programRemoteEntity);
 
+        @PATCH("program/{idProgram}")
+        Observable<Response<Void>> updateProgram(@Path("idProgram") String idProgram, @Body ProgramRemoteEntity programRemoteEntity);
+
         @POST("exercise")
         Observable<Response<Void>> createExercise(@Body List<ExerciseRemoteEntity> exerciseRemoteEntity);
 
         @DELETE("program/{idProgram}")
         Observable<Response<Void>> removeProgram(@Path("idProgram") String idProgram);
+
+        @PATCH("exercise")
+        Observable<Response<Void>> updateExercises(@Body List<ExerciseRemoteEntity> exerciseRemoteEntities);
+
+        @HTTP(method = "DELETE", path = "exercise", hasBody = true)
+        Observable<Response<Void>> removeExercises(@Body List<ExerciseRemoteEntity> exercisesRemoteEntitiesToBeRemoved);
     }
 }

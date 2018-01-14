@@ -1,69 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tool="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingEnd="@dimen/fragment_user_programs_details_padding_end_start"
-              android:paddingStart="@dimen/fragment_user_programs_details_padding_end_start">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/fragment_user_programs_details_padding_top_bottom"
+    android:paddingEnd="@dimen/fragment_user_programs_details_padding_end_start"
+    android:paddingStart="@dimen/fragment_user_programs_details_padding_end_start"
+    android:paddingTop="@dimen/fragment_user_programs_details_padding_top_bottom">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/generic_margin"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/fragment_user_program_details_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/fragment_user_programs_details_title_size"
-            tool:text="Mon super programme"/>
-
-        <TextView
-            android:id="@+id/fragment_user_program_details_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/fragment_user_programs_details_title_size"
-            tool:text="Ma super description"/>
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fragment_user_program_details_exercises"
+    <TextView
+        android:id="@+id/fragment_user_program_details_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/generic_margin"/>
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/fragment_user_programs_details_margin"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/fragment_user_programs_details_title_size"
+        tool:text="Mon super programme"/>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/fragment_user_program_details_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_below="@id/fragment_user_program_details_name"
+        android:layout_marginBottom="@dimen/fragment_user_programs_details_margin"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/fragment_user_programs_details_description_size"
+        tool:text="Ma super description"/>
+
+    <RelativeLayout
+        android:id="@+id/fragment_user_program_details_relative_layout_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
 
         <Button
             android:id="@+id/fragment_user_program_details_start_button"
             android:layout_width="@dimen/generic_button_width"
             android:layout_height="@dimen/generic_button_height"
-            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/button_drawable"
             android:text="@string/fragment_user_details_program_start_button_text"
             android:textColor="@android:color/white"/>
 
         <android.support.v4.widget.Space
+            android:id="@+id/fragment_user_program_details_space_1"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/generic_space_between_two_buttons"/>
+            android:layout_height="@dimen/generic_space_between_two_buttons"
+            android:layout_below="@id/fragment_user_program_details_start_button"/>
+
+        <Button
+            android:id="@+id/fragment_user_program_details_update_button"
+            android:layout_width="@dimen/generic_button_width"
+            android:layout_height="@dimen/generic_button_height"
+            android:layout_below="@id/fragment_user_program_details_space_1"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_drawable"
+            android:text="@string/fragment_user_details_program_update_button_text"
+            android:textColor="@android:color/white"/>
+
+        <android.support.v4.widget.Space
+            android:id="@+id/fragment_user_program_details_space_2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/generic_space_between_two_buttons"
+            android:layout_below="@id/fragment_user_program_details_update_button"/>
 
         <Button
             android:id="@+id/fragment_user_program_details_remove_button"
             android:layout_width="@dimen/generic_button_width"
             android:layout_height="@dimen/generic_button_height"
-            android:layout_gravity="center"
+            android:layout_below="@id/fragment_user_program_details_space_2"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/button_drawable"
             android:text="@string/fragment_user_details_program_remove_button_text"
             android:textColor="@android:color/white"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+    <ScrollView
+        android:id="@+id/fragment_user_program_details_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30dp"
+        android:layout_above="@id/fragment_user_program_details_relative_layout_buttons"
+        android:layout_below="@id/fragment_user_program_details_description">
+
+        <LinearLayout
+            android:id="@+id/fragment_user_program_details_exercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/generic_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fragment_user_programs_details_exercises_margin"
+                android:text="@string/fragment_user_details_program_exercises_text"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

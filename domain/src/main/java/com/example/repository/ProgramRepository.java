@@ -22,4 +22,7 @@ public interface ProgramRepository {
     Observable<Boolean> createExercise(List<Exercise> exercise);
 
     Observable<Boolean> removeProgram(String idExercise);
+
+    Observable<Boolean> updateProgramAndRemoveExercises(Program program, List<Exercise> exercisesToBeRemoved);
+
 }

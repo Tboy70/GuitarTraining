@@ -5,14 +5,15 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.view.View;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.di.PerActivity;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
+import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
 import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramCreationFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramDetailsFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramUpdateFragment;
 
 import javax.inject.Inject;
 
@@ -62,6 +63,10 @@ public class UserProgramNavigator extends BaseNavigator {
         if (activity != null) {
             activity.startActivity(toProgramActivity);
         }
+    }
+
+    public void requestUserProgramUpdate(ProgramViewModel programViewModel) {
+        fragmentTransactionReplace(UserProgramUpdateFragment.newInstance(programViewModel));
     }
 
     private void fragmentTransactionReplace(Fragment fragment) {

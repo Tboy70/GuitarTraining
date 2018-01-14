@@ -2,7 +2,7 @@ package com.example.thomas.guitartraining.presentation.presenter.user;
 
 import android.util.Log;
 
-import com.example.interactor.exercise.RemoveProgram;
+import com.example.interactor.program.RemoveProgram;
 import com.example.interactor.program.RetrieveProgramById;
 import com.example.model.Program;
 import com.example.thomas.guitartraining.di.PerActivity;
@@ -90,5 +90,25 @@ public class UserProgramDetailsPresenter {
                 }
             }
         }, RemoveProgram.Params.forSuppression(currentProgram.getIdProgram()));
+    }
+
+    public void updateProgram(String programId) {
+        retrieveProgramById.execute(new Subscriber<Program>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Program program) {
+                currentProgram = program;
+                userProgramNavigatorListener.displayUserProgramUpdate(new ProgramViewModel(program));
+            }
+        }, RetrieveProgramById.Params.forProgram(programId));
     }
 }

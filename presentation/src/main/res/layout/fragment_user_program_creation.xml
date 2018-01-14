@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/fragment_user_program_creation_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/fragment_user_programs_creation_name_program_hint"
-        android:inputType="text"
-        android:maxLines="1"/>
-
-    <EditText
-        android:id="@+id/fragment_user_program_creation_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/fragment_user_programs_creation_description_program_hint"
-        android:inputType="text"
-        android:maxLines="1"/>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/fragment_user_program_creation_exercises"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"/>
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/fragment_user_program_creation_add_exercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_user_programs_creation_add_exercise_text"/>
+        <EditText
+            android:id="@+id/fragment_user_program_creation_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/fragment_user_programs_creation_name_program_hint"
+            android:inputType="text"
+            android:maxLines="1"/>
 
-    <Button
-        android:id="@+id/fragment_user_program_creation_validation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_user_programs_creation_button_validate_text"/>
+        <EditText
+            android:id="@+id/fragment_user_program_creation_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/fragment_user_programs_creation_description_program_hint"
+            android:inputType="text"
+            android:maxLines="1"/>
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_user_program_creation_exercises"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+        <Button
+            android:id="@+id/fragment_user_program_creation_add_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_user_programs_creation_add_exercise_text"/>
+
+        <Button
+            android:id="@+id/fragment_user_program_creation_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_user_programs_creation_button_validate_text"/>
+
+    </LinearLayout>
+</ScrollView>

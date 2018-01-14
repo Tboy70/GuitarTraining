@@ -10,4 +10,6 @@ public interface StartNavigatorListener extends BaseNavigatorListener {
     void launchLoginActivity();
 
     void launchNotConnectedActivity();
+
+    void launchRightScreen(String idUser);
 }

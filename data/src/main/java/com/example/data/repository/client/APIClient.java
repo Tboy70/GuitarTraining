@@ -2,10 +2,8 @@ package com.example.data.repository.client;
 
 import com.example.data.entity.ExerciseEntity;
 import com.example.data.entity.ProgramEntity;
-import com.example.data.entity.TextEntity;
 import com.example.data.entity.UserEntity;
 import com.example.data.entity.remote.ProgramRemoteEntity;
-import com.example.data.entity.remote.TextRemoteEntity;
 import com.example.data.entity.remote.UserRemoteEntity;
 import com.example.data.mapper.db.ProgramDBEntityDataMapper;
 import com.example.data.mapper.remote.ExerciseRemoteEntityDataMapper;
@@ -102,10 +100,9 @@ public class APIClient {
                 } else {
                     return null;
                 }
-
-                }
-            });
-        }
+            }
+        });
+    }
 
     public Observable<Boolean> createExercise(final List<ExerciseEntity> exerciseEntity) {
         return apiModule.createExercise(exerciseRemoteEntityDataMapper.transformEntityToRemoteList(exerciseEntity));
@@ -114,4 +111,23 @@ public class APIClient {
     public Observable<Boolean> removeProgram(String idProgram) {
         return apiModule.removeProgram(idProgram);
     }
+
+    public Observable<Boolean> updateProgramAndRemoveExercises(final ProgramEntity programEntity, List<ExerciseEntity> exercisesEntitiesToBeRemoved) {
+        // TODO: 28/10/2017 Handle onError ?
+        return apiModule.removeExercises(exerciseRemoteEntityDataMapper.transformEntityToRemoteList(exercisesEntitiesToBeRemoved))
+                .concatWith(apiModule.updateProgram(programRemoteEntityDataMapper.transformEntityToRemote(programEntity)))
+                .concatWith(apiModule.updateExercises(exerciseRemoteEntityDataMapper.transformEntityToRemoteList(programEntity.getExerciseEntities()))
+                        .map(new Func1<Boolean, Boolean>() {
+                            @Override
+                            public Boolean call(Boolean success) {
+                                if (success) {
+                                    moduleDB.updateProgram(programDBEntityDataMapper.transform(programEntity));
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }));
+    }
 }
+

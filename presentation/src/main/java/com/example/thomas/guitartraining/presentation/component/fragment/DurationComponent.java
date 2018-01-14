@@ -14,9 +14,9 @@ import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 public class DurationComponent {
 
     @SuppressWarnings("deprecation")
-    public long setDuration(int durationExercise, long durationLeft, TextView exerciseScaleDuration, String durationText, TextView exerciseScaleDurationLeft, String durationTextLeft) {
+    public long setDuration(int durationExercise, long durationLeft, TextView exerciseDuration, String durationText, TextView exerciseDurationLeft, String durationTextLeft) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            exerciseScaleDuration.setText(
+            exerciseDuration.setText(
                     Html.fromHtml(
                             String.format(
                                     durationText,
@@ -25,7 +25,7 @@ public class DurationComponent {
                     )
             );
         } else {
-            exerciseScaleDuration.setText(
+            exerciseDuration.setText(
                     Html.fromHtml(
                             String.format(
                                     durationText,
@@ -38,7 +38,7 @@ public class DurationComponent {
         if (durationLeft == DateTimeUtils.DEFAULT_DURATION_LEFT) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                exerciseScaleDurationLeft.setText(
+                exerciseDurationLeft.setText(
                         Html.fromHtml(
                                 String.format(
                                         durationTextLeft,
@@ -48,7 +48,7 @@ public class DurationComponent {
                 );
                 durationLeft = durationExercise * DateTimeUtils.SECONDS_IN_ONE_MINUTE * DateTimeUtils.MINUTE_TO_MILLISECONDS;
             } else {
-                exerciseScaleDurationLeft.setText(
+                exerciseDurationLeft.setText(
                         Html.fromHtml(
                                 String.format(
                                         durationTextLeft,
@@ -61,7 +61,7 @@ public class DurationComponent {
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                exerciseScaleDurationLeft.setText(
+                exerciseDurationLeft.setText(
                         Html.fromHtml(
                                 String.format(
                                         durationTextLeft,
@@ -70,7 +70,7 @@ public class DurationComponent {
                         )
                 );
             } else {
-                exerciseScaleDurationLeft.setText(
+                exerciseDurationLeft.setText(
                         Html.fromHtml(
                                 String.format(
                                         durationTextLeft,

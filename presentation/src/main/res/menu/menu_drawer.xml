@@ -3,12 +3,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_drawer_programs"
-            android:icon="@drawable/ic_random_scale"
+            android:icon="@drawable/ic_program"
             android:title="@string/navigation_drawer_programs"
             android:checked="true" />
         <item
             android:id="@+id/menu_drawer_songs"
-            android:icon="@drawable/ic_random_scale"
+            android:icon="@drawable/ic_song"
             android:title="@string/navigation_drawer_songs" />
     </group>
 </menu>

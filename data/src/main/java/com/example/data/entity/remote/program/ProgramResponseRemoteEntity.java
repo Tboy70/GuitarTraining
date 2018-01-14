@@ -1,6 +1,5 @@
 package com.example.data.entity.remote.program;
 
-
 import com.google.gson.annotations.SerializedName;
 
 public class ProgramResponseRemoteEntity {

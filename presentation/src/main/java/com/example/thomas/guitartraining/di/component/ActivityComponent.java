@@ -28,6 +28,7 @@ import com.example.thomas.guitartraining.presentation.fragment.ui.TimerDialogFra
 import com.example.thomas.guitartraining.presentation.fragment.user.ConnectionFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramCreationFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramDetailsFragment;
+import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramUpdateFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.UserProgramsListFragment;
 import com.example.thomas.guitartraining.presentation.fragment.user.UserSongsFragment;
 import com.example.thomas.guitartraining.presentation.navigator.BaseNavigatorListener;
@@ -94,6 +95,8 @@ public interface ActivityComponent {
     void inject(UserProgramDetailsFragment userProgramDetailsFragment);
 
     void inject(UserProgramCreationFragment userProgramCreationFragment);
+
+    void inject(UserProgramUpdateFragment userProgramUpdateFragment);
 
     void inject(UserSongsFragment userSongsFragment);
 }

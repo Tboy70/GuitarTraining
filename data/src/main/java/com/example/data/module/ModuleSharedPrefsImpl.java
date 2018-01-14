@@ -26,4 +26,9 @@ public class ModuleSharedPrefsImpl implements ModuleSharedPrefs {
         editor.putString(CURRENT_USER_ID, idUser);
         editor.apply();
     }
+
+    @Override
+    public String getIdUserInSharedPrefs() {
+        return sharedPreferences.getString(CURRENT_USER_ID, null);
+    }
 }

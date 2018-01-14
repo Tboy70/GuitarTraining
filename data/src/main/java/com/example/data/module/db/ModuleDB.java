@@ -18,4 +18,6 @@ public interface ModuleDB {
     ProgramDBEntity getProgramById(String programId);
 
     void createProgram(ProgramDBEntity programDBEntity);
+
+    void updateProgram(ProgramDBEntity transform);
 }

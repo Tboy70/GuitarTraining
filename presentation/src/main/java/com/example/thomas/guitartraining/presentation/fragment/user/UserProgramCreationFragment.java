@@ -3,9 +3,7 @@ package com.example.thomas.guitartraining.presentation.fragment.user;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +13,12 @@ import android.widget.LinearLayout;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
+import com.example.thomas.guitartraining.presentation.component.fragment.ExercisesUIComponent;
+import com.example.thomas.guitartraining.presentation.component.fragment.listener.ExercisesUIComponentListener;
 import com.example.thomas.guitartraining.presentation.listener.AddExerciseListener;
 import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramCreationPresenter;
 import com.example.thomas.guitartraining.presentation.utils.ExerciseUtils;
 import com.example.thomas.guitartraining.presentation.view.user.UserProgramCreationView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -45,10 +42,7 @@ public class UserProgramCreationFragment extends Fragment implements UserProgram
     @Inject
     UserProgramCreationPresenter userProgramCreationPresenter;
 
-    private static final int NB_ITEMS_BY_VIEW = 2;
-
-    private Button buttonTypeExercise;
-    private EditText durationExercise;
+    private ExercisesUIComponent exercisesUIComponent;
 
     public UserProgramCreationFragment() {
     }
@@ -68,6 +62,7 @@ public class UserProgramCreationFragment extends Fragment implements UserProgram
         setHasOptionsMenu(true);
 
         userProgramCreationPresenter.setUserProgramCreationView(this);
+        this.exercisesUIComponent = new ExercisesUIComponent();
 
         return view;
     }
@@ -86,84 +81,65 @@ public class UserProgramCreationFragment extends Fragment implements UserProgram
 
     @OnClick(R.id.fragment_user_program_creation_validation)
     public void handleClickUserProgramValidation() {
-        // TODO : Check sparse array
-        Map<Integer, String> exercises = new HashMap<>();
+        SparseArray<String> exercises = new SparseArray<>();
 
         for (int i = 0; i < userProgramCreationExercisesLayout.getChildCount(); i++) {
-            if (i % NB_ITEMS_BY_VIEW == 0) {
-                exercises.put(
-                        ExerciseUtils.getTypeExerciseIdByName(((Button) userProgramCreationExercisesLayout.getChildAt(i)).getText().toString(),
-                                getActivity()),
-                                ((EditText) userProgramCreationExercisesLayout.getChildAt(i + 1)).getText().toString());
-            }
+            exercises.append(ExerciseUtils.getTypeExerciseIdByName(
+                    (((Button)
+                            ((LinearLayout)
+                                    ((LinearLayout) userProgramCreationExercisesLayout.getChildAt(i))
+                                            .getChildAt(0)).getChildAt(0))).getText().toString(),
+                    getActivity()),
+                    (((EditText)
+                            ((LinearLayout)
+                                    ((LinearLayout) userProgramCreationExercisesLayout.getChildAt(i))
+                                            .getChildAt(0)).getChildAt(1))).getText().toString());
         }
         userProgramCreationPresenter.checkInformationAndValidateCreation(userProgramCreationName.getText().toString(), userProgramCreationDescription.getText().toString(), exercises);
     }
 
     @Override
     public void addFieldToCreateExercise() {
-        createUIViews();
-        setListenersToUIViews();
-
-        userProgramCreationExercisesLayout.addView(buttonTypeExercise);
-        userProgramCreationExercisesLayout.addView(durationExercise);
-    }
-
-    public void setToolbar(String toolbarTitle) {
-        userProgramCreationPresenter.setToolbar(toolbarTitle);
-    }
-
-    private void createUIViews() {
-        buttonTypeExercise = new Button(getActivity());
-        buttonTypeExercise.setCompoundDrawables(null, null, ContextCompat.getDrawable(getActivity(), R.drawable.ic_dropdown_black), null);
-        buttonTypeExercise.setText(getString(R.string.fragment_user_programs_creation_type_exercise_text));
-
-        durationExercise = new EditText(getActivity());
-        durationExercise.setHint(R.string.fragment_user_programs_creation_type_exercise_text);
-    }
-
-    private void setListenersToUIViews() {
-        buttonTypeExercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userProgramCreationPresenter.showSimpleDialog(new AddExerciseListener() {
+        LinearLayout horizontalLayoutContainingAllElements = exercisesUIComponent.createNewExercise(getActivity(), new ExercisesUIComponentListener() {
                     @Override
-                    public void onExerciseChosen(String selectedItem) {
-                        buttonTypeExercise.setText(selectedItem);
+                    public void setTypeExerciseButtonAction(final Button buttonTypeExercise, final EditText durationExercise) {
+                        userProgramCreationPresenter.showSimpleDialog(new AddExerciseListener() {
+                            @Override
+                            public void onExerciseChosen(String selectedItem) {
+                                buttonTypeExercise.setText(selectedItem);
+                            }
+
+                            @Override
+                            public void onAllInformationCompleted() {
+                                if ((durationExercise.getText() != null || !String.valueOf(durationExercise.getText()).equals("")) && buttonTypeExercise.getText() != "Type d'exercise") {
+                                    userProgramCreationAddExercise.setEnabled(true);
+                                } else {
+                                    userProgramCreationAddExercise.setEnabled(false);
+                                }
+                            }
+                        });
                     }
 
                     @Override
-                    public void onAllInformationCompleted() {
+                    public void setDurationExerciseAction(EditText durationExercise, Button buttonTypeExercise) {
                         if ((durationExercise.getText() != null || !String.valueOf(durationExercise.getText()).equals("")) && buttonTypeExercise.getText() != "Type d'exercise") {
                             userProgramCreationAddExercise.setEnabled(true);
                         } else {
                             userProgramCreationAddExercise.setEnabled(false);
                         }
                     }
-                });
-            }
-        });
 
-        durationExercise.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    @Override
+                    public void addExerciseToBeRemoved() {
+                    }
+                }, null,
+                null,
+                ExercisesUIComponent.CREATE_STATE);
 
-            }
+        userProgramCreationExercisesLayout.addView(horizontalLayoutContainingAllElements);
+    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                if ((durationExercise.getText() != null || !String.valueOf(durationExercise.getText()).equals("")) && buttonTypeExercise.getText() != "Type d'exercise") {
-                    userProgramCreationAddExercise.setEnabled(true);
-                } else {
-                    userProgramCreationAddExercise.setEnabled(false);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+    public void setToolbar(String toolbarTitle) {
+        userProgramCreationPresenter.setToolbar(toolbarTitle);
     }
 }

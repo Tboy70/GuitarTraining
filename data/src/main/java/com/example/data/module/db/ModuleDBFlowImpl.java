@@ -1,7 +1,5 @@
 package com.example.data.module.db;
 
-import android.util.Log;
-
 import com.example.data.entity.db.ProgramDBEntity;
 import com.example.data.entity.db.ProgramDBEntity_Table;
 import com.raizlabs.android.dbflow.annotation.Database;
@@ -53,6 +51,11 @@ public class ModuleDBFlowImpl implements ModuleDB {
 
     @Override
     public void createProgram(ProgramDBEntity programDBEntity) {
+        programDBEntity.save();
+    }
+
+    @Override
+    public void updateProgram(ProgramDBEntity programDBEntity) {
         programDBEntity.save();
     }
 }

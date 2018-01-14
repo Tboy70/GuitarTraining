@@ -23,7 +23,7 @@ public class LoginNavigator extends BaseNavigator {
 
     public void launchConnectionScreen(Activity activity) {
         Fragment connectionFragment = ConnectionFragment.newInstance();
-        activity.getFragmentManager().beginTransaction().add(R.id.activity_login_frame_layout, connectionFragment).commit();
+        activity.getFragmentManager().beginTransaction().replace(R.id.activity_login_frame_layout, connectionFragment).commit();
     }
 
     public void launchUserPanelActivity(Activity activity) {

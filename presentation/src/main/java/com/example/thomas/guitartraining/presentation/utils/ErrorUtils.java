@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.example.thomas.guitartraining.R;
 
+import java.net.ConnectException;
+
 import retrofit2.adapter.rxjava.HttpException;
 
 public class ErrorUtils {
@@ -22,6 +24,8 @@ public class ErrorUtils {
                 default:
                     return context.getString(R.string.snackbar_error_unknown_error);
             }
+        } else if (throwable instanceof ConnectException) {
+            return context.getString(R.string.snackbar_error_connection_problem);
         } else {
             return context.getString(R.string.snackbar_error_unknown_error);
         }

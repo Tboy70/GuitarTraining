@@ -2,7 +2,6 @@ package com.example.thomas.guitartraining.presentation.presenter.program;
 
 import android.app.Activity;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.interactor.program.GetProgramFromId;
 import com.example.model.Exercise;
 import com.example.model.Program;
@@ -49,23 +48,22 @@ public class IntroProgramPresenter {
     }
 
     public void retrieveProgramFromId(Activity activity, final String idProgram) {
-        final MaterialDialog progressDialog =
-                materialDialogComponent.showProgressDialog(
-                        activity,
-                        activity.getString(R.string.dialog_program_loading_title),
-                        activity.getString(R.string.dialog_program_loading_description),
-                        R.color.colorPrimary);
+        materialDialogComponent.showProgressDialog(
+                activity,
+                activity.getString(R.string.dialog_program_loading_title),
+                activity.getString(R.string.dialog_program_loading_description),
+                R.color.colorPrimary);
         getProgramFromId.execute(new Subscriber<Program>() {
 
             @Override
             public void onCompleted() {
-                progressDialog.dismiss();
+                materialDialogComponent.dismissDialog();
             }
 
             @Override
             public void onError(Throwable e) {
                 introProgramView.updateUIError();
-                progressDialog.dismiss();
+                materialDialogComponent.dismissDialog();
             }
 
             @Override

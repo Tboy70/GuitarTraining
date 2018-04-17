@@ -71,4 +71,5 @@ dependencies {
     compile 'com.android.support:design:25.1.1'
     compile project(path: ':domain')
     compile project(path: ':data')
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
 }

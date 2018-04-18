@@ -2,30 +2,17 @@ buildscript {
     repositories {
         mavenCentral()
     }
-
-    dependencies {
-        // the latest version of the android-apt plugin
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.0.4'
-    }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'spoon'
-
-spoon {
-    debug = true
-    adbTimeout = 60
-}
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.example.thomas.guitartraining"
         minSdkVersion 19
-        targetSdkVersion 24
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.setProgramToolbar.runner.AndroidJUnitRunner"
@@ -42,34 +29,58 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
+    // Android support
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-v13:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+
+    // GSON
+    implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    // Retrofit 2
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0.2'
+
+    // RxJava - RxAndroid
+    implementation 'io.reactivex:rxjava:1.2.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+
+    // ButterKnife
+    implementation 'com.jakewharton:butterknife:8.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
+
+    // Java annotations
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+
+    // OkHttp
+    implementation 'com.squareup.okhttp:okhttp:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // Others
+    implementation 'com.afollestad.material-dialogs:core:0.9.4.5'
+    implementation 'com.github.thepacific:rx2timer:0.0.1'
+
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.0.5-beta'
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.0.5-beta'
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
-    apt 'com.google.dagger:dagger-compiler:2.0'
-    compile 'io.reactivex:rxjava:1.1.6'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.jakewharton:butterknife:8.2.1'
-    apt 'com.jakewharton:butterknife-compiler:8.2.1'
-    apt 'com.google.dagger:dagger-compiler:2.0.2'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.okhttp:okhttp:2.4.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
-    compile 'com.google.dagger:dagger:2.0.2'
-    compile 'javax.annotation:javax.annotation-api:1.2'
-    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
-    compile 'com.github.thepacific:rx2timer:0.0.1'
-    compile 'com.android.support:design:25.1.1'
-    compile project(path: ':domain')
-    compile project(path: ':data')
-    compile 'com.android.support.constraint:constraint-layout:1.1.0'
 }

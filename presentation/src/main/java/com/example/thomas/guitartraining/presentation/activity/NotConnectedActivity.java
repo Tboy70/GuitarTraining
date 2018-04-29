@@ -28,7 +28,6 @@ public class NotConnectedActivity extends BaseActivity implements NotConnectedNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not_connected);
-        getActivityComponent().inject(this);
         ButterKnife.bind(this);
     }
 

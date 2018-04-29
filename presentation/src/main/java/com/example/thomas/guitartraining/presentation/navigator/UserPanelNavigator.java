@@ -1,15 +1,16 @@
 package com.example.thomas.guitartraining.presentation.navigator;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.thomas.guitartraining.R;
+import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.activity.UserPanelActivity;
 import com.example.thomas.guitartraining.presentation.activity.UserProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
@@ -25,7 +26,7 @@ public class UserPanelNavigator extends BaseNavigator {
 
     @SuppressWarnings("WeakerAccess")
     @Inject
-    public UserPanelNavigator(Activity activity, ErrorRendererComponent errorRendererComponent) {
+    public UserPanelNavigator(BaseActivity activity, ErrorRendererComponent errorRendererComponent) {
         super(activity, errorRendererComponent, R.id.activity_main_relative_layout);
     }
 
@@ -83,7 +84,7 @@ public class UserPanelNavigator extends BaseNavigator {
     }
 
     private Fragment getCurrentFragment() {
-        return activity.getFragmentManager().findFragmentById(R.id.activity_user_panel_frame_layout);
+        return fragmentManager.findFragmentById(R.id.activity_user_panel_frame_layout);
     }
 
     private void fragmentTransactionAdd(Fragment fragment) {

@@ -25,7 +25,6 @@ public class LoginActivity extends BaseActivity implements LoginNavigatorListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getActivityComponent().inject(this);
         ButterKnife.bind(this);
     }
 

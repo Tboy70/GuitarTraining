@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseSkipStringPresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Skip string exercise fragment.
  */
-public class ExerciseSkipStringFragment extends Fragment implements ExerciseSkipStringView {
+public class ExerciseSkipStringFragment extends BaseFragment implements ExerciseSkipStringView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSkipStringFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSkipStringFragment.DURATION_EXERCISE";
@@ -67,7 +68,6 @@ public class ExerciseSkipStringFragment extends Fragment implements ExerciseSkip
         View rootView = inflater.inflate(R.layout.fragment_exercise_skip_string, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseSkipStringPresenter.setExerciseSkipStringView(this);
         exerciseSkipStringPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

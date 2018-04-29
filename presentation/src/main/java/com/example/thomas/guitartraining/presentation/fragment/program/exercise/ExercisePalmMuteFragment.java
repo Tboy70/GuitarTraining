@@ -15,6 +15,7 @@ import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExercisePalmMutePresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.view.program.exercise.ExercisePalmMuteView;
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ExercisePalmMuteFragment extends Fragment implements ExercisePalmMuteView {
+public class ExercisePalmMuteFragment extends BaseFragment implements ExercisePalmMuteView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePalmMuteFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePalmMuteFragment.DURATION_EXERCISE";
@@ -64,7 +65,6 @@ public class ExercisePalmMuteFragment extends Fragment implements ExercisePalmMu
         View rootView = inflater.inflate(R.layout.fragment_exercise_palm_mute, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exercisePalmMutePresenter.setExercisePalmMuteView(this);
         exercisePalmMutePresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

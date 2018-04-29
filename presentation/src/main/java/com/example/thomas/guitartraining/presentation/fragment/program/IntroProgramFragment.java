@@ -1,6 +1,5 @@
 package com.example.thomas.guitartraining.presentation.fragment.program;
 
-import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,8 +17,8 @@ import android.widget.TextView;
 import com.example.model.Exercise;
 import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
-import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.IntroProgramPresenter;
 import com.example.thomas.guitartraining.presentation.view.program.IntroProgramView;
 
@@ -35,7 +34,7 @@ import butterknife.OnClick;
 /**
  * First step of a program, before begin the exercises.
  */
-public class IntroProgramFragment extends Fragment implements IntroProgramView {
+public class IntroProgramFragment extends BaseFragment implements IntroProgramView {
 
     private static final String ID_PROGRAM = "com.example.thomas.guitartraining.presentation.fragment.program.IntroProgramFragment.ID_PROGRAM";
 
@@ -76,7 +75,6 @@ public class IntroProgramFragment extends Fragment implements IntroProgramView {
         View rootView = inflater.inflate(R.layout.fragment_intro_program, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         introProgramPresenter.setIntroProgramView(this);
         introProgramPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

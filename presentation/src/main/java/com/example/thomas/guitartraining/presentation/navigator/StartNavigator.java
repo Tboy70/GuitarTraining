@@ -1,11 +1,13 @@
 package com.example.thomas.guitartraining.presentation.navigator;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.di.PerActivity;
+import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.activity.NotConnectedActivity;
 import com.example.thomas.guitartraining.presentation.activity.LoginActivity;
 import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
@@ -19,10 +21,13 @@ import javax.inject.Inject;
 @PerActivity
 public class StartNavigator extends BaseNavigator {
 
+    private FragmentManager fragmentManager;
+
     @SuppressWarnings("WeakerAccess")
     @Inject
-    public StartNavigator(Activity activity, ErrorRendererComponent errorRendererComponent) {
+    public StartNavigator(BaseActivity activity, ErrorRendererComponent errorRendererComponent, FragmentManager fragmentManager) {
         super(activity, errorRendererComponent, R.id.activity_start_relative_layout);
+        this.fragmentManager = fragmentManager;
     }
 
     /**
@@ -32,7 +37,7 @@ public class StartNavigator extends BaseNavigator {
      */
     public void launchAuthenticationModeChoiceFragment(Activity activity) {
         Fragment authenticationChoiceFragment = AuthenticationChoiceFragment.newInstance();
-        activity.getFragmentManager().beginTransaction().add(R.id.activity_start_frame_layout, authenticationChoiceFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.activity_start_frame_layout, authenticationChoiceFragment).commit();
     }
 
     /**

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseModePresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -29,7 +30,7 @@ import butterknife.OnClick;
 /**
  * Mode exercise fragment.
  */
-public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
+public class ExerciseModeFragment extends BaseFragment implements ExerciseModeView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseModeFragment.DURATION_EXERCISE";
@@ -74,7 +75,6 @@ public class ExerciseModeFragment extends Fragment implements ExerciseModeView {
         View rootView = inflater.inflate(R.layout.fragment_exercise_mode, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseModePresenter.setExerciseModeView(this);
         exerciseModePresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

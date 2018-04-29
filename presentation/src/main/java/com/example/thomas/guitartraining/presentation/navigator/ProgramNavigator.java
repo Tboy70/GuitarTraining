@@ -1,11 +1,13 @@
 package com.example.thomas.guitartraining.presentation.navigator;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import com.example.data.values.ExercisesTypeValues;
 import com.example.model.Exercise;
 import com.example.thomas.guitartraining.R;
+import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
 import com.example.thomas.guitartraining.presentation.fragment.program.EndProgramFragment;
 import com.example.thomas.guitartraining.presentation.fragment.program.IntroProgramFragment;
@@ -28,16 +30,19 @@ import javax.inject.Inject;
  */
 public class ProgramNavigator extends BaseNavigator {
 
+    private FragmentManager fragmentManager;
+
     @SuppressWarnings("WeakerAccess")
     @Inject
-    public ProgramNavigator(Activity activity, ErrorRendererComponent errorRendererComponent) {
+    public ProgramNavigator(BaseActivity activity, ErrorRendererComponent errorRendererComponent, FragmentManager fragmentManager) {
         super(activity, errorRendererComponent, R.id.activity_program_relative_layout);
+        this.fragmentManager = fragmentManager;
     }
 
     public void displayProgram(Activity activity, int idProgram) {
         Fragment introProgramFragment = IntroProgramFragment.newInstance(idProgram);
-        activity.getFragmentManager().beginTransaction()
-                .add(R.id.activity_program_frame_layout, introProgramFragment)
+        fragmentManager.beginTransaction()
+                .replace(R.id.activity_program_frame_layout, introProgramFragment)
                 .addToBackStack(ConstantTag.INTRO.toString())
                 .commit();
     }
@@ -94,8 +99,7 @@ public class ProgramNavigator extends BaseNavigator {
                 break;
         }
 
-        activity.getFragmentManager()
-                .beginTransaction()
+        fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.activity_program_frame_layout, fragmentToDisplay)
                 .addToBackStack(tag)
@@ -106,8 +110,7 @@ public class ProgramNavigator extends BaseNavigator {
 
         Fragment endProgramFragment = EndProgramFragment.newInstance();
 
-        activity.getFragmentManager()
-                .beginTransaction()
+        fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.activity_program_frame_layout, endProgramFragment)
                 .addToBackStack(ConstantTag.END.toString())

@@ -1,30 +1,35 @@
 package com.example.thomas.guitartraining.di.component;
 
-import android.content.Context;
+import android.app.Application;
 
-import com.example.executor.PostExecutionThread;
-import com.example.executor.ThreadExecutor;
-import com.example.repository.ProgramRepository;
-import com.example.repository.UserRepository;
+import com.example.thomas.guitartraining.GuitarTrainingApplication;
+import com.example.thomas.guitartraining.di.module.ActivityInjectorModule;
 import com.example.thomas.guitartraining.di.module.ApplicationModule;
 
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * ApplicationComponent interface for dependency injection with Dagger.
  */
 @Singleton
-@Component(modules = ApplicationModule.class)
+@Component(modules = {
+        ApplicationModule.class,
+        AndroidSupportInjectionModule.class,
+        ActivityInjectorModule.class})
 public interface ApplicationComponent {
-    Context context();
 
-    UserRepository userRepository();
+    void inject(GuitarTrainingApplication application);
 
-    ProgramRepository programRepository();
+    @Component.Builder
+    abstract class Builder {
 
-    ThreadExecutor threadExecutor();
+        @BindsInstance
+        public abstract Builder application(Application application);
 
-    PostExecutionThread postExecutionThread();
+        public abstract ApplicationComponent build();
+    }
 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseSpeedPresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Speed exercise fragment.
  */
-public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView {
+public class ExerciseSpeedFragment extends BaseFragment implements ExerciseSpeedView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSpeedFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSpeedFragment.DURATION_EXERCISE";
@@ -67,7 +68,6 @@ public class ExerciseSpeedFragment extends Fragment implements ExerciseSpeedView
         View rootView = inflater.inflate(R.layout.fragment_exercise_speed, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseSpeedPresenter.setExerciseSpeedView(this);
         exerciseSpeedPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

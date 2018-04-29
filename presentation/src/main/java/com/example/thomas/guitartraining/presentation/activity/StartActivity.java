@@ -30,7 +30,6 @@ public class StartActivity extends BaseActivity implements StartNavigatorListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        getActivityComponent().inject(this);
         ButterKnife.bind(this);
     }
 

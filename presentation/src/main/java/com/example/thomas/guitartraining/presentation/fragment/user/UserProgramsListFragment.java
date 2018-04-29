@@ -1,6 +1,5 @@
 package com.example.thomas.guitartraining.presentation.fragment.user;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,8 +13,8 @@ import android.widget.LinearLayout;
 
 import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
-import com.example.thomas.guitartraining.presentation.activity.UserPanelActivity;
 import com.example.thomas.guitartraining.presentation.activity.listener.UserPanelNavigatorListener;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ui.adapter.UserProgramsListAdapter;
 import com.example.thomas.guitartraining.presentation.fragment.ui.adapter.UserProgramsListAdapterListener;
 import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramsListPresenter;
@@ -29,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class UserProgramsListFragment extends Fragment implements UserProgramsListView, UserProgramsListAdapterListener {
+public class UserProgramsListFragment extends BaseFragment implements UserProgramsListView, UserProgramsListAdapterListener {
 
     @BindView(R.id.fragment_user_programs_list_swipe_refresh_layout)
     SwipeRefreshLayout userProgramsListSwipeRefreshLayout;
@@ -60,7 +59,6 @@ public class UserProgramsListFragment extends Fragment implements UserProgramsLi
         View rootView = inflater.inflate(R.layout.fragment_user_programs_list, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((UserPanelActivity) getActivity()).getActivityComponent().inject(this);
 
         userProgramsListPresenter.setUserProgramsListView(this);
         userProgramsListPresenter.setUserPanelNavigatorListener((UserPanelNavigatorListener) this.getActivity());

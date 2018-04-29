@@ -75,7 +75,6 @@ public class TimerDialogFragment extends DialogFragment {
         View rootView = inflater.inflate(R.layout.timer_dialog_layout, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         return rootView;
     }

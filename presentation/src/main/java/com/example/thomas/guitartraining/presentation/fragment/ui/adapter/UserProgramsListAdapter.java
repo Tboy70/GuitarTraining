@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.model.Program;
 import com.example.thomas.guitartraining.R;
+import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewholder.ProgramViewHolder;
 import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
 
@@ -24,7 +25,7 @@ public class UserProgramsListAdapter extends RecyclerView.Adapter<ProgramViewHol
 
     @SuppressWarnings("WeakerAccess")
     @Inject
-    public UserProgramsListAdapter(Activity activity) {
+    public UserProgramsListAdapter(BaseActivity activity) {
         this.activity = activity;
         this.programList = new ArrayList<>();
     }

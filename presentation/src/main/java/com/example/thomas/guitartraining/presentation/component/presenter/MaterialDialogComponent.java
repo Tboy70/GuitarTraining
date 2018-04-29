@@ -7,6 +7,7 @@ import android.view.View;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.thomas.guitartraining.di.PerActivity;
+import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.component.presenter.listener.SingleChoiceMaterialDialogListener;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class MaterialDialogComponent {
 
     @SuppressWarnings("WeakerAccess")
     @Inject
-    public MaterialDialogComponent(Activity activity) {
+    public MaterialDialogComponent(BaseActivity activity) {
         this.activity = activity;
     }
 

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExercisePullOffHammerOnPresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Pull off / Hammer on exercise fragment.
  */
-public class ExercisePullOffHammerOnFragment extends Fragment implements ExercisePullOffHammerOnView {
+public class ExercisePullOffHammerOnFragment extends BaseFragment implements ExercisePullOffHammerOnView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExercisePullOffHammerOnFragment.DURATION_EXERCISE";
@@ -67,7 +68,6 @@ public class ExercisePullOffHammerOnFragment extends Fragment implements Exercis
         View rootView = inflater.inflate(R.layout.fragment_exercise_pull_off_hammer_on, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exercisePullOffHammerOnPresenter.setExercisePullOffHammerOnView(this);
         exercisePullOffHammerOnPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

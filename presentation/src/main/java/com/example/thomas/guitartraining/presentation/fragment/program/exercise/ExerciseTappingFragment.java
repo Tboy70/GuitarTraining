@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseTappingPresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Tapping exercise fragment.
  */
-public class ExerciseTappingFragment extends Fragment implements ExerciseTappingView {
+public class ExerciseTappingFragment extends BaseFragment implements ExerciseTappingView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseTappingFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseTappingFragment.DURATION_EXERCISE";
@@ -68,7 +69,6 @@ public class ExerciseTappingFragment extends Fragment implements ExerciseTapping
         View rootView = inflater.inflate(R.layout.fragment_exercise_tapping, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseTappingPresenter.setExerciseTappingView(this);
         exerciseTappingPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

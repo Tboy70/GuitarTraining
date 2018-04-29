@@ -1,13 +1,14 @@
 package com.example.thomas.guitartraining.presentation.navigator;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.di.PerActivity;
+import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.navigator.ErrorRendererComponent;
 import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
@@ -28,7 +29,7 @@ public class UserProgramNavigator extends BaseNavigator {
 
     @SuppressWarnings("WeakerAccess")
     @Inject
-    public UserProgramNavigator(Activity activity, ErrorRendererComponent errorRendererComponent) {
+    public UserProgramNavigator(BaseActivity activity, ErrorRendererComponent errorRendererComponent) {
         super(activity, errorRendererComponent, R.id.activity_user_program_relative_layout);
     }
 

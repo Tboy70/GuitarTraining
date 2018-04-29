@@ -47,8 +47,6 @@ public class UserProgramActivity extends BaseActivity implements UserProgramNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_program);
 
-        getActivityComponent().inject(this);
-
         ButterKnife.bind(this);
         setFragmentManager();
 
@@ -118,7 +116,7 @@ public class UserProgramActivity extends BaseActivity implements UserProgramNavi
     }
 
     private void setFragmentManager() {
-        userProgramNavigator.setFragmentManager(getFragmentManager());
+        userProgramNavigator.setFragmentManager(getSupportFragmentManager());
     }
 
     private int getFragmentTypeFromBundle(Bundle bundle) {

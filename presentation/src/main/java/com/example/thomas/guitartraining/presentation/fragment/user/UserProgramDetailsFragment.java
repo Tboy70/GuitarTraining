@@ -1,9 +1,9 @@
 package com.example.thomas.guitartraining.presentation.fragment.user;
 
-import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.model.Exercise;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
 import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramDetailsPresenter;
 import com.example.thomas.guitartraining.presentation.utils.ExerciseUtils;
@@ -27,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class UserProgramDetailsFragment extends Fragment implements UserProgramDetailsView {
+public class UserProgramDetailsFragment extends BaseFragment implements UserProgramDetailsView {
 
     @Inject
     UserProgramDetailsPresenter userProgramsListPresenter;
@@ -61,7 +62,6 @@ public class UserProgramDetailsFragment extends Fragment implements UserProgramD
         View view = inflater.inflate(R.layout.fragment_user_program_details, container, false);
 
         ButterKnife.bind(this, view);
-        ((BaseActivity) getActivity()).getActivityComponent().inject(this);
 
         setHasOptionsMenu(true);
 

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseBendSlidePresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Bend / slide exercise fragment.
  */
-public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendSlideView {
+public class ExerciseBendSlideFragment extends BaseFragment implements ExerciseBendSlideView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBendSlideFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseBendSlideFragment.DURATION_EXERCISE";
@@ -67,7 +68,6 @@ public class ExerciseBendSlideFragment extends Fragment implements ExerciseBendS
         View rootView = inflater.inflate(R.layout.fragment_exercise_bend_slide, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseBendSlidePresenter.setExerciseBendSlideView(this);
         exerciseBendSlidePresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

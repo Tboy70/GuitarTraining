@@ -1,6 +1,5 @@
 package com.example.thomas.guitartraining.presentation.fragment.user;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.thomas.guitartraining.R;
-import com.example.thomas.guitartraining.presentation.activity.LoginActivity;
+import com.example.thomas.guitartraining.presentation.activity.listener.LoginNavigatorListener;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.user.ConnectionPresenter;
 import com.example.thomas.guitartraining.presentation.utils.KeyboardUtils;
 import com.example.thomas.guitartraining.presentation.view.user.ConnectionView;
-import com.example.thomas.guitartraining.presentation.activity.listener.LoginNavigatorListener;
 
 import javax.inject.Inject;
 
@@ -21,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ConnectionFragment extends Fragment implements ConnectionView {
+public class ConnectionFragment extends BaseFragment implements ConnectionView {
 
     @Inject
     ConnectionPresenter connectionPresenter;
@@ -48,7 +47,6 @@ public class ConnectionFragment extends Fragment implements ConnectionView {
         rootView = inflater.inflate(R.layout.fragment_connection, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((LoginActivity) getActivity()).getActivityComponent().inject(this);
 
         connectionPresenter.setConnectionView(this);
         connectionPresenter.setLoginNavigatorListener((LoginNavigatorListener) this.getActivity());

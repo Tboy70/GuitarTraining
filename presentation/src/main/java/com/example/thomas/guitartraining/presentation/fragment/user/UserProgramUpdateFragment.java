@@ -1,8 +1,8 @@
 package com.example.thomas.guitartraining.presentation.fragment.user;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +12,9 @@ import android.widget.LinearLayout;
 
 import com.example.model.Exercise;
 import com.example.thomas.guitartraining.R;
-import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.ExercisesUIComponent;
 import com.example.thomas.guitartraining.presentation.component.fragment.listener.ExercisesUIComponentListener;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.fragment.ui.view.viewmodel.ProgramViewModel;
 import com.example.thomas.guitartraining.presentation.listener.AddExerciseListener;
 import com.example.thomas.guitartraining.presentation.presenter.user.UserProgramUpdatePresenter;
@@ -31,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class UserProgramUpdateFragment extends Fragment implements UserProgramUpdateView {
+public class UserProgramUpdateFragment extends BaseFragment implements UserProgramUpdateView {
 
     @BindView(R.id.fragment_user_program_update_name)
     EditText userProgramUpdateName;
@@ -74,7 +74,6 @@ public class UserProgramUpdateFragment extends Fragment implements UserProgramUp
         View view = inflater.inflate(R.layout.fragment_user_program_update, container, false);
 
         ButterKnife.bind(this, view);
-        ((BaseActivity) getActivity()).getActivityComponent().inject(this);
 
         setHasOptionsMenu(true);
 

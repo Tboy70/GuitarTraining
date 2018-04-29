@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.thomas.guitartraining.di.PerActivity;
+import com.example.thomas.guitartraining.presentation.activity.BaseActivity;
 import com.example.thomas.guitartraining.presentation.utils.ErrorUtils;
 
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ public class ErrorRendererComponent {
     private Activity activity;
 
     @Inject
-    public ErrorRendererComponent(Activity activity) {
+    public ErrorRendererComponent(BaseActivity activity) {
         this.activity = activity;
     }
 

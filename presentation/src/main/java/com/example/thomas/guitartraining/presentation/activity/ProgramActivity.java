@@ -38,7 +38,6 @@ public class ProgramActivity extends BaseActivity implements ProgramNavigatorLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program);
-        getActivityComponent().inject(this);
         ButterKnife.bind(this);
         exercisesOfProgram = new ArrayList<>();
         Bundle extras = getIntent().getExtras();

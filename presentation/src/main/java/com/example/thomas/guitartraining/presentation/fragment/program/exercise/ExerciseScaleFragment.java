@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseScalePresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -29,7 +30,7 @@ import butterknife.OnClick;
 /**
  * Scale exercise fragment.
  */
-public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView {
+public class ExerciseScaleFragment extends BaseFragment implements ExerciseScaleView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseScaleFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseScaleFragment.DURATION_EXERCISE";
@@ -77,7 +78,6 @@ public class ExerciseScaleFragment extends Fragment implements ExerciseScaleView
         View rootView = inflater.inflate(R.layout.fragment_exercise_scale, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseScalePresenter.setExerciseScaleView(this);
         exerciseScalePresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

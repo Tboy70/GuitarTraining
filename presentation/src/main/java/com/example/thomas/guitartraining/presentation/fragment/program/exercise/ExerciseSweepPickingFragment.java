@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.component.fragment.DurationComponent;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.exercise.ExerciseSweepPickingPresenter;
 import com.example.thomas.guitartraining.presentation.utils.DateTimeUtils;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Sweep picking exercise fragment.
  */
-public class ExerciseSweepPickingFragment extends Fragment implements ExerciseSweepPickingView {
+public class ExerciseSweepPickingFragment extends BaseFragment implements ExerciseSweepPickingView {
 
     private static final String RANK_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSweepPickingFragment.RANK_EXERCISE";
     private static final String DURATION_EXERCISE = "com.example.thomas.guitartraining.presentation.fragment.program.exercise.ExerciseSweepPickingFragment.DURATION_EXERCISE";
@@ -66,7 +67,6 @@ public class ExerciseSweepPickingFragment extends Fragment implements ExerciseSw
         View rootView = inflater.inflate(R.layout.fragment_exercise_sweep_picking, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         exerciseSweepPickingPresenter.setExerciseSweepPickingView(this);
         exerciseSweepPickingPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

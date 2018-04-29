@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.example.thomas.guitartraining.R;
 import com.example.thomas.guitartraining.presentation.activity.ProgramActivity;
 import com.example.thomas.guitartraining.presentation.activity.listener.ProgramNavigatorListener;
+import com.example.thomas.guitartraining.presentation.fragment.BaseFragment;
 import com.example.thomas.guitartraining.presentation.presenter.program.EndProgramPresenter;
 import com.example.thomas.guitartraining.presentation.view.program.EndProgramView;
 
@@ -21,7 +22,7 @@ import butterknife.OnClick;
 /**
  * Last step of a program to congratulate the user.
  */
-public class EndProgramFragment extends Fragment implements EndProgramView {
+public class EndProgramFragment extends BaseFragment implements EndProgramView {
 
     @Inject
     EndProgramPresenter endProgramPresenter;
@@ -41,7 +42,6 @@ public class EndProgramFragment extends Fragment implements EndProgramView {
         View rootView = inflater.inflate(R.layout.fragment_end_program, container, false);
 
         ButterKnife.bind(this, rootView);
-        ((ProgramActivity) getActivity()).getActivityComponent().inject(this);
 
         endProgramPresenter.setEndProgramView(this);
         endProgramPresenter.setProgramNavigatorListener((ProgramNavigatorListener) this.getActivity());

@@ -41,7 +41,6 @@ public class UserPanelActivity extends BaseActivity implements UserPanelNavigato
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_panel);
-        getActivityComponent().inject(this);
         ButterKnife.bind(this);
         setFragmentManager();
         initDrawerMenu();
@@ -141,7 +140,7 @@ public class UserPanelActivity extends BaseActivity implements UserPanelNavigato
     }
 
     private void setFragmentManager() {
-        userPanelNavigator.setFragmentManager(getFragmentManager());
+        userPanelNavigator.setFragmentManager(getSupportFragmentManager());
     }
 
     private void initDrawerMenu() {

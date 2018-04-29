@@ -1,8 +1,11 @@
 package com.example.thomas.guitartraining.di.module;
 
+import android.app.Application;
 import android.content.Context;
 
 import com.example.data.executor.JobExecutor;
+import com.example.data.module.APIModule;
+import com.example.data.module.APIModuleRetrofitImpl;
 import com.example.data.repository.ProgramDataRepository;
 import com.example.data.repository.UserDataRepository;
 import com.example.executor.PostExecutionThread;
@@ -14,6 +17,7 @@ import com.example.thomas.guitartraining.presentation.executor.UIThread;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -21,41 +25,66 @@ import dagger.Provides;
  * ApplicationModule class for dependency injection with Dagger.
  */
 @Module
-public class ApplicationModule {
-    private final GuitarTrainingApplication application;
+public abstract class ApplicationModule {
 
-    public ApplicationModule(GuitarTrainingApplication application) {
-        this.application = application;
-    }
-
-    @Provides
     @Singleton
-    Context provideApplicationContext() {
-        return this.application;
-    }
+    @Binds
+    public abstract Context provideApplicationContext(Application application);
 
-    @Provides
     @Singleton
-    UserRepository provideUserRepository(UserDataRepository userDataRepository) {
-        return userDataRepository;
-    }
+    @Binds
+    abstract APIModule provideAPIModule(APIModuleRetrofitImpl apiModuleRetrofitImpl);
 
-    @Provides
     @Singleton
-    ProgramRepository provideProgramRepository(ProgramDataRepository programDataRepository) {
-        return programDataRepository;
-    }
+    @Binds
+    abstract UserRepository provideUserRepository(UserDataRepository userDataRepository);
 
-    @Provides
     @Singleton
-    ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
-        return jobExecutor;
-    }
+    @Binds
+    abstract ProgramRepository provideProgramRepository(ProgramDataRepository programDataRepository);
 
-    @Provides
     @Singleton
-    PostExecutionThread providePostExecutionThread(UIThread uiThread) {
-        return uiThread;
-    }
+    @Binds
+    abstract ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor);
+
+    @Singleton
+    @Binds
+    abstract PostExecutionThread providePostExecutionThread(UIThread uiThread);
+
+//    private final GuitarTrainingApplication application;
+//
+//    public ApplicationModule(GuitarTrainingApplication application) {
+//        this.application = application;
+//    }
+
+//    @Provides
+//    @Singleton
+//    Context provideApplicationContext() {
+//        return this.application;
+//    }
+//
+//    @Provides
+//    @Singleton
+//    UserRepository provideUserRepository(UserDataRepository userDataRepository) {
+//        return userDataRepository;
+//    }
+//
+//    @Provides
+//    @Singleton
+//    ProgramRepository provideProgramRepository(ProgramDataRepository programDataRepository) {
+//        return programDataRepository;
+//    }
+//
+//    @Provides
+//    @Singleton
+//    ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
+//        return jobExecutor;
+//    }
+//
+//    @Provides
+//    @Singleton
+//    PostExecutionThread providePostExecutionThread(UIThread uiThread) {
+//        return uiThread;
+//    }
 
 }

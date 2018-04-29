@@ -1,39 +1,36 @@
 package com.example.thomas.guitartraining;
 
+import android.app.Activity;
 import android.app.Application;
 
-import com.example.thomas.guitartraining.di.component.ApplicationComponent;
 import com.example.thomas.guitartraining.di.component.DaggerApplicationComponent;
-import com.example.thomas.guitartraining.di.module.ApplicationModule;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 
 /**
  * Application class.
  */
-public class GuitarTrainingApplication extends Application {
+public class GuitarTrainingApplication extends Application implements HasActivityInjector {
 
-    private static GuitarTrainingApplication application;
-    private ApplicationComponent applicationComponent;
+    @Inject
+    DispatchingAndroidInjector<Activity> activityInjector;
 
-    public static GuitarTrainingApplication application() {
-        return application;
-    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        application = this;
-        initializeInjector();
+        DaggerApplicationComponent.builder().application(this).build().inject(this);
         FlowManager.init(new FlowConfig.Builder(this).build());
     }
 
-    public ApplicationComponent getApplicationComponent() {
-        return this.applicationComponent;
-    }
-
-    private void initializeInjector() {
-        this.applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this)).build();
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return activityInjector;
     }
 }
